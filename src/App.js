@@ -1,18 +1,20 @@
 import React from 'react'
 import { Counter } from './features/counter/Counter'
 import './App.css'
-import { Route, Switch, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
+import Home from './features/home/Home'
+
 
 function App() {
    const location = useLocation()
    
 	return (
-		<div className='App'>
+		<div className='app'>
 			<AnimatePresence exitBeforeEnter>
-				<Switch key={location.pathname} location={location}>
-					<h1>Hello world</h1>
-				</Switch>
+            <Routes>
+					<Route path='/' exact element={<Home />} />
+            </Routes>
 			</AnimatePresence>
 		</div>
 	)

@@ -1,0 +1,117 @@
+.navigation {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / span 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-column: 1/ 5;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navigation__icon {
+  width: 4rem;
+  height: 4rem;
+}
+
+.navigation__hamburger-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.navigation__hamburger-container:hover {
+  background-color: #1D2D44;
+  -webkit-transition: 0.5s ease-in;
+  transition: 0.5s ease-in;
+}
+
+@media screen and (min-width: 75em) {
+  .navigation__hamburger-container {
+    display: none;
+  }
+}
+
+.navigation__hamburger {
+  color: #F0EBD8;
+  width: 3rem;
+  height: 3rem;
+}
+
+.navigation__buttons {
+  display: none;
+}
+
+@media screen and (min-width: 75em) {
+  .navigation__buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+.navigation__button {
+  outline: none;
+  border: none;
+  width: 8rem;
+  height: 3rem;
+  margin: 1rem;
+  font-family: 'Manrope';
+  border-radius: 0.5rem;
+  color: #F0EBD8;
+  cursor: pointer;
+}
+
+.navigation__button:hover,
+.navigation__button *:focus {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.navigation__button:active {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.navigation__login {
+  background-color: #748CAB;
+}
+
+.navigation__login:hover, .navigation__login:focus {
+  background-color: #3E5c76;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+}
+
+.navigation__sign-in {
+  background: -webkit-gradient(linear, left top, right top, from(#f12711), to(#f5af19));
+  background: linear-gradient(to right, #f12711, #f5af19);
+}
+
+.navigation__sign-in:hover, .navigation__sign-in:focus {
+  background: -webkit-gradient(linear, left top, right top, from(#f5af19), to(#f12711));
+  background: linear-gradient(to right, #f5af19, #f12711);
+}
+/*# sourceMappingURL=navigation.css.map */

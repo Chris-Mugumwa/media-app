@@ -1,18 +1,29 @@
 @import './styles/styles.scss';
+@import './features/navigate/navigate.scss';
+@import './features/navigation/navigation.scss';
 
 *,
 *::before,
 *::after {
-   padding: 0;
-   margin: 0;
-   box-sizing: inherit;
+	padding: 0;
+	margin: 0;
+	box-sizing: inherit;
 }
 
 html {
-   font-size: 62.5%;
-   box-sizing: border-box;
+	font-size: 62.5%;
+	box-sizing: border-box;
 }
 
 body {
-   font-family: 'Manrope', 'Poppins', sans-serif;
+	font-family: 'Manrope', 'Poppins', sans-serif;
+   background-color: $blue-dark;
+   margin: 1rem;
+}
+
+.app {
+	min-height: 100vh;
+	display: grid;
+	grid-template-rows: 5rem 5rem 100%;
+	grid-template-columns: repeat(4, 1fr);
 }

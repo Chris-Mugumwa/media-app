@@ -1,3 +1,66 @@
+.navigate {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-column: 1 / 5;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+}
+
+.navigation {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / span 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-column: 1/ 5;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navigation__icon {
+  width: 4rem;
+  height: 4rem;
+}
+
+.navigation__hamburger-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.navigation__hamburger-container:hover {
+  background-color: #1D2D44;
+  -webkit-transition: .5s ease-in;
+  transition: .5s ease-in;
+}
+
+.navigation__hamburger {
+  color: #F0EBD8;
+  width: 3rem;
+  height: 3rem;
+}
+
 *,
 *::before,
 *::after {
@@ -15,5 +78,17 @@ html {
 
 body {
   font-family: 'Manrope', 'Poppins', sans-serif;
+  background-color: #0D1321;
+  margin: 1rem;
+}
+
+.app {
+  min-height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 5rem 5rem 100%;
+      grid-template-rows: 5rem 5rem 100%;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
 }
 /*# sourceMappingURL=App.css.map */
