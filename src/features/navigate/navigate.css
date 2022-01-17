@@ -1,0 +1,9 @@
+.navigate {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-column: 1 / 5;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+}
+/*# sourceMappingURL=navigate.css.map */
