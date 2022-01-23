@@ -1,0 +1,133 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.menu {
+	position: fixed;
+	grid-column: 1 / 5;
+	grid-row: 2 / 4;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	right: -110%;
+	top: 5rem;
+	width: 100%;
+	height: 100vh;
+	background-color: $blue-tinted;
+	transition: 0.8s ease-in-out;
+
+	&__close {
+		position: fixed;
+		grid-column: 1 / 5;
+		grid-row: 2 / 4;
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
+		align-items: center;
+		right: 0;
+		top: 5rem;
+		width: 100%;
+		height: 100vh;
+		background-color: $blue-dark;
+		transition: 0.8s ease-in-out;
+      z-index: 1000;
+
+		@include respond(desktop) {
+			display: none;
+		}
+	}
+
+	@include respond(desktop) {
+		display: none;
+	}
+
+	&__list {
+		display: flex;
+		flex-flow: column;
+		list-style: none;
+		width: 90%;
+	}
+
+	&__item-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__item {
+		text-decoration: none;
+		padding: 1rem;
+		margin: 0.5rem;
+		text-align: center;
+		font-size: 3.5rem;
+		width: 100%;
+		color: $grayish;
+		cursor: pointer;
+		border-radius: 1rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&:hover {
+			background-color: $blue;
+			transition: 0.5s ease;
+		}
+	}
+
+	&__icon {
+		margin-right: 0.5rem;
+		display: flex;
+		align-items: center;
+		justify-self: start;
+	}
+
+	&__buttons {
+		width: 50%;
+		display: flex;
+		flex-flow: column;
+		margin-top: 1rem;
+	}
+
+	&__button {
+		font-family: 'Manrope';
+		color: $grayish;
+		width: 100%;
+		height: 4.5rem;
+		padding: 1rem;
+		outline: none;
+		border: none;
+		border-radius: 1rem;
+		cursor: pointer;
+
+		&:hover,
+		*:focus {
+			transform: scale(1.1);
+			transition: 0.5s ease;
+		}
+
+		&:active {
+			transform: scale(1);
+			transition: 0.5s ease;
+		}
+	}
+
+	&__login {
+		background-color: $blue-light;
+
+		&:hover,
+		&:focus {
+			background-color: $blue-light;
+			transition: 0.5s ease;
+		}
+	}
+
+	&__sign-up {
+		margin-top: 0.8rem;
+		background: linear-gradient(to right, #f12711, #f5af19);
+
+		&:hover,
+		&:focus {
+			background: linear-gradient(to right, #f5af19, #f12711);
+		}
+	}
+}

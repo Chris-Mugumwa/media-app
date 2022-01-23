@@ -1,8 +1,10 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,SAAS,CAAC;EACP,WAAW,EAAE,KAAK;EAClB,QAAQ,EAAE,KAAK;CACjB",
+    "mappings": "AAGA,AAAA,SAAS,CAAC;EACP,WAAW,EAAE,KAAK;EAClB,QAAQ,EAAE,KAAK;EAEf,OAAO,EAAE,IAAI;CAKf;;ACRC,MAAM,CAAC,MAAM,MAAM,SAAS,EAAE,IAAI;EDDpC,AAAA,SAAS,CAAC;IAOJ,OAAO,EAAE,IAAI;GAElB",
     "sources": [
-        "navigate.scss"
+        "navigate.scss",
+        "../../styles/_mixins.scss",
+        "../../styles/_variables.scss"
     ],
     "names": [],
     "file": "navigate.css"

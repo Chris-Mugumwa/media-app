@@ -19,11 +19,13 @@ body {
 	font-family: 'Manrope', 'Poppins', sans-serif;
    background-color: $blue-dark;
    margin: 1rem;
+   overflow-x: hidden;
 }
 
 .app {
 	min-height: 100vh;
 	display: grid;
-	grid-template-rows: 5rem 5rem 100%;
+   grid-gap: 1.5rem;
+	grid-template-rows: 5rem 5rem 5rem 100%;
 	grid-template-columns: repeat(4, 1fr);
 }
