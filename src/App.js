@@ -5,7 +5,6 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Home from './features/home/Home'
 
-
 function App() {
    const location = useLocation()
    
@@ -13,7 +12,7 @@ function App() {
 		<div className='app'>
 			<AnimatePresence exitBeforeEnter>
             <Routes>
-					<Route path='/' exact element={<Home />} />
+               <Route path='/' exact element={<Home />} />
             </Routes>
 			</AnimatePresence>
 		</div>

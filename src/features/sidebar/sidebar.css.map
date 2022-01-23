@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAGA,AAAA,QAAQ,CAAC;EACN,OAAO,EAAE,IAAI;CASf;;ACTC,MAAM,CAAC,MAAM,MAAM,SAAS,EAAE,IAAI;EDDpC,AAAA,QAAQ,CAAC;IAIH,WAAW,EAAE,KAAK;IAClB,QAAQ,EAAE,KAAK;IAEf,OAAO,EAAE,IAAI;GAGlB",
+    "sources": [
+        "sidebar.scss",
+        "../../styles/_mixins.scss",
+        "../../styles/_variables.scss"
+    ],
+    "names": [],
+    "file": "sidebar.css"
+}

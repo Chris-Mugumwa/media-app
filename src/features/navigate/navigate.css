@@ -5,5 +5,14 @@
   -ms-grid-row: 2;
   -ms-grid-row-span: 1;
   grid-row: 2 / 3;
+  display: none;
+}
+
+@media screen and (min-width: 75em) {
+  .navigate {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 /*# sourceMappingURL=navigate.css.map */
