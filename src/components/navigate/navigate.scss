@@ -1,0 +1,124 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.navigate {
+	grid-column: 1 / 5;
+	grid-row: 2 / 3;
+
+	display: none;
+
+	@include respond(desktop) {
+		display: flex;
+	}
+
+	&__navigation {
+		display: flex;
+		align-items: center;
+		width: 45%;
+		justify-content: space-between;
+	}
+
+	&__list {
+		width: 90%;
+		display: flex;
+		justify-content: space-around;
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+	}
+
+	&__link {
+		text-decoration: none;
+		color: $grayish;
+		font-size: 1.8rem;
+		position: relative;
+		transition: all 0.3s ease-in-out;
+	}
+
+	&__home {
+		border-right: 2px solid $grayish;
+		padding-right: 1.8rem;
+      transition: all .4s ease-in-out;
+
+      &:hover {
+         transform: scale(1.1);
+      }
+	}
+
+	&__icon {
+		position: absolute;
+		top: 20%;
+		right: -40%;
+	}
+
+	&__dropdown {
+		display: none;
+		flex-direction: column;
+		position: absolute;
+		left: -50%;
+		background-color: $blue-light;
+		padding: 0.2rem;
+		width: 16rem;
+		border-radius: 10px;
+		z-index: 10000;
+		transition: all 0.4s ease-in-out;
+	}
+
+	&__dropdown-show-movies {
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		left: -50%;
+		background-color: $blue-light;
+		padding: 0.2rem;
+		width: 16rem;
+		border-radius: 10px;
+		z-index: 10000;
+
+		transition: all 0.4s ease-in-out;
+	}
+
+	&__dropdown-show-shows {
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		left: -50%;
+		background-color: $blue-light;
+		padding: 0.2rem;
+		width: 16rem;
+		border-radius: 10px;
+		z-index: 10000;
+		transition: all 0.4s ease-in-out;
+	}
+
+	&__dropdown-show-anime {
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		left: -50%;
+		background-color: $blue-light;
+		padding: 0.2rem;
+		width: 16rem;
+		border-radius: 10px;
+		z-index: 10000;
+		transition: all 0.4s ease-in-out;
+	}
+
+	&__dropdown-link {
+		text-decoration: none;
+		color: $grayish;
+		font-size: 1.8rem;
+		padding: 1.2rem;
+		text-align: center;
+		width: 100%;
+		border-radius: 10px;
+		transition: all 0.4s ease-in-out;
+
+		&:hover {
+			background-color: $blue;
+		}
+	}
+}

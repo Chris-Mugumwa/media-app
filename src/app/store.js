@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from '../features/counter/counterSlice'
-import mainReducer from '../features/main/mainSlice'
+import movieReducer from '../features/movies/movieSlice'
+import showReducer from '../features/shows/showSlice'
+import animeReducer from '../features/anime/animeSlice'
 
 export const store = configureStore({
 	reducer: {
-      counter: counterReducer,
-      main: mainReducer,
+		movie: movieReducer,
+		show: showReducer,
+		anime: animeReducer,
 	},
 })

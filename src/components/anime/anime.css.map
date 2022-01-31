@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "anime.scss",
+        "../../styles/_mixins.scss",
+        "../../styles/_variables.scss"
+    ],
+    "names": [],
+    "file": "anime.css"
+}

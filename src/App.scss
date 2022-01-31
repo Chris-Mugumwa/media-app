@@ -18,7 +18,7 @@ html {
 body {
 	font-family: 'Manrope', 'Poppins', sans-serif;
    background-color: $blue-dark;
-   margin: 1rem;
+   margin: 1.5rem 2.5rem;
    overflow-x: hidden;
 }
 
@@ -29,3 +29,13 @@ body {
 	grid-template-rows: 5rem 5rem 5rem 100%;
 	grid-template-columns: repeat(4, 1fr);
 }
+
+::-webkit-scrollbar {
+   width: .8rem;
+}
+
+::-webkit-scrollbar-thumb {
+   background: $blue-light; 
+   border-radius: 20rem;
+ }
+ 
