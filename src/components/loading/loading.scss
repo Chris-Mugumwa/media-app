@@ -1,0 +1,16 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.loading {
+   grid-column: 1 / 5;
+   grid-row: 1 / 5;
+   background-color: $blue-dark;
+   height: 100%;
+   width: 100%;
+   position: fixed;
+   z-index: 1000;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}

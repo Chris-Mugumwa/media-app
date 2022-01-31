@@ -1,0 +1,116 @@
+.main {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 2;
+  grid-row: 3 / 5;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-column: 1 / 5;
+}
+
+@media screen and (min-width: 75em) {
+  .main {
+    -ms-grid-row: 4;
+    -ms-grid-row-span: 1;
+    grid-row: 4 / 5;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    grid-column: 1 / 4;
+  }
+}
+
+.main__description {
+  color: #F0EBD8;
+  font-size: 3rem;
+  margin-top: 1.8rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 75em) {
+  .main__description {
+    margin-top: 2.5rem;
+    text-align: left;
+    font-size: 5rem;
+  }
+}
+
+.main__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+@media screen and (min-width: 75em) {
+  .main__container {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+  }
+}
+
+.main__card-container {
+  position: relative;
+  height: 24rem;
+  margin: 3.5rem 3.5rem 3.5rem 0;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 14rem;
+          flex: 0 1 14rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  cursor: pointer;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+@media screen and (min-width: 75em) {
+  .main__card-container {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 20rem;
+            flex: 0 1 20rem;
+    height: 28rem;
+  }
+}
+
+.main__card-container:hover, .main__card-container:focus {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.main__card {
+  height: 100%;
+}
+
+.main__card-information {
+  height: 2.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 1rem;
+  text-overflow: ellipsis;
+  max-height: 2.5em;
+  line-height: 1.8em;
+  -webkit-box-orient: vertical;
+}
+
+.main__card-name {
+  color: #F0EBD8;
+  font-size: 1.2rem;
+}
+/*# sourceMappingURL=main.css.map */
