@@ -13,19 +13,19 @@
 	&__description {
 		color: $grayish;
 		font-size: 3rem;
-      margin-top: 1.8rem;
-      text-align: center;
+		margin-top: 1.8rem;
+		text-align: center;
 
-      @include respond (desktop) {
-         margin-top: 2.5rem;
-         text-align: left;
-         font-size: 5rem;
-      }
+		@include respond(desktop) {
+			margin-top: 5rem;
+			text-align: left;
+			font-size: 5rem;
+		}
 	}
 
 	&__container {
 		display: flex;
-      justify-content: center;
+		justify-content: center;
 		flex-flow: row wrap;
 
 		@include respond(desktop) {
@@ -35,15 +35,15 @@
 
 	&__card-container {
 		// width: 14rem;
-      position: relative;
+		position: relative;
 		height: 24rem;
 		margin: 3.5rem 3.5rem 3.5rem 0;
 		flex: 0 1 14rem;
 
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      transition: all .4s ease-in-out;
+		display: flex;
+		flex-direction: column;
+		cursor: pointer;
+		transition: all 0.4s ease-in-out;
 
 		@include respond(desktop) {
 			// width: 22rem;\
@@ -51,32 +51,64 @@
 			height: 28rem;
 		}
 
-      &:hover, &:focus {         
-         transform: scale(1.1);
-      }
+		&:hover,
+		&:focus {
+			transform: scale(1.1);
+		}
 	}
 
 	&__card {
-      height: 100%;
-   }
+		height: 100%;
+		border-radius: 1.2rem;
+	}
 
-   &__card-information {
-      height: 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 1rem;
-      // overflow: hidden;
-      text-overflow: ellipsis;
-      // display: block;
-      max-height: 2.5em;
-      line-height: 1.8em;
-      -webkit-box-orient: vertical;
-   }
+	&__card-information {
+		height: 2.5rem;
+		display: flex;
+		flex-direction: column;
+		padding-top: 1rem;
+		// overflow: hidden;
+		text-overflow: ellipsis;
+		// display: block;
+		max-height: 2.5em;
+		line-height: 1.8em;
+		-webkit-box-orient: vertical;
+	}
 
-   &__card-name {
-      color: $grayish;
-      font-size: 1.2rem;
-   }
+	&__card-name {
+		color: $grayish;
+		font-family: 'Poppins' serif;
+		font-size: 1.2rem;
+		// overflow: hidden;
+		text-overflow: ellipsis;
+		display: block;
+		// max-height: 2.6em;
+		// line-height: 1.2em;
+		-webkit-box-orient: vertical;
+	}
 
+	&__card-details {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__card-time {
+		color: $blue-lighter;
+		font-size: 1.2rem;
+	}
+
+	&__card-detail {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__card-rating {
+		color: $blue-lighter;
+		font-size: 1.2rem;
+	}
+
+	&__card-icon {
+		margin-right: 0.3em;
+	}
 }

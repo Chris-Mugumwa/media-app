@@ -22,13 +22,11 @@ function Navigate() {
 	const leaveShowHover = () => setShowHover(!showHover)
 	const leaveAnimeHover = () => setAnimeHover(!animeHover)
 
-	// const handleClick = () => setClick(!click)
-
 	return (
 		<section className='navigate'>
 			<nav className='navigate__navigation'>
 				<Link to='/' className='navigate__home navigate__link'>
-					Home
+					<h4 className='navigate__home-text'>Home</h4>
 				</Link>
 
 				<ul className='navigate__list'>

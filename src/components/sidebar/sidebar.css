@@ -52,14 +52,21 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar__item:hover, .sidebar__item:focus {
+  color: #F0EBD8;
 }
 
 .sidebar__current {
   color: #748CAB;
   background-color: #1D2D44;
   font-weight: bold;
-  border-top-right-radius: .8rem;
-  border-top-left-radius: .8rem;
+  border-top-right-radius: 0.8rem;
+  border-top-left-radius: 0.8rem;
 }
 
 .sidebar__section {
@@ -80,8 +87,8 @@
   display: flex;
   margin-bottom: 1.5em;
   cursor: pointer;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .sidebar__container:hover, .sidebar__container:focus {
@@ -89,13 +96,33 @@
           transform: scale(1.1);
 }
 
+.sidebar__container:last-child {
+  margin-bottom: 0;
+}
+
+.sidebar__not-active {
+  display: none;
+}
+
+.sidebar__information-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .sidebar__title {
   font-weight: semi-bold;
   color: #F0EBD8;
-  margin-bottom: 1.3em;
   font-size: 1.2rem;
   font-family: 'Manrope' sans-serif;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
 }
 
 .sidebar__description {
@@ -114,13 +141,50 @@
   margin-left: 1.2em;
 }
 
+.sidebar__details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-left: 1.2em;
+}
+
+.sidebar__time {
+  color: #3E5c76;
+  font-size: 1.2rem;
+}
+
+.sidebar__detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sidebar__rating {
+  color: #3E5c76;
+  font-size: 1.2rem;
+}
+
+.sidebar__icon {
+  margin-right: 0.3em;
+}
+
 .sidebar__image {
   width: 5rem;
   height: 7rem;
+  border-radius: 0.6rem;
 }
 
 .sidebar__text {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   color: #F0EBD8;
 }
 /*# sourceMappingURL=sidebar.css.map */

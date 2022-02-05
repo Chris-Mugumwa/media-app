@@ -52,9 +52,9 @@ export const getMovieSearch = createAsyncThunk(
       const formatResponse = await response.json()
 		return formatResponse
 	},
-)
+)  
 
-
+   
 export const movieSlice = createSlice({
 	name: 'movie',
 	initialState: {

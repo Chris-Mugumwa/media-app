@@ -36,8 +36,8 @@ export const getTopRatedShows = createAsyncThunk(
 export const getShowSearch = createAsyncThunk(
 	'showSearch/getShowSearch',
 	async term => {
-		const response = await fetch(`
-      https://api.themoviedb.org/3/search/tv?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=1&query=${term}&include_adult=false`)
+		const response = await fetch(`              
+         https://api.themoviedb.org/3/search/tv?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=1&query=${term}&include_adult=false`)
 		const formatResponse = await response.json()
 		return formatResponse
 	},
@@ -49,7 +49,7 @@ export const showSlice = createSlice({
 		popularShows: [],
 		latestShows: [],
 		topRatedShows: [],
-      showSearch: [],
+		showSearch: [],
 		isLoading: false,
 	},
 	extraReducers: {
@@ -82,8 +82,8 @@ export const showSlice = createSlice({
 		},
 		[getTopRatedShows.rejected]: state => {
 			state.isLoading = false
-      },
-      [getShowSearch.pending]: state => {
+		},
+		[getShowSearch.pending]: state => {
 			state.loading = true
 		},
 		[getShowSearch.fulfilled]: (state, action) => {

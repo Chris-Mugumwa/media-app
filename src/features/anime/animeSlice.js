@@ -33,8 +33,8 @@ export const animeSlice = createSlice({
 	name: 'anime',
 	initialState: {
 		popularAnime: [],
-      randomAnime : [],
-      animeSearch: [],
+		randomAnime: [],
+		animeSearch: [],
 		loading: false,
 	},
 	extraReducers: {
@@ -57,8 +57,8 @@ export const animeSlice = createSlice({
 		},
 		[getRandomAnime.rejected]: state => {
 			state.loading = false
-      },
-      [getAnimeSearch.pending]: state => {
+		},
+		[getAnimeSearch.pending]: state => {
 			state.loading = true
 		},
 		[getAnimeSearch.fulfilled]: (state, action) => {
