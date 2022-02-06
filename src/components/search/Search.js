@@ -13,13 +13,13 @@ function Search() {
 	const dispatch = useDispatch()
 	let navigate = useNavigate()
 
-	function searchMedia(event) {
+	const searchMedia = event => {
 		event.preventDefault()
 		dispatch(getMovieSearch(term))
 		dispatch(getShowSearch(term))
 		dispatch(getAnimeSearch(term))
 		navigate(`/searched`)
-		setTerm('')
+		// setTerm('')
 	}
 
 	return (
@@ -36,7 +36,7 @@ function Search() {
 					placeholder='Search Movies, Tv-shows, Anime'
 					autoComplete='off'
 					onChange={event => setTerm(event.target.value)}
-					term={event => setTerm(event.target.value)}
+					term={term}
 				/>
 				<button type='submit' className='search__button'>
 					<IoSearchOutline

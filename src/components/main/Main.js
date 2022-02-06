@@ -80,6 +80,11 @@ function Main({ term, search }) {
 									alt={movie.original_title}
 									className='main__card'
 								/>
+								{/* <div className='main__card-descriptions'>
+									<span className='main__card-description'>
+										{movie.overview}
+									</span>
+								</div> */}
 								<div className='main__card-information'>
 									<span className='main__card-name'>
 										{movie.title}
