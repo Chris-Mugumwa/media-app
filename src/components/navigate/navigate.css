@@ -61,11 +61,14 @@
 .navigate__home {
   border-right: 2px solid #F0EBD8;
   padding-right: 1.8rem;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
 }
 
-.navigate__home:hover {
+.navigate__home-text {
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.navigate__home-text:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }

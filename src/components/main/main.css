@@ -27,7 +27,7 @@
 
 @media screen and (min-width: 75em) {
   .main__description {
-    margin-top: 2.5rem;
+    margin-top: 5rem;
     text-align: left;
     font-size: 5rem;
   }
@@ -69,8 +69,8 @@
       -ms-flex-direction: column;
           flex-direction: column;
   cursor: pointer;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 @media screen and (min-width: 75em) {
@@ -89,19 +89,16 @@
 
 .main__card {
   height: 100%;
+  border-radius: 1.2rem;
 }
 
 .main__card-information {
-  height: 2.5em;
+  height: 2.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-direction: column;
+      flex-direction: column;
   padding-top: 1rem;
   text-overflow: ellipsis;
   max-height: 2.5em;
@@ -111,6 +108,45 @@
 
 .main__card-name {
   color: #F0EBD8;
+  font-family: 'Poppins' serif;
   font-size: 1.2rem;
+  text-overflow: ellipsis;
+  display: block;
+  -webkit-box-orient: vertical;
+}
+
+.main__card-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.main__card-time {
+  color: #748CAB;
+  font-size: 1.2rem;
+}
+
+.main__card-detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main__card-rating {
+  color: #748CAB;
+  font-size: 1.2rem;
+}
+
+.main__card-icon {
+  margin-right: 0.3em;
 }
 /*# sourceMappingURL=main.css.map */

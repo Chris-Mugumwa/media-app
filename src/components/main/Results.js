@@ -12,12 +12,12 @@ function Results({ term }) {
 	const moviesSearch = useSelector(state => state.movie.movieSearch)
 	const showsSearch = useSelector(state => state.show.showSearch)
 	const animesSearch = useSelector(state => state.anime.animeSearch)
-   const movieLoading = useSelector(state => state.movie.loading)
+	const movieLoading = useSelector(state => state.movie.loading)
 	const showLoading = useSelector(state => state.show.loading)
 	const animeLoading = useSelector(state => state.anime.loading)
-   const movies = moviesSearch.results
+	const movies = moviesSearch.results
 	const shows = showsSearch.results
-   const animes = animesSearch.data
+	const animes = animesSearch.data
 
 	useEffect(() => {
 		dispatch(getMovieSearch(term))
@@ -38,7 +38,7 @@ function Results({ term }) {
 
 	return (
 		<main className='main'>
-			<h2 className='main__description'>Movies:</h2>
+			<h2 className='main__description'>Movies: {term}</h2>
 			{movieLoading ? (
 				<Loading />
 			) : (

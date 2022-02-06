@@ -2,16 +2,15 @@
 @import '../../styles/variables';
 
 .rejected {
-   height: 100vh;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   background-color: $blue-dark;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: $blue-dark;
 
-
-   &__description {
-      color: $grayish;
-      font-size: 2rem;
-      font-family: 'Manrope';
-   }
+	&__description {
+		color: $grayish;
+		font-size: 2rem;
+		font-family: 'Manrope';
+	}
 }

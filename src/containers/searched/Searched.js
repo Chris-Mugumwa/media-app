@@ -6,15 +6,15 @@ import Results from '../../components/main/Results'
 import Sidebar from '../../components/sidebar/Sidebar'
 
 function Searched() {
-   return (
-      <>
-      	<Navigation />
+	return (
+		<>
+			<Navigation />
 			<Navigate />
 			<Search />
 			<Results />
 			<Sidebar />
-      </>
-   )
+		</>
+	)
 }
 
 export default Searched

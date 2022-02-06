@@ -1,24 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { getMovieSearch } from '../../features/movies/movieSlice'
 import { getShowSearch } from '../../features/shows/showSlice'
 import { getAnimeSearch } from '../../features/anime/animeSlice'
 import './search.scss'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { IoSearchOutline } from 'react-icons/io5'
 
 function Search() {
 	const [term, setTerm] = useState('')
+	const [search, setSearch] = useState(false)
 	const dispatch = useDispatch()
-   let navigate = useNavigate()
+	let navigate = useNavigate()
 
 	const searchMedia = event => {
 		event.preventDefault()
 		dispatch(getMovieSearch(term))
 		dispatch(getShowSearch(term))
 		dispatch(getAnimeSearch(term))
-      setTerm('')
-      // navigate('/searched')
+		navigate(`/searched`)
+		// setTerm('')
 	}
 
 	return (
@@ -35,7 +36,7 @@ function Search() {
 					placeholder='Search Movies, Tv-shows, Anime'
 					autoComplete='off'
 					onChange={event => setTerm(event.target.value)}
-					term={event => setTerm(event.target.value)}
+					term={term}
 				/>
 				<button type='submit' className='search__button'>
 					<IoSearchOutline
