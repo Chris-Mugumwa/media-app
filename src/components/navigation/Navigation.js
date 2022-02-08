@@ -50,7 +50,7 @@ function Navigation() {
 								onClick={() => setMenu(false)}
 							>
 								<span className='menu__icon'>{link.icon}</span>
-								{link.name}
+								<span className='menu__name'>{link.name}</span>
 							</Link>
 						</div>
 					))}

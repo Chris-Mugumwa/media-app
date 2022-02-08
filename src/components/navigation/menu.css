@@ -20,10 +20,11 @@
       -ms-flex-align: center;
           align-items: center;
   right: -110%;
-  top: 5rem;
+  top: 8rem;
   width: 100%;
   height: 100vh;
   background-color: #1d2d44a6;
+  z-index: 1000;
   -webkit-transition: 0.8s ease-in-out;
   transition: 0.8s ease-in-out;
 }
@@ -50,7 +51,7 @@
       -ms-flex-align: center;
           align-items: center;
   right: 0;
-  top: 5rem;
+  top: 8rem;
   width: 100%;
   height: 100vh;
   background-color: #0D1321;

@@ -4,7 +4,8 @@ export const getPopularMovies = createAsyncThunk(
 	'popularMovies/getPopularMovies',
 	async () => {
 		const response = await fetch(
-			`https://api.themoviedb.org/3/movie/popular?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=1`,
+			`
+         https://api.themoviedb.org/3/movie/popular?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=1`,
 		)
 		const formatResponse = await response.json()
 		return formatResponse
@@ -49,12 +50,11 @@ export const getMovieSearch = createAsyncThunk(
 	async term => {
 		const response = await fetch(`
       https://api.themoviedb.org/3/search/movie?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&query=${term}&page=1&include_adult=false`)
-      const formatResponse = await response.json()
+		const formatResponse = await response.json()
 		return formatResponse
 	},
-)  
+)
 
-   
 export const movieSlice = createSlice({
 	name: 'movie',
 	initialState: {
@@ -62,7 +62,7 @@ export const movieSlice = createSlice({
 		latestMovies: [],
 		topRatedMovies: [],
 		upcomingMovies: [],
-      movieSearch: [],
+		movieSearch: [],
 		isLoading: false,
 	},
 	extraReducers: {
@@ -105,8 +105,8 @@ export const movieSlice = createSlice({
 		},
 		[getUpcomingMovies.rejected]: state => {
 			state.isLoading = false
-      },
-      [getMovieSearch.pending]: state => {
+		},
+		[getMovieSearch.pending]: state => {
 			state.loading = true
 		},
 		[getMovieSearch.fulfilled]: (state, action) => {

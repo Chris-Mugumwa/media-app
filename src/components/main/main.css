@@ -1,7 +1,7 @@
 .main {
-  -ms-grid-row: 3;
+  -ms-grid-row: 4;
   -ms-grid-row-span: 2;
-  grid-row: 3 / 5;
+  grid-row: 4 / 6;
   -ms-grid-column: 1;
   -ms-grid-column-span: 4;
   grid-column: 1 / 5;
@@ -9,9 +9,9 @@
 
 @media screen and (min-width: 75em) {
   .main {
-    -ms-grid-row: 4;
+    -ms-grid-row: 5;
     -ms-grid-row-span: 1;
-    grid-row: 4 / 5;
+    grid-row: 5 / 6;
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
     grid-column: 1 / 4;
@@ -90,6 +90,7 @@
 .main__card {
   height: 100%;
   border-radius: 1.2rem;
+  position: relative;
 }
 
 .main__card-information {
@@ -104,6 +105,13 @@
   max-height: 2.5em;
   line-height: 1.8em;
   -webkit-box-orient: vertical;
+}
+
+.main__card-descriptions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .main__card-name {
