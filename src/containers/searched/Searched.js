@@ -5,12 +5,12 @@ import Search from '../../components/search/Search'
 import Results from '../../components/main/Results'
 import Sidebar from '../../components/sidebar/Sidebar'
 
-function Searched() {
+function Searched({ term }) {
 	return (
 		<>
 			<Navigation />
 			<Navigate />
-			<Search />
+			<Search term={term} />
 			<Results />
 			<Sidebar />
 		</>

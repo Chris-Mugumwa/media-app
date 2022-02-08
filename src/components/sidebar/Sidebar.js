@@ -16,7 +16,6 @@ function Sidebar() {
 	const movies = topMovies.results
 	const shows = topShows.results
 	const animes = randomAnime.data
-	console.log(animes)
 
 	useEffect(() => {
 		dispatch(getTopRatedMovies())

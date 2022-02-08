@@ -1,24 +1,29 @@
-import { AiOutlineHome, AiOutlineHeart, AiOutlineEye } from 'react-icons/ai'
+import {BiHome, BiBookmarkHeart, BiMovie, BiMoviePlay, BiCameraMovie } from 'react-icons/bi'
 
-export const navigationData = [{
-			id: 1,
-			name: 'Home',
-			icon: <AiOutlineHome />,
-			path: '/',
-			cName: 'menu__item',
-		},
-		{
-			id: 2,
-			name: 'Favorites',
-			icon: <AiOutlineHeart />,
-			path: '/favorites',
-			cName: 'menu__item',
-		},
-		{
-			id: 3,
-			name: 'Must Watch',
-			icon: <AiOutlineEye />,
-			path: '/must-watch',
-			cName: 'menu__item',
-   },
+export const navigationData = [
+	{
+		name: 'Home',
+		icon: <BiHome />,
+		path: '/',
+	},
+	{
+		name: 'Favorites',
+		icon: <BiBookmarkHeart />,
+		path: '/favorites',
+	},
+   {
+		name: 'Movies',
+		path: '/movies',
+		icon: <BiMovie />,
+	},
+	{
+		name: 'Shows',
+		path: '/shows',
+		icon: <BiCameraMovie />,
+	},
+	{
+		name: 'Anime',
+		path: '/anime',
+		icon: <BiMoviePlay />,
+	},
 ]

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getMovieSearch } from '../../features/movies/movieSlice'
 import { getShowSearch } from '../../features/shows/showSlice'
@@ -9,7 +9,6 @@ import { IoSearchOutline } from 'react-icons/io5'
 
 function Search() {
 	const [term, setTerm] = useState('')
-	const [search, setSearch] = useState(false)
 	const dispatch = useDispatch()
 	let navigate = useNavigate()
 
@@ -19,7 +18,7 @@ function Search() {
 		dispatch(getShowSearch(term))
 		dispatch(getAnimeSearch(term))
 		navigate(`/searched`)
-		// setTerm('')
+		setTerm('')
 	}
 
 	return (

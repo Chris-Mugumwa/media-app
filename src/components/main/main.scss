@@ -2,11 +2,11 @@
 @import '../../styles/variables';
 
 .main {
-	grid-row: 3 / 5;
+	grid-row: 4 / 6;
 	grid-column: 1 / 5;
 
 	@include respond(desktop) {
-		grid-row: 4 / 5;
+		grid-row: 5 / 6;
 		grid-column: 1 / 4;
 	}
 
@@ -17,7 +17,7 @@
 		text-align: center;
 
 		@include respond(desktop) {
-			margin-top: 5rem;
+			margin-top: 3rem;
 			text-align: left;
 			font-size: 5rem;
 		}
@@ -32,6 +32,10 @@
 			justify-content: start;
 		}
 	}
+
+   &__inactive {
+      display: none;
+   }
 
 	&__card-container {
 		// width: 14rem;

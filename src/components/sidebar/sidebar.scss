@@ -7,7 +7,7 @@
 
 	@include respond(desktop) {
 		grid-column: 4 / 5;
-		grid-row: 3 / 5;
+		grid-row: 3 / 6;
 		// position: sticky;
 		display: flex;
 	}

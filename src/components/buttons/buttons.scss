@@ -1,0 +1,68 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
+
+.buttons {
+	grid-row: 3 / 4;
+	grid-column: 1 / 5;
+
+	display: flex;
+	// justify-content: center;
+	align-items: center;
+
+	@include respond(desktop) {
+		grid-column: 1 / 2;
+      grid-row: 4 / 5;
+		// justify-content: start;
+	}
+
+	&__container {
+		width: 50%;
+      max-width: 50%;
+		display: flex;
+
+      @include respond(desktop) {
+         width: 0;
+         // max-width: 0;
+      }
+	}
+
+   &__link {
+      text-decoration: none;
+   }
+
+   &__button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $grayish;
+      background-color: $blue-lighter;
+      outline: none;
+		border: none;
+		width: 8rem;
+		height: 3rem;
+      margin: .5rem;
+      padding: .8rem;
+		font-family: 'Manrope';
+		border-radius: 0.5rem;
+		cursor: pointer;
+
+		&:hover,
+		*:focus {
+			transform: scale(1.1);
+         background-color: $blue-light;
+			transition: 0.5s ease;
+		}
+
+		&:active {
+			transform: scale(1);
+			transition: 0.5s ease;
+		}
+      
+   }
+
+   &__icon {
+      display: flex;
+      margin-right: .4rem;
+      align-items: center;
+   }
+}

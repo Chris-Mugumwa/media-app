@@ -10,10 +10,11 @@
 	justify-content: center;
 	align-items: center;
 	right: -110%;
-	top: 5rem;
+	top: 8rem;
 	width: 100%;
 	height: 100vh;
 	background-color: $blue-tinted;
+	z-index: 1000;
 	transition: 0.8s ease-in-out;
 
 	&__close {
@@ -25,12 +26,12 @@
 		justify-content: center;
 		align-items: center;
 		right: 0;
-		top: 5rem;
+		top: 8rem;
 		width: 100%;
 		height: 100vh;
 		background-color: $blue-dark;
 		transition: 0.8s ease-in-out;
-      z-index: 1000;
+		z-index: 1000;
 
 		@include respond(desktop) {
 			display: none;
@@ -60,7 +61,7 @@
 		margin: 0.5rem;
 		text-align: center;
 		font-size: 3.5rem;
-		width: 100%;
+		width: 60%;
 		color: $grayish;
 		cursor: pointer;
 		border-radius: 1rem;

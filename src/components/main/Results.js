@@ -38,7 +38,7 @@ function Results({ term }) {
 
 	return (
 		<main className='main'>
-			<h2 className='main__description'>Movies: {term}</h2>
+			<h2 className='main__description'>Movies:</h2>
 			{movieLoading ? (
 				<Loading />
 			) : (
