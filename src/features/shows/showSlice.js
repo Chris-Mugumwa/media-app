@@ -22,6 +22,29 @@ export const getTopRatedShows = createAsyncThunk(
 	},
 )
 
+export const getShowDetails = createAsyncThunk(
+	'showDetails/getShowDetails',
+	async id => {
+		const response = await fetch(
+			`https://api.themoviedb.org/3/tv/${id}?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US`,
+		)
+		const formatResponse = await response.json()
+		return formatResponse
+	},
+)
+
+export const getShowDiscover = createAsyncThunk(
+	'showDiscover/getShowDiscover',
+	async () => {
+		const response = await fetch(
+			`
+         https://api.themoviedb.org/3/discover/tv?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_status=0&with_type=0`,
+		)
+		const formatResponse = await response.json()
+		return formatResponse
+	},
+)
+
 export const getShowSearch = createAsyncThunk(
 	'showSearch/getShowSearch',
 	async term => {
@@ -38,6 +61,8 @@ export const showSlice = createSlice({
 		popularShows: [],
 		topRatedShows: [],
 		showSearch: [],
+		showDetails: [],
+		showDiscover: [],
 		isLoading: false,
 	},
 	extraReducers: {
@@ -69,6 +94,26 @@ export const showSlice = createSlice({
 			state.loading = false
 		},
 		[getShowSearch.rejected]: state => {
+			state.loading = false
+		},
+		[getShowDetails.pending]: state => {
+			state.loading = true
+		},
+		[getShowDetails.fulfilled]: (state, action) => {
+			state.showDetails = action.payload
+			state.loading = false
+		},
+		[getShowDetails.rejected]: state => {
+			state.loading = false
+		},
+		[getShowDiscover.pending]: state => {
+			state.loading = true
+		},
+		[getShowDiscover.fulfilled]: (state, action) => {
+			state.showDiscover = action.payload
+			state.loading = false
+		},
+		[getShowDiscover.rejected]: state => {
 			state.loading = false
 		},
 	},
