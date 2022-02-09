@@ -11,17 +11,6 @@ export const getPopularShows = createAsyncThunk(
 	},
 )
 
-export const getLatestShows = createAsyncThunk(
-	'latestShows/getLatestShows',
-	async () => {
-		const response = await fetch(
-			`https://api.themoviedb.org/3/tv/latest?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=1`,
-		)
-		const formatResponse = await response.json()
-		return formatResponse
-	},
-)
-
 export const getTopRatedShows = createAsyncThunk(
 	'getTopRatedShows',
 	async () => {
@@ -47,7 +36,6 @@ export const showSlice = createSlice({
 	name: 'show',
 	initialState: {
 		popularShows: [],
-		latestShows: [],
 		topRatedShows: [],
 		showSearch: [],
 		isLoading: false,
@@ -61,16 +49,6 @@ export const showSlice = createSlice({
 			state.isLoading = false
 		},
 		[getPopularShows.rejected]: state => {
-			state.isLoading = false
-		},
-		[getLatestShows.pending]: state => {
-			state.isLoading = true
-		},
-		[getLatestShows.fulfilled]: (state, action) => {
-			state.latestShows = action.payload
-			state.isLoading = false
-		},
-		[getLatestShows.rejected]: state => {
 			state.isLoading = false
 		},
 		[getTopRatedShows.pending]: state => {

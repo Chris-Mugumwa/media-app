@@ -17,7 +17,7 @@ function Search() {
 		dispatch(getMovieSearch(term))
 		dispatch(getShowSearch(term))
 		dispatch(getAnimeSearch(term))
-		navigate(`/searched`)
+		navigate(`/`)
 		setTerm('')
 	}
 
