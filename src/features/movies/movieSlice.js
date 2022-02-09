@@ -12,17 +12,6 @@ export const getPopularMovies = createAsyncThunk(
 	},
 )
 
-export const getLatestMovies = createAsyncThunk(
-	'latestMovies/getLatestMovies',
-	async () => {
-		const response = await fetch(
-			`https://api.themoviedb.org/3/movie/latest?api_key=69a8a5f5d8ff53eb47ca412ef26ae76&language=en-US`,
-		)
-		const formatResponse = await response.json()
-		return formatResponse
-	},
-)
-
 export const getTopRatedMovies = createAsyncThunk(
 	'topRatedMovies/getTopRatedMovies',
 	async () => {
@@ -38,7 +27,7 @@ export const getUpcomingMovies = createAsyncThunk(
 	'upcomingMovies/getUpcomingMovies',
 	async () => {
 		const response = await fetch(
-			`https://api.themoviedb.org/3/movie/upcoming?api_key=69a8a5f5d8ff53eb47ca412ef26ae76&language=en-US&page=1`,
+			`https://api.themoviedb.org/3/movie/upcoming?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=1`,
 		)
 		const formatResponse = await response.json()
 		return formatResponse
@@ -59,7 +48,6 @@ export const movieSlice = createSlice({
 	name: 'movie',
 	initialState: {
 		popularMovies: [],
-		latestMovies: [],
 		topRatedMovies: [],
 		upcomingMovies: [],
 		movieSearch: [],
@@ -74,16 +62,6 @@ export const movieSlice = createSlice({
 			state.isLoading = false
 		},
 		[getPopularMovies.rejected]: state => {
-			state.isLoading = false
-		},
-		[getLatestMovies.pending]: state => {
-			state.isLoading = true
-		},
-		[getLatestMovies.fulfilled]: (state, action) => {
-			state.latestMovies = action.payload
-			state.isLoading = false
-		},
-		[getLatestMovies.rejected]: state => {
 			state.isLoading = false
 		},
 		[getTopRatedMovies.pending]: state => {
