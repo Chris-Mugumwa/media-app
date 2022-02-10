@@ -3,7 +3,7 @@ import './App.css'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Home from './containers/home/Home'
-import Searched from './containers/searched/Searched'
+// import Searched from './containers/searched/Searched'
 import Signup from './components/auth/signup/Signup'
 import Login from './components/auth/login/Login'
 import MovieContainer from './containers/media/MovieContainer'
@@ -15,7 +15,10 @@ import TopRatedMoviesContainer from './containers/media/TopRatedMoviesContainer'
 import PopularShowsContainer from './containers/media/PopularShowsContainer'
 import TopRatedShowsContainer from './containers/media/TopRatedShowsContainer'
 import PopularAnimeContainer from './containers/media/PopularAnimeContainer'
-import Details from './components/details/Details'
+import UpcomingAnimeContainer from './containers/media/UpcomingAnimeContainer'
+import MovieDetailsContainer from './containers/details/MovieDetailsContainer'
+import ShowDetailsContainer from './containers/details/ShowDetailsContainer'
+import AnimeDetailsContainer from './containers/details/AnimeDetailsContainer'
 import Favourites from './components/favourites/Favourites'
 
 function App() {
@@ -26,7 +29,7 @@ function App() {
 			<AnimatePresence exitBeforeEnter>
 				<Routes location={location}>
 					<Route path='/' exact element={<Home />} />
-					<Route path='/searched' exact element={<Searched />} />
+					{/* <Route path='/searched' exact element={<Searched />} /> */}
 					<Route path='/sign-up' exact element={<Signup />} />
 					<Route path='/login' exact element={<Login />} />
 					<Route path='/movies' exact element={<MovieContainer />} />
@@ -62,7 +65,26 @@ function App() {
 						exact
 						element={<PopularAnimeContainer />}
 					/>
-					<Route path='/details' exact element={<Details />} />
+					<Route
+						path='/upcoming-anime'
+						exact
+						element={<UpcomingAnimeContainer />}
+					/>
+					<Route
+						path='/details/movie/:id'
+						exact
+						element={<MovieDetailsContainer />}
+					/>
+					<Route
+						path='/details/show/:id'
+						exact
+						element={<ShowDetailsContainer />}
+					/>
+					<Route
+						path='/details/anime/:id'
+						exact
+						element={<AnimeDetailsContainer />}
+					/>
 					<Route path='/favourites' exact element={<Favourites />} />
 				</Routes>
 			</AnimatePresence>

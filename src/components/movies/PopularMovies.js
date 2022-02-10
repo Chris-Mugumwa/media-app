@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import './movies.scss'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPopularMovies } from '../../features/movies/movieSlice'
 import { timeFormat } from '../main/mainData'
@@ -26,7 +27,11 @@ function PopularMovies() {
 				<div className='movies__container'>
 					{popularMovies.results ? (
 						popularMovies.results.map((movie, index) => (
-							<section className='movies__card-container' key={index}>
+							<Link
+								to={`/details/movie/${movie.id}`}
+								className='movies__card-container'
+								key={index}
+							>
 								<img
 									src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
 									alt={movie.original_title}
@@ -48,7 +53,7 @@ function PopularMovies() {
 										</span>
 									</div>
 								</div>
-							</section>
+							</Link>
 						))
 					) : (
 						<Rejected />

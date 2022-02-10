@@ -33,11 +33,12 @@
 		}
 	}
 
-   &__inactive {
-      display: none;
-   }
+	&__inactive {
+		display: none;
+	}
 
 	&__card-container {
+		text-decoration: none;
 		// width: 14rem;
 		position: relative;
 		height: 24rem;

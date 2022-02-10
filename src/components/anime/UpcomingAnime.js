@@ -2,27 +2,27 @@ import React, { useEffect } from 'react'
 import './anime.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { getPopularAnime } from '../../features/anime/animeSlice'
+import { getAnimeSeasons } from '../../features/anime/animeSlice'
 import { AiOutlineStar } from 'react-icons/ai'
 import { FcRating } from 'react-icons/fc'
 import Loading from '../loading/Loading'
 import Rejected from '../rejected/Rejected'
 
-function PopularAnime() {
+function UpcomingAnime() {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const animesSelector = useSelector(state => state.anime.popularAnime)
+	const animesSelector = useSelector(state => state.anime.animeSeasons)
 	const animeLoading = useSelector(state => state.anime.loading)
 
 	const animes = animesSelector.data
 
 	useEffect(() => {
-		dispatch(getPopularAnime())
+		dispatch(getAnimeSeasons())
 	}, [dispatch])
 
 	return (
 		<section className='anime'>
-			<h2 className='anime__description'>Trending Anime</h2>
+			<h2 className='anime__description'>Upcoming Anime</h2>
 			{animeLoading ? (
 				<Loading />
 			) : (
@@ -30,7 +30,7 @@ function PopularAnime() {
 					{animes ? (
 						animes.map((anime, index) => (
 							<Link
-								to={`/details/${anime.mal_id}`}
+								to={`/details/anime/${anime.mal_id}`}
 								className='anime__card-container'
 								key={index}
 							>
@@ -47,12 +47,12 @@ function PopularAnime() {
 									</span>
 									<div className='anime__card-details'>
 										<span className='anime__card-time'>
-											{anime.year}
+											{anime.year ? anime.year : 'year'}
 										</span>
 										<span className='anime__card-detail'>
 											<FcRating className='anime__card-icon' />
 											<span className='anime__card-rating'>
-												{anime.rank}
+												{anime.status}
 											</span>
 										</span>
 									</div>
@@ -68,4 +68,4 @@ function PopularAnime() {
 	)
 }
 
-export default PopularAnime
+export default UpcomingAnime

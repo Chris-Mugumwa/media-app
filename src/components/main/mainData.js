@@ -5,7 +5,6 @@ export const timeFormat = value => {
 		let valueJoin = valueSlice.join('')
 		return valueJoin
 	} else {
-		console.log('no value')
 		return null
 	}
 }

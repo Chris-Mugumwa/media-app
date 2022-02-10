@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import './sidebar.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { getTopRatedMovies } from '../../features/movies/movieSlice'
-import { getTopRatedShows } from '../../features/shows/showSlice'
-import { getRandomAnime } from '../../features/anime/animeSlice'
+import { Link } from 'react-router-dom'
+import { getMovieDiscover } from '../../features/movies/movieSlice'
+import { getShowDiscover } from '../../features/shows/showSlice'
+import { getAnimeSeasons } from '../../features/anime/animeSlice'
 import Rejected from '../rejected/Rejected'
 import { FcRating } from 'react-icons/fc'
 
 function Sidebar() {
 	const [currentTab, setCurrentTab] = useState(1)
 	const dispatch = useDispatch()
-	const topMovies = useSelector(state => state.movie.topRatedMovies)
-	const topShows = useSelector(state => state.show.topRatedShows)
-	const randomAnime = useSelector(state => state.anime.randomAnime)
-	const movies = topMovies.results
-	const shows = topShows.results
-	const animes = randomAnime.data
+	const discoverMovies = useSelector(state => state.movie.movieDiscover)
+	const discoverShows = useSelector(state => state.show.showDiscover)
+	const discoverAnime = useSelector(state => state.anime.animeSeasons)
+	const movies = discoverMovies.results
+	const shows = discoverShows.results
+	const animes = discoverAnime.data
 
 	useEffect(() => {
-		dispatch(getTopRatedMovies())
-		dispatch(getTopRatedShows())
-		dispatch(getRandomAnime())
+		dispatch(getMovieDiscover())
+		dispatch(getShowDiscover())
+		dispatch(getAnimeSeasons())
 	}, [dispatch])
 
 	const activeTab = index => {
@@ -63,12 +64,23 @@ function Sidebar() {
 					>
 						Shows
 					</li>
+					<li
+						className={
+							currentTab === 3
+								? 'sidebar__item sidebar__current'
+								: 'sidebar__item'
+						}
+						onClick={() => activeTab(3)}
+					>
+						Anime
+					</li>
 				</ul>
 
-				<section className='sidebar__section'>
+				<section className='sidebar__section sidebar__section-movies'>
 					{movies ? (
 						movies.map((movie, index) => (
-							<div
+							<Link
+								to={`/details/movie/${movie.id}`}
 								className={
 									currentTab === 1
 										? 'sidebar__container'
@@ -98,17 +110,18 @@ function Sidebar() {
 										</span>
 									</div>
 								</div>
-							</div>
+							</Link>
 						))
 					) : (
 						<Rejected />
 					)}
 				</section>
 
-				<section className='sidebar__section'>
+				<section className='sidebar__section sidebar__section-show'>
 					{shows ? (
 						shows.map((show, index) => (
-							<div
+							<Link
+								to={`/details/show/${show.id}`}
 								className={
 									currentTab === 2
 										? 'sidebar__container'
@@ -138,7 +151,56 @@ function Sidebar() {
 										</span>
 									</div>
 								</div>
-							</div>
+							</Link>
+						))
+					) : (
+						<Rejected />
+					)}
+				</section>
+
+				<section className='sidebar__section sidebar__section-anime'>
+					{animes ? (
+						animes.map((anime, index) => (
+							<Link
+								to={`/details/anime/${anime.mal_id}`}
+								className={
+									currentTab === 3
+										? 'sidebar__container'
+										: 'sidebar__not-active'
+								}
+								key={index}
+							>
+								<img
+									src={anime.images.jpg.image_url}
+									alt={
+										anime.title_english
+											? anime.title_english
+											: anime.title
+									}
+									className='sidebar__image'
+								/>
+								<div className='sidebar__information-container'>
+									<h3 className='sidebar__title'>
+										{anime.title_english
+											? anime.title_english
+											: anime.title}
+									</h3>
+									<p className='sidebar__description'>
+										{anime.synopsis ? anime.synopsis : 'unavailable'}
+									</p>
+									<div className='sidebar__details'>
+										<span className='sidebar__time'>
+											{anime.year ? anime.year : 'year'}
+										</span>
+										<span className='sidebar__detail'>
+											<FcRating className='sidebar__icon' />
+											<span className='sidebar__time'>
+												{anime.status}
+											</span>
+										</span>
+									</div>
+								</div>
+							</Link>
 						))
 					) : (
 						<Rejected />

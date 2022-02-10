@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './main.scss'
-// import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovieSearch } from '../../features/movies/movieSlice'
 import { getShowSearch } from '../../features/shows/showSlice'
@@ -11,7 +11,7 @@ import Rejected from '../rejected/Rejected'
 import { AiOutlineStar } from 'react-icons/ai'
 import { FcRating } from 'react-icons/fc'
 
-function Main({ term }) {
+function Main() {
 	const dispatch = useDispatch()
 	const moviesSearch = useSelector(state => state.movie.movieSearch)
 	const showsSearch = useSelector(state => state.show.showSearch)
@@ -29,7 +29,7 @@ function Main({ term }) {
 	// })
 
 	const text = 'The'
-	const animeText = 'Love'
+	const animeText = 'sekai'
 
 	useEffect(() => {
 		dispatch(getMovieSearch(text))
@@ -43,7 +43,11 @@ function Main({ term }) {
 			{movieResult ? (
 				<div className='main__container'>
 					{movieResult.map((movie, index) => (
-						<section className='main__card-container' key={index}>
+						<Link
+							to={`/details/movie/${movie.id}`}
+							className='main__card-container'
+							key={index}
+						>
 							<img
 								src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
 								alt={movie.original_title}
@@ -63,7 +67,7 @@ function Main({ term }) {
 									</span>
 								</div>
 							</div>
-						</section>
+						</Link>
 					))}
 				</div>
 			) : null}
@@ -75,7 +79,11 @@ function Main({ term }) {
 				<div className='main__container'>
 					{showResult ? (
 						showResult.map((show, index) => (
-							<section className='main__card-container' key={index}>
+							<Link
+								to={`/details/show/${show.id}`}
+								className='main__card-container'
+								key={index}
+							>
 								<img
 									src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
 									alt={show.original_name}
@@ -97,7 +105,7 @@ function Main({ term }) {
 										</span>
 									</div>
 								</div>
-							</section>
+							</Link>
 						))
 					) : (
 						<Rejected />
@@ -112,7 +120,11 @@ function Main({ term }) {
 				<div className='main__container'>
 					{animeResult ? (
 						animeResult.map((anime, index) => (
-							<section className='main__card-container' key={index}>
+							<Link
+								to={`/details/anime/${anime.mal_id}`}
+								className='main__card-container'
+								key={index}
+							>
 								<img
 									src={`${anime.images.jpg.image_url}`}
 									alt={anime.title_english}
@@ -136,7 +148,7 @@ function Main({ term }) {
 										</span>
 									</div>
 								</div>
-							</section>
+							</Link>
 						))
 					) : (
 						<Rejected />

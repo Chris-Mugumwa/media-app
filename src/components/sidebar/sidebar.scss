@@ -55,12 +55,14 @@
 		padding: 1rem;
 		display: flex;
 		flex-direction: column;
+		padding-top: 0;
 	}
 
 	&__container {
 		display: flex;
 		margin-bottom: 1.5em;
 		cursor: pointer;
+		text-decoration: none;
 		transition: all 0.4s ease-in-out;
 
 		&:hover,
@@ -73,6 +75,19 @@
 		}
 	}
 
+	&__section-movies {
+		padding-top: 1rem;
+	}
+
+	&__section-shows {
+		margin-top: 0;
+	}
+
+   &__section-anime {
+      padding-top: 0;
+      margin-top: 0;
+   }
+
 	&__not-active {
 		display: none;
 	}
@@ -84,6 +99,12 @@
 	}
 
 	&__title {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: block;
+		max-height: 3.6em;
+		line-height: 1.8em;
+		-webkit-box-orient: vertical;
 		font-weight: semi-bold;
 		color: $grayish;
 		font-size: 1.2rem;

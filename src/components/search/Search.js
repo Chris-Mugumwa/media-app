@@ -4,7 +4,7 @@ import { getMovieSearch } from '../../features/movies/movieSlice'
 import { getShowSearch } from '../../features/shows/showSlice'
 import { getAnimeSearch } from '../../features/anime/animeSlice'
 import './search.scss'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { IoSearchOutline } from 'react-icons/io5'
 
 function Search() {
