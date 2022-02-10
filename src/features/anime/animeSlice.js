@@ -27,6 +27,15 @@ export const getAnimeDetails = createAsyncThunk(
 	},
 )
 
+export const getAnimeSeasons = createAsyncThunk(
+	'animeSeasons/getAnimeRecommendations',
+	async () => {
+		const response = await fetch(`https://api.jikan.moe/v4/seasons/upcoming`)
+		const formatResponse = await response.json()
+		return formatResponse
+	},
+)
+
 export const getAnimeSearch = createAsyncThunk(
 	'animeSearch/getAnimeSearch',
 	async term => {
@@ -45,6 +54,7 @@ export const animeSlice = createSlice({
 		randomAnime: [],
 		animeSearch: [],
 		animeDetails: [],
+		animeSeasons: [],
 		loading: false,
 	},
 	extraReducers: {
@@ -86,6 +96,16 @@ export const animeSlice = createSlice({
 			state.loading = false
 		},
 		[getAnimeDetails.rejected]: state => {
+			state.loading = false
+		},
+		[getAnimeSeasons.pending]: state => {
+			state.loading = true
+		},
+		[getAnimeSeasons.fulfilled]: (state, action) => {
+			state.animeSeasons = action.payload
+			state.loading = false
+		},
+		[getAnimeSeasons.rejected]: state => {
 			state.loading = false
 		},
 	},

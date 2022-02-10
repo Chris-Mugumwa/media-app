@@ -53,4 +53,9 @@ export const animeItems = [
 		path: '/popular-anime',
 		className: 'navigate__item',
 	},
+	{
+		name: 'Upcoming',
+		path: '/upcoming-anime',
+		className: 'navigate__item',
+	},
 ]

@@ -28,7 +28,7 @@ function PopularMovies() {
 					{popularMovies.results ? (
 						popularMovies.results.map((movie, index) => (
 							<Link
-								to={`/details/${movie.id}`}
+								to={`/details/movie/${movie.id}`}
 								className='movies__card-container'
 								key={index}
 							>

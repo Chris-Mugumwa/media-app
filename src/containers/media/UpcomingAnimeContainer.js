@@ -1,22 +1,22 @@
 import React from 'react'
-import PopularAnime from '../../components/anime/PopularAnime'
+import UpcomingAnime from '../../components/anime/UpcomingAnime'
 import Navigation from '../../components/navigation/Navigation'
 import Navigate from '../../components/navigate/Navigate'
 import Search from '../../components/search/Search'
 import Buttons from '../../components/buttons/Buttons'
 import Sidebar from '../../components/sidebar/Sidebar'
 
-function PopularAnimeContainer() {
+function UpcomingAnimeContainer() {
 	return (
 		<>
 			<Navigation />
 			<Navigate />
 			<Search />
 			<Buttons />
-			<PopularAnime />
+			<UpcomingAnime />
 			<Sidebar />
 		</>
 	)
 }
 
-export default PopularAnimeContainer
+export default UpcomingAnimeContainer

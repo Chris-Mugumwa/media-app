@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import './shows.scss'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { getTopRatedShows } from '../../features/shows/showSlice'
 import { timeFormat } from '../main/mainData'
 import Loading from '../loading/Loading'
@@ -26,7 +27,11 @@ function TopRatedShows() {
 				<div className='shows__container'>
 					{topRatedShows.results ? (
 						topRatedShows.results.map((show, index) => (
-							<section className='shows__card-container' key={index}>
+							<Link
+								to={`/details/show/${show.id}`}
+								className='shows__card-container'
+								key={index}
+							>
 								<img
 									src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
 									alt={show.original_name}
@@ -48,7 +53,7 @@ function TopRatedShows() {
 										</span>
 									</div>
 								</div>
-							</section>
+							</Link>
 						))
 					) : (
 						<Rejected />

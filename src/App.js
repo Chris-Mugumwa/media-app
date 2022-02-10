@@ -15,7 +15,10 @@ import TopRatedMoviesContainer from './containers/media/TopRatedMoviesContainer'
 import PopularShowsContainer from './containers/media/PopularShowsContainer'
 import TopRatedShowsContainer from './containers/media/TopRatedShowsContainer'
 import PopularAnimeContainer from './containers/media/PopularAnimeContainer'
-import DetailsContainer from './containers/details/DetailsContainer'
+import UpcomingAnimeContainer from './containers/media/UpcomingAnimeContainer'
+import MovieDetailsContainer from './containers/details/MovieDetailsContainer'
+import ShowDetailsContainer from './containers/details/ShowDetailsContainer'
+import AnimeDetailsContainer from './containers/details/AnimeDetailsContainer'
 import Favourites from './components/favourites/Favourites'
 
 function App() {
@@ -63,9 +66,24 @@ function App() {
 						element={<PopularAnimeContainer />}
 					/>
 					<Route
-						path='/details/:omdbID'
+						path='/upcoming-anime'
 						exact
-						element={<DetailsContainer />}
+						element={<UpcomingAnimeContainer />}
+					/>
+					<Route
+						path='/details/movie/:id'
+						exact
+						element={<MovieDetailsContainer />}
+					/>
+					<Route
+						path='/details/show/:id'
+						exact
+						element={<ShowDetailsContainer />}
+					/>
+					<Route
+						path='/details/anime/:id'
+						exact
+						element={<AnimeDetailsContainer />}
 					/>
 					<Route path='/favourites' exact element={<Favourites />} />
 				</Routes>

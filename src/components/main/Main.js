@@ -29,7 +29,7 @@ function Main() {
 	// })
 
 	const text = 'The'
-	const animeText = 'Attack'
+	const animeText = 'sekai'
 
 	useEffect(() => {
 		dispatch(getMovieSearch(text))
@@ -44,7 +44,7 @@ function Main() {
 				<div className='main__container'>
 					{movieResult.map((movie, index) => (
 						<Link
-							to={`/details/${movie.id}`}
+							to={`/details/movie/${movie.id}`}
 							className='main__card-container'
 							key={index}
 						>
@@ -80,7 +80,7 @@ function Main() {
 					{showResult ? (
 						showResult.map((show, index) => (
 							<Link
-								to={`/details/${show.id}`}
+								to={`/details/show/${show.id}`}
 								className='main__card-container'
 								key={index}
 							>
@@ -121,7 +121,7 @@ function Main() {
 					{animeResult ? (
 						animeResult.map((anime, index) => (
 							<Link
-								to={`/details/${anime.mal_id}`}
+								to={`/details/anime/${anime.mal_id}`}
 								className='main__card-container'
 								key={index}
 							>
