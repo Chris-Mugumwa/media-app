@@ -20,8 +20,8 @@ export const getRandomAnime = createAsyncThunk(
 
 export const getAnimeDetails = createAsyncThunk(
 	'animeDetails/getAnimeDetails',
-	async id => {
-		const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`)
+	async mal_id => {
+		const response = await fetch(`https://api.jikan.moe/v4/anime/${mal_id}`)
 		const formatResponse = await response.json()
 		return formatResponse
 	},
@@ -32,6 +32,15 @@ export const getAnimeSeasons = createAsyncThunk(
 	async () => {
 		const response = await fetch(`https://api.jikan.moe/v4/seasons/upcoming`)
 		const formatResponse = await response.json()
+		return formatResponse
+	},
+)
+
+export const getAnimeGenres = createAsyncThunk(
+	'animeGenres/getAnimeGenres',
+	async () => {
+		const response = await fetch(`https://api.jikan.moe/v4/genres/anime`)
+		const formatResponse = response.json()
 		return formatResponse
 	},
 )
@@ -55,6 +64,7 @@ export const animeSlice = createSlice({
 		animeSearch: [],
 		animeDetails: [],
 		animeSeasons: [],
+		animeGenres: [],
 		loading: false,
 	},
 	extraReducers: {
@@ -106,6 +116,16 @@ export const animeSlice = createSlice({
 			state.loading = false
 		},
 		[getAnimeSeasons.rejected]: state => {
+			state.loading = false
+		},
+		[getAnimeGenres.pending]: state => {
+			state.loading = true
+		},
+		[getAnimeGenres.fulfilled]: (state, action) => {
+			state.animeGenres = action.payload
+			state.loading = false
+		},
+		[getAnimeGenres.rejected]: state => {
 			state.loading = false
 		},
 	},

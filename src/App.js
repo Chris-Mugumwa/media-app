@@ -81,7 +81,7 @@ function App() {
 						element={<ShowDetailsContainer />}
 					/>
 					<Route
-						path='/details/anime/:id'
+						path='/details/anime/:mal_id'
 						exact
 						element={<AnimeDetailsContainer />}
 					/>

@@ -1,2 +1,40 @@
 @import '../../styles/mixins';
 @import '../../styles/variables';
+
+.favourites {
+	&__button {
+		background-color: $blue-dark;
+		padding: 1.4rem 1.8rem;
+		border: none;
+		outline: none;
+		color: $grayish;
+		border-radius: 1.2rem;
+		width: 100%;
+		margin-top: 1.8rem;
+		font-size: 1.4rem;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		transition: all 0.4s ease-in-out;
+
+		@include respond(tab-port) {
+			width: 22rem;
+			margin-top: 0;
+		}
+
+		&:hover,
+		&:focus {
+			transform: scale(1.05);
+		}
+
+		&:active {
+			transform: scale(1);
+		}
+	}
+
+	&__button-icon {
+		margin-right: 0.8rem;
+	}
+}

@@ -30,7 +30,7 @@ function PopularAnime() {
 					{animes ? (
 						animes.map((anime, index) => (
 							<Link
-								to={`/details/${anime.mal_id}`}
+								to={`/details/anime/${anime.mal_id}`}
 								className='anime__card-container'
 								key={index}
 							>
