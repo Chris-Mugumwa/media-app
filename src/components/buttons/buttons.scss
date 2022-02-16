@@ -11,37 +11,37 @@
 
 	@include respond(desktop) {
 		grid-column: 1 / 2;
-      grid-row: 4 / 5;
-		// justify-content: start;
+		grid-row: 3 / 4;
+		// justify-content: flex-end;
 	}
 
 	&__container {
 		width: 50%;
-      max-width: 50%;
+		max-width: 50%;
 		display: flex;
 
-      @include respond(desktop) {
-         width: 0;
-         // max-width: 0;
-      }
+		@include respond(desktop) {
+			width: 0;
+			// max-width: 0;
+		}
 	}
 
-   &__link {
-      text-decoration: none;
-   }
+	&__link {
+		text-decoration: none;
+	}
 
-   &__button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: $grayish;
-      background-color: $blue-lighter;
-      outline: none;
+	&__button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: $grayish;
+		background-color: $blue-lighter;
+		outline: none;
 		border: none;
 		width: 8rem;
 		height: 3rem;
-      margin: .5rem;
-      padding: .8rem;
+		margin: 0.5rem;
+		padding: 0.8rem;
 		font-family: 'Manrope';
 		border-radius: 0.5rem;
 		cursor: pointer;
@@ -49,7 +49,7 @@
 		&:hover,
 		*:focus {
 			transform: scale(1.1);
-         background-color: $blue-light;
+			background-color: $blue-light;
 			transition: 0.5s ease;
 		}
 
@@ -57,12 +57,11 @@
 			transform: scale(1);
 			transition: 0.5s ease;
 		}
-      
-   }
+	}
 
-   &__icon {
-      display: flex;
-      margin-right: .4rem;
-      align-items: center;
-   }
+	&__icon {
+		display: flex;
+		margin-right: 0.4rem;
+		align-items: center;
+	}
 }

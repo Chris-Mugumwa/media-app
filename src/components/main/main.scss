@@ -6,7 +6,7 @@
 	grid-column: 1 / 5;
 
 	@include respond(desktop) {
-		grid-row: 5 / 6;
+		grid-row: 4 / 5;
 		grid-column: 1 / 4;
 	}
 

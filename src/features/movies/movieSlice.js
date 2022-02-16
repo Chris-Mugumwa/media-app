@@ -23,17 +23,6 @@ export const getTopRatedMovies = createAsyncThunk(
 	},
 )
 
-export const getMovieDetails = createAsyncThunk(
-	'movieDetails/getMovieDetails',
-	async id => {
-		const response = await fetch(
-			`https://api.themoviedb.org/3/movie/${id}?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US`,
-		)
-		const formatResponse = await response.json()
-		return formatResponse
-	},
-)
-
 export const getMovieDiscover = createAsyncThunk(
 	'movieDiscover/getMovieDiscover',
 	async () => {
@@ -51,6 +40,17 @@ export const getUpcomingMovies = createAsyncThunk(
 	async () => {
 		const response = await fetch(
 			`https://api.themoviedb.org/3/movie/upcoming?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=1`,
+		)
+		const formatResponse = await response.json()
+		return formatResponse
+	},
+)
+
+export const getMovieDetails = createAsyncThunk(
+	'movieDetails/getMovieDetails',
+	async id => {
+		const response = await fetch(
+			`https://api.themoviedb.org/3/movie/${id}?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US`,
 		)
 		const formatResponse = await response.json()
 		return formatResponse

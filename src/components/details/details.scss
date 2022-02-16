@@ -1,2 +1,231 @@
 @import '../../styles/mixins';
 @import '../../styles/variables';
+
+.details {
+	grid-row: 3 / 6;
+	grid-column: 1 / 5;
+
+	@include respond(desktop) {
+		grid-row: 4 / 6;
+		grid-column: 1 / 5;
+	}
+
+	&__container {
+		position: relative;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		border-radius: 1.2rem;
+	}
+
+	&__content {
+		position: absolute;
+		inset: 0;
+		border-radius: 1.2rem;
+		z-index: 100;
+		background-color: rgba(0, 0, 0, 0.7);
+		padding: 1.5rem;
+
+		@include respond(desktop) {
+			display: flex;
+			justify-content: flex-end;
+		}
+	}
+
+	&__details {
+		width: 100%;
+
+		@include respond(tab-port) {
+			display: flex;
+			justify-content: center;
+			align-self: center;
+		}
+	}
+
+	&__card-container {
+		display: flex;
+		justify-content: center;
+
+		@include respond(tab-port) {
+			width: 40%;
+		}
+	}
+
+	&__card {
+		height: 28rem;
+		width: 20rem;
+		border-radius: 1.2rem;
+		position: relative;
+
+		@include respond(tab-port) {
+			height: 40rem;
+			width: 30rem;
+		}
+	}
+
+	&__information {
+		@include respond(tab-port) {
+			width: 60%;
+			margin-left: 2rem;
+		}
+
+		@include respond(tab-land) {
+			margin-left: 0;
+		}
+	}
+
+	&__title {
+		position: relative;
+		color: $grayish;
+		font-weight: bold;
+		font-family: 'Manrope', sans-serif;
+		font-size: 3.2rem;
+		padding-top: 1.2rem;
+		margin-bottom: 1.2rem;
+
+		@include respond(tab-port) {
+			padding-top: 0;
+			font-size: 3.4rem;
+		}
+	}
+
+	&__genres {
+		color: $grayish;
+		display: inline-block;
+		margin-right: 1rem;
+		padding: 1rem 1.6rem;
+		background-color: $blue;
+		border-radius: 1.2rem;
+
+		@include respond(tab-port) {
+			font-size: 1.3rem;
+		}
+	}
+
+	&__tagline {
+		margin-top: 1.4rem;
+		color: $grayish;
+		// font-weight: none;
+		font-size: 1.2rem;
+
+		@include respond(tab-port) {
+			font-size: 1.4rem;
+		}
+	}
+
+	&__release-date {
+		margin-top: 1rem;
+
+		color: $grayish;
+		font-size: 1.2rem;
+
+		@include respond(tab-port) {
+			font-size: 1.4rem;
+		}
+	}
+
+	&__companies {
+		margin-top: 1rem;
+
+		color: $grayish;
+		font-size: 1.2rem;
+
+		@include respond(tab-port) {
+			font-size: 1.4rem;
+		}
+	}
+
+	&__company {
+		color: $grayish;
+		font-size: 1.2rem;
+		margin-right: 0.8rem;
+
+		@include respond(tab-port) {
+			font-size: 1.4rem;
+		}
+	}
+
+	&__countries {
+		margin-top: 1rem;
+
+		color: $grayish;
+		font-size: 1.2rem;
+	}
+
+	&__country {
+		color: $grayish;
+		font-size: 1.2rem;
+		margin-right: 0.8rem;
+
+		@include respond(tab-port) {
+			font-size: 1.4rem;
+		}
+	}
+
+	&__overview {
+		color: $blue-lighter;
+		font-size: 1.2rem;
+		margin-top: 1.2rem;
+		display: block;
+
+		@include respond(tab-port) {
+			font-size: 1.4rem;
+		}
+	}
+
+	&__description {
+		color: $grayish;
+		font-size: 1.4rem;
+		margin-top: 1rem;
+
+		@include respond(tab-port) {
+			max-width: 100%;
+			font-size: 1.6rem;
+		}
+	}
+
+	&__buttons {
+		margin-top: 1.8rem;
+		display: flex;
+		flex-direction: column;
+
+		@include respond(tab-port) {
+			flex-direction: row;
+		}
+	}
+
+	&__button {
+		background-color: #ff0000;
+		padding: 1.2rem 1.8rem;
+		border: none;
+		outline: none;
+		color: $grayish;
+		border-radius: 1.2rem;
+		width: 100%;
+		font-size: 1.4rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		transition: all 0.4s ease-in-out;
+
+		&:hover,
+		&:focus {
+			transform: scale(1.05);
+		}
+
+		&:active {
+			transform: scale(1);
+		}
+
+		@include respond(tab-port) {
+			width: 22rem;
+			margin-right: 1.6rem;
+			font-size: 1.6rem;
+		}
+	}
+
+	&__button-icon {
+		margin-right: 0.8rem;
+	}
+}

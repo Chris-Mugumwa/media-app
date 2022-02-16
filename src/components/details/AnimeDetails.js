@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAnimeDetails } from '../../features/anime/animeSlice'
 
 function AnimeDetails() {
-	const { id } = useParams()
+	const { mal_id } = useParams()
 	const dispatch = useDispatch()
 	const animeDetails = useSelector(state => state.anime.animeDetails)
 	console.log('Anime', animeDetails)
 
 	useEffect(() => {
-		dispatch(getAnimeDetails(id))
-	}, [dispatch, id])
+		dispatch(getAnimeDetails(mal_id))
+	}, [dispatch, mal_id])
 
 	return <section className='details'>Hello World</section>
 }
