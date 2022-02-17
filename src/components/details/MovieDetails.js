@@ -107,10 +107,8 @@ function MovieDetails() {
 										target='_blank'
 										className='details__link'
 									>
-										<button className='details__button'>
-											<BiPlay className='details__button-icon' />
-											<span>Watch Trailer</span>
-										</button>
+										<BiPlay className='details__button-icon' />
+										<span>Watch Trailer</span>
 									</a>
 
 									<FavouritesButton />

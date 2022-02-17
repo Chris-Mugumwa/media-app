@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './movies.scss'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,10 +6,12 @@ import { getPopularMovies } from '../../features/movies/movieSlice'
 import { timeFormat } from '../main/mainData'
 import Loading from '../loading/Loading'
 import Rejected from '../rejected/Rejected'
+import Pagination from '../pagination/Pagination'
 import { AiOutlineStar } from 'react-icons/ai'
 import { FcRating } from 'react-icons/fc'
 
 function PopularMovies() {
+	const [page, setPage] = useState(1)
 	const dispatch = useDispatch()
 	const popularMovies = useSelector(state => state.movie.popularMovies)
 	const movieLoading = useSelector(state => state.movie.loading)
@@ -21,6 +23,8 @@ function PopularMovies() {
 	return (
 		<section className='movies'>
 			<h2 className='movies__description'>Trending Movies</h2>
+         <Pagination />
+         
 			{movieLoading ? (
 				<Loading />
 			) : (
