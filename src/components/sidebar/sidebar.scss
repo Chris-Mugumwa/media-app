@@ -67,7 +67,7 @@
 
 		&:hover,
 		&:focus {
-			transform: scale(1.1);
+			transform: scale(1.05);
 		}
 
 		&:last-child {
@@ -83,10 +83,10 @@
 		margin-top: 0;
 	}
 
-   &__section-anime {
-      padding-top: 0;
-      margin-top: 0;
-   }
+	&__section-anime {
+		padding-top: 0;
+		margin-top: 0;
+	}
 
 	&__not-active {
 		display: none;

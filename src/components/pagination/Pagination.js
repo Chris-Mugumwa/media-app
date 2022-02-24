@@ -1,24 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './pagination.scss'
 import { paginationData } from './paginationData'
 
-function Pagination() {
-	const [selectedPage, setSelectedPage] = useState(1)
-
+function Pagination({ setPage }) {
 	const selectPageClick = page => {
-		setSelectedPage(page.number)
-		console.log(selectedPage)
+		setPage(page)
 	}
 
 	return (
 		<ul className='pagination'>
-			{paginationData.map(page => (
+			{paginationData.map(pagination => (
 				<li
 					className='pagination__page'
-					key={page.number}
-					onClick={() => selectPageClick}
+					key={pagination.number}
+					onClick={event => selectPageClick(event.target.textContent)}
 				>
-					{page.number}
+					{pagination.number}
 				</li>
 			))}
 		</ul>

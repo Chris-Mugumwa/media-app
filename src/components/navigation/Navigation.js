@@ -33,12 +33,16 @@ function Navigation() {
 			</div>
 
 			<div className='navigation__buttons'>
-				<button className='navigation__button navigation__login'>
-					Login
-				</button>
-				<button className='navigation__button navigation__sign-in'>
-					Sign Up
-				</button>
+				<Link to='/login' className='navigation__link'>
+					<button className='navigation__button navigation__login'>
+						Login
+					</button>
+				</Link>
+				<Link to='/sign-up' className='navigation__link'>
+					<button className='navigation__button navigation__sign-in'>
+						Sign Up
+					</button>
+				</Link>
 			</div>
 			<div className={menu ? 'menu__close' : 'menu'}>
 				<ul className='menu__list'>
@@ -56,8 +60,14 @@ function Navigation() {
 					))}
 				</ul>
 				<div className='menu__buttons'>
-					<button className='menu__button menu__login'>Login</button>
-					<button className='menu__button menu__sign-up'>Sign Up</button>
+					<Link to='/login' className='navigation__link'>
+						<button className='menu__button menu__login'>Login</button>
+					</Link>
+					<Link to='/sign-up' className='navigation__link'>
+						<button className='menu__button menu__sign-up'>
+							Sign Up
+						</button>
+					</Link>
 				</div>
 			</div>
 		</div>

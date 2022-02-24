@@ -2,10 +2,10 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const getPopularMovies = createAsyncThunk(
 	'popularMovies/getPopularMovies',
-	async () => {
+	async page => {
 		const response = await fetch(
 			`
-         https://api.themoviedb.org/3/movie/popular?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=1`,
+         https://api.themoviedb.org/3/movie/popular?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=${page}`,
 		)
 		const formatResponse = await response.json()
 		return formatResponse
@@ -14,9 +14,9 @@ export const getPopularMovies = createAsyncThunk(
 
 export const getTopRatedMovies = createAsyncThunk(
 	'topRatedMovies/getTopRatedMovies',
-	async () => {
+	async page => {
 		const response = await fetch(
-			`https://api.themoviedb.org/3/movie/top_rated?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=1`,
+			`https://api.themoviedb.org/3/movie/top_rated?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=${page}`,
 		)
 		const formatResponse = await response.json()
 		return formatResponse
@@ -37,9 +37,9 @@ export const getMovieDiscover = createAsyncThunk(
 
 export const getUpcomingMovies = createAsyncThunk(
 	'upcomingMovies/getUpcomingMovies',
-	async () => {
+	async page => {
 		const response = await fetch(
-			`https://api.themoviedb.org/3/movie/upcoming?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=1`,
+			`https://api.themoviedb.org/3/movie/upcoming?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=${page}`,
 		)
 		const formatResponse = await response.json()
 		return formatResponse
@@ -59,9 +59,9 @@ export const getMovieDetails = createAsyncThunk(
 
 export const getMovieSearch = createAsyncThunk(
 	'movieSearch/getMovieSearch',
-	async term => {
+	async (term, page) => {
 		const response = await fetch(`
-      https://api.themoviedb.org/3/search/movie?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&query=${term}&page=1&include_adult=false`)
+      https://api.themoviedb.org/3/search/movie?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&query=${term}&page=${page}&include_adult=false`)
 		const formatResponse = await response.json()
 		return formatResponse
 	},

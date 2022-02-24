@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { getMovieSearch } from '../../features/movies/movieSlice'
 import { getShowSearch } from '../../features/shows/showSlice'
 import { getAnimeSearch } from '../../features/anime/animeSlice'
 import './search.scss'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { IoSearchOutline } from 'react-icons/io5'
 
 function Search() {
 	const [term, setTerm] = useState('')
+	// const { name } = useParams()
 	const dispatch = useDispatch()
 	let navigate = useNavigate()
 
@@ -17,7 +18,7 @@ function Search() {
 		dispatch(getMovieSearch(term))
 		dispatch(getShowSearch(term))
 		dispatch(getAnimeSearch(term))
-		navigate(`/`)
+		navigate(`/searched/${term}`)
 		setTerm('')
 	}
 
