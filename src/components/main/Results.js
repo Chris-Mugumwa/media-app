@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import './results.scss'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { getMovieSearch } from '../../features/movies/movieSlice'
 import { getShowSearch } from '../../features/shows/showSlice'
 import { getAnimeSearch } from '../../features/anime/animeSlice'
 import Loading from '../loading/Loading'
 import Rejected from '../rejected/Rejected'
+import { FcRating } from 'react-icons/fc'
 
 function Results({ term }) {
 	const dispatch = useDispatch()
@@ -15,15 +17,24 @@ function Results({ term }) {
 	const movieLoading = useSelector(state => state.movie.loading)
 	const showLoading = useSelector(state => state.show.loading)
 	const animeLoading = useSelector(state => state.anime.loading)
-	const movies = moviesSearch.results
-	const shows = showsSearch.results
-	const animes = animesSearch.data
+	const movieResult = moviesSearch.results
+	const showResult = showsSearch.results
+	const animeResult = animesSearch.data
+
+	const text = 'The'
+	const animeText = 'sekai'
 
 	useEffect(() => {
-		dispatch(getMovieSearch(term))
-		dispatch(getShowSearch(term))
-		dispatch(getAnimeSearch(term))
-	}, [dispatch, term])
+		dispatch(getMovieSearch(text))
+		dispatch(getShowSearch(text))
+		dispatch(getAnimeSearch(animeText))
+	}, [dispatch, text])
+
+	// useEffect(() => {
+	// 	dispatch(getMovieSearch(term))
+	// 	dispatch(getShowSearch(term))
+	// 	dispatch(getAnimeSearch(term))
+	// }, [dispatch, term])
 
 	const timeFormat = value => {
 		if (value) {
@@ -38,43 +49,51 @@ function Results({ term }) {
 
 	return (
 		<main className='main'>
-			<h2 className='main__description'>Movies:</h2>
-			{movieLoading ? (
-				<Loading />
-			) : (
+			<h2 className='main__description'>Movies</h2>
+			{movieResult ? (
 				<div className='main__container'>
-					{movies ? (
-						movies.map((movie, index) => (
-							<section className='main__card-container' key={index}>
-								<img
-									src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-									alt={movie.original_title}
-									className='main__card'
-								/>
-								<div className='main__card-information'>
-									<span className='main__card-name'>
-										{movie.title}
-									</span>
-									<span className='main__card-name'>
+					{movieResult.map((movie, index) => (
+						<Link
+							to={`/details/movie/${movie.id}`}
+							className='main__card-container'
+							key={index}
+						>
+							<img
+								src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+								alt={movie.original_title}
+								className='main__card'
+							/>
+							<div className='main__card-information'>
+								<span className='main__card-name'>{movie.title}</span>
+								<div className='main__card-details'>
+									<span className='main__card-time'>
 										{timeFormat(movie.release_date)}
 									</span>
+									<span className='main__card-detail'>
+										<FcRating className='main__card-icon' />
+										<span className='main__card-rating'>
+											{movie.vote_average}
+										</span>
+									</span>
 								</div>
-							</section>
-						))
-					) : (
-						<Rejected />
-					)}
+							</div>
+						</Link>
+					))}
 				</div>
-			)}
+			) : null}
 
-			<h2 className='main__description'>Shows:</h2>
+			<h2 className='main__description'>Shows</h2>
 			{showLoading ? (
 				<Loading />
 			) : (
 				<div className='main__container'>
-					{shows ? (
-						shows.map((show, index) => (
-							<section className='main__card-container' key={index}>
+					{showResult ? (
+						showResult.map((show, index) => (
+							<Link
+								to={`/details/show/${show.id}`}
+								className='main__card-container'
+								key={index}
+							>
 								<img
 									src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
 									alt={show.original_name}
@@ -84,11 +103,19 @@ function Results({ term }) {
 									<span className='main__card-name'>
 										{show.original_name}
 									</span>
-									<span className='main__card-name'>
-										{timeFormat(show.first_air_date)}
-									</span>
+									<div className='main__card-details'>
+										<span className='main__card-time'>
+											{timeFormat(show.first_air_date)}
+										</span>
+										<span className='main__card-detail'>
+											<FcRating className='main__card-icon' />
+											<span className='main__card-rating'>
+												{show.vote_average}
+											</span>
+										</span>
+									</div>
 								</div>
-							</section>
+							</Link>
 						))
 					) : (
 						<Rejected />
@@ -96,14 +123,18 @@ function Results({ term }) {
 				</div>
 			)}
 
-			<h2 className='main__description'>Anime:</h2>
+			<h2 className='main__description'>Anime</h2>
 			{animeLoading ? (
 				<Loading />
 			) : (
 				<div className='main__container'>
-					{animes ? (
-						animes.map((anime, index) => (
-							<section className='main__card-container' key={index}>
+					{animeResult ? (
+						animeResult.map((anime, index) => (
+							<Link
+								to={`/details/anime/${anime.mal_id}`}
+								className='main__card-container'
+								key={index}
+							>
 								<img
 									src={`${anime.images.jpg.image_url}`}
 									alt={anime.title_english}
@@ -115,9 +146,19 @@ function Results({ term }) {
 											? anime.title_english
 											: anime.title}
 									</span>
-									<span className='main__card-name'>{anime.year}</span>
+									<div className='main__card-details'>
+										<span className='main__card-time'>
+											{anime.year}
+										</span>
+										<span className='main__card-detail'>
+											<FcRating className='main__card-icon' />
+											<span className='main__card-rating'>
+												{anime.rank}
+											</span>
+										</span>
+									</div>
 								</div>
-							</section>
+							</Link>
 						))
 					) : (
 						<Rejected />

@@ -3,9 +3,9 @@ import './App.css'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Home from './containers/home/Home'
-// import Searched from './containers/searched/Searched'
-import Signup from './components/auth/signup/Signup'
-import Login from './components/auth/login/Login'
+import SearchedContainer from './containers/searched/SearchedContainer'
+import SignupContainer from './containers/auth/SignupContainer'
+import LoginContainer from './containers/auth/LoginContainer'
 import MovieContainer from './containers/media/MovieContainer'
 import ShowContainer from './containers/media/ShowContainer'
 import AnimeContainer from './containers/media/AnimeContainer'
@@ -29,12 +29,16 @@ function App() {
 			<AnimatePresence exitBeforeEnter>
 				<Routes location={location}>
 					<Route path='/' exact element={<Home />} />
-					{/* <Route path='/searched' exact element={<Searched />} /> */}
-					<Route path='/sign-up' exact element={<Signup />} />
-					<Route path='/login' exact element={<Login />} />
+					<Route path='/sign-up' exact element={<SignupContainer />} />
+					<Route path='/login' exact element={<LoginContainer />} />
 					<Route path='/movies' exact element={<MovieContainer />} />
 					<Route path='/shows' exact element={<ShowContainer />} />
 					<Route path='/anime' exact element={<AnimeContainer />} />
+					<Route
+						path='/searched/:term'
+						exact
+						element={<SearchedContainer />}
+					/>
 					<Route
 						path='/popular-movies'
 						exact

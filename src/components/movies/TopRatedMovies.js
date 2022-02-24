@@ -1,26 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './movies.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getTopRatedMovies } from '../../features/movies/movieSlice'
 import { timeFormat } from '../main/mainData'
+import Pagination from '../pagination/Pagination'
 import Loading from '../loading/Loading'
 import Rejected from '../rejected/Rejected'
 import { AiOutlineStar } from 'react-icons/ai'
 import { FcRating } from 'react-icons/fc'
 
 function TopRatedMovies() {
+	const [page, setPage] = useState(1)
 	const dispatch = useDispatch()
 	const topRatedMovies = useSelector(state => state.movie.topRatedMovies)
 	const movieLoading = useSelector(state => state.movie.loading)
 
 	useEffect(() => {
-		dispatch(getTopRatedMovies())
-	}, [dispatch])
+		dispatch(getTopRatedMovies(page))
+	}, [dispatch, page])
 
 	return (
 		<section className='movies'>
 			<h2 className='movies__description'>Top Rated Movies</h2>
+			<Pagination setPage={setPage} page={page} />
 			{movieLoading ? (
 				<Loading />
 			) : (

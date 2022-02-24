@@ -2,9 +2,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const getPopularShows = createAsyncThunk(
 	'popularShows/getPopularShows',
-	async () => {
+	async page => {
 		const response = await fetch(
-			`https://api.themoviedb.org/3/tv/popular?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=1`,
+			`https://api.themoviedb.org/3/tv/popular?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=${page}`,
 		)
 		const formatResponse = await response.json()
 		return formatResponse
@@ -13,9 +13,9 @@ export const getPopularShows = createAsyncThunk(
 
 export const getTopRatedShows = createAsyncThunk(
 	'getTopRatedShows',
-	async () => {
+	async page => {
 		const response = await fetch(
-			`https://api.themoviedb.org/3/tv/top_rated?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=1`,
+			`https://api.themoviedb.org/3/tv/top_rated?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=${page}`,
 		)
 		const formatResponse = await response.json()
 		return formatResponse
@@ -47,9 +47,9 @@ export const getShowDiscover = createAsyncThunk(
 
 export const getShowSearch = createAsyncThunk(
 	'showSearch/getShowSearch',
-	async term => {
+	async (term, page) => {
 		const response = await fetch(`              
-         https://api.themoviedb.org/3/search/tv?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=1&query=${term}&include_adult=false`)
+         https://api.themoviedb.org/3/search/tv?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=${page}&query=${term}&include_adult=false`)
 		const formatResponse = await response.json()
 		return formatResponse
 	},

@@ -2,12 +2,11 @@ import React from 'react'
 import './signup.scss'
 
 function Login() {
-   
-   return (
-      <section>
-         Signup here Here
-      </section>
-   )
+	return (
+		<section className='signup'>
+			<div className='signup-container'>Hello World</div>
+		</section>
+	)
 }
 
 export default Login

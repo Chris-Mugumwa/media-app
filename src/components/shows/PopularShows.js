@@ -1,26 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './shows.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getPopularShows } from '../../features/shows/showSlice'
 import { timeFormat } from '../main/mainData'
+import Pagination from '../pagination/Pagination'
 import Loading from '../loading/Loading'
 import Rejected from '../rejected/Rejected'
 import { AiOutlineStar } from 'react-icons/ai'
 import { FcRating } from 'react-icons/fc'
 
 function PopularShows() {
+	const [page, setPage] = useState(1)
 	const dispatch = useDispatch()
 	const popularShows = useSelector(state => state.show.popularShows)
 	const showLoading = useSelector(state => state.show.loading)
 
 	useEffect(() => {
-		dispatch(getPopularShows())
-	}, [dispatch])
+		dispatch(getPopularShows(page))
+	}, [dispatch, page])
 
 	return (
 		<section className='shows'>
 			<h2 className='shows__description'>Trending TV-Shows</h2>
+			<Pagination setPage={setPage} page={page} />
 			{showLoading ? (
 				<Loading />
 			) : (

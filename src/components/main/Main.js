@@ -23,11 +23,6 @@ function Main() {
 	const showResult = showsSearch.results
 	const animeResult = animesSearch.data
 
-	// const movieText = texts.map(text => {
-	// 	console.log(text)
-	// 	return text
-	// })
-
 	const text = 'The'
 	const animeText = 'sekai'
 

@@ -65,7 +65,7 @@
 
 	&__information {
 		@include respond(tab-port) {
-			width: 60%;
+			width: 45%;
 			margin-left: 2rem;
 		}
 
@@ -86,6 +86,10 @@
 		@include respond(tab-port) {
 			padding-top: 0;
 			font-size: 3.4rem;
+		}
+
+		@include respond(desktop) {
+			font-size: 3.8rem;
 		}
 	}
 
@@ -162,6 +166,16 @@
 		}
 	}
 
+	&__seasons {
+		color: $grayish;
+		font-size: 1.2rem;
+      margin-top: 1rem;
+
+		@include respond(tab-port) {
+			font-size: 1.4rem;
+		}
+	}
+
 	&__overview {
 		color: $blue-lighter;
 		font-size: 1.2rem;
@@ -194,7 +208,8 @@
 		}
 	}
 
-	&__button {
+	&__link {
+		text-decoration: none;
 		background-color: #ff0000;
 		padding: 1.2rem 1.8rem;
 		border: none;

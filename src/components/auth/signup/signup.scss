@@ -1,2 +1,12 @@
 @import '../../../styles/mixins';
 @import '../../../styles/variables';
+
+.signup {
+	grid-row: 1 / 6;
+	grid-column: 1 / 5;
+
+	@include respond(desktop) {
+		grid-row: 1 / 6;
+		grid-column: 1 / 5;
+	}
+}
