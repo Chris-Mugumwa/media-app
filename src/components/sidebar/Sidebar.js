@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import { getMovieDiscover } from '../../features/movies/movieSlice'
 import { getShowDiscover } from '../../features/shows/showSlice'
 import { getAnimeSeasons } from '../../features/anime/animeSlice'
-import Rejected from '../rejected/Rejected'
 import { FcRating } from 'react-icons/fc'
 
 function Sidebar() {
@@ -77,8 +76,8 @@ function Sidebar() {
 				</ul>
 
 				<section className='sidebar__section sidebar__section-movies'>
-					{movies ? (
-						movies.map(movie => (
+					{movies?.map(movie => (
+						<>
 							<Link
 								to={`/details/movie/${movie.id}`}
 								className={
@@ -111,15 +110,13 @@ function Sidebar() {
 									</div>
 								</div>
 							</Link>
-						))
-					) : (
-						<Rejected />
-					)}
+						</>
+					))}
 				</section>
 
 				<section className='sidebar__section sidebar__section-show'>
-					{shows ? (
-						shows.map(show => (
+					{shows?.map(show => (
+						<>
 							<Link
 								to={`/details/show/${show.id}`}
 								className={
@@ -152,15 +149,13 @@ function Sidebar() {
 									</div>
 								</div>
 							</Link>
-						))
-					) : (
-						<Rejected />
-					)}
+						</>
+					))}
 				</section>
 
 				<section className='sidebar__section sidebar__section-anime'>
-					{animes ? (
-						animes.map(anime => (
+					{animes?.map(anime => (
+						<>
 							<Link
 								to={`/details/anime/${anime.mal_id}`}
 								className={
@@ -201,10 +196,8 @@ function Sidebar() {
 									</div>
 								</div>
 							</Link>
-						))
-					) : (
-						<Rejected />
-					)}
+						</>
+					))}
 				</section>
 			</nav>
 		</aside>

@@ -2,7 +2,7 @@
 @import '../../../styles/variables';
 
 .signup {
-	position: absolute;
+	position: fixed;
 	inset: 0;
 	z-index: 1000;
 	width: 100%;
@@ -26,7 +26,7 @@
 			color: $grayish;
 			height: 3rem;
 			width: 3rem;
-         cursor: pointer;
+			cursor: pointer;
 		}
 	}
 
