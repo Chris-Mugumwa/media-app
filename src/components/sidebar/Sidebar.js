@@ -78,7 +78,7 @@ function Sidebar() {
 
 				<section className='sidebar__section sidebar__section-movies'>
 					{movies ? (
-						movies.map((movie, index) => (
+						movies.map(movie => (
 							<Link
 								to={`/details/movie/${movie.id}`}
 								className={
@@ -86,7 +86,7 @@ function Sidebar() {
 										? 'sidebar__container'
 										: 'sidebar__not-active'
 								}
-								key={index}
+								key={movie.id}
 							>
 								<img
 									src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -119,7 +119,7 @@ function Sidebar() {
 
 				<section className='sidebar__section sidebar__section-show'>
 					{shows ? (
-						shows.map((show, index) => (
+						shows.map(show => (
 							<Link
 								to={`/details/show/${show.id}`}
 								className={
@@ -127,7 +127,7 @@ function Sidebar() {
 										? 'sidebar__container'
 										: 'sidebar__not-active'
 								}
-								key={index}
+								key={show.id}
 							>
 								<img
 									src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
@@ -160,7 +160,7 @@ function Sidebar() {
 
 				<section className='sidebar__section sidebar__section-anime'>
 					{animes ? (
-						animes.map((anime, index) => (
+						animes.map(anime => (
 							<Link
 								to={`/details/anime/${anime.mal_id}`}
 								className={
@@ -168,7 +168,7 @@ function Sidebar() {
 										? 'sidebar__container'
 										: 'sidebar__not-active'
 								}
-								key={index}
+								key={anime.mal_id}
 							>
 								<img
 									src={anime.images.jpg.image_url}

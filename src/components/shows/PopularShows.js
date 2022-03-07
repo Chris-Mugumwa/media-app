@@ -29,11 +29,11 @@ function PopularShows() {
 			) : (
 				<div className='shows__container'>
 					{popularShows.results ? (
-						popularShows.results.map((show, index) => (
+						popularShows.results.map(show => (
 							<Link
 								to={`/details/show/${show.id}`}
 								className='shows__card-container'
-								key={index}
+								key={show.id}
 							>
 								<img
 									src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}

@@ -29,11 +29,11 @@ function TopRatedShows() {
 			) : (
 				<div className='shows__container'>
 					{topRatedShows.results ? (
-						topRatedShows.results.map((show, index) => (
+						topRatedShows.results.map(show => (
 							<Link
 								to={`/details/show/${show.id}`}
 								className='shows__card-container'
-								key={index}
+								key={show.id}
 							>
 								<img
 									src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
