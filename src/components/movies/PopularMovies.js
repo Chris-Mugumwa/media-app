@@ -30,12 +30,12 @@ function PopularMovies() {
 			) : (
 				<div className='movies__container'>
 					{popularMovies.results ? (
-						popularMovies.results.map((movie, index) => (
+						popularMovies.results.map(movie => (
 							<>
 								<Link
 									to={`/details/movie/${movie.id}`}
 									className='movies__card-container'
-									key={index}
+									key={movie.id}
 								>
 									<img
 										src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}

@@ -28,11 +28,11 @@ function PopularAnime() {
 			) : (
 				<div className='anime__container'>
 					{animes ? (
-						animes.map((anime, index) => (
+						animes.map(anime => (
 							<Link
 								to={`/details/anime/${anime.mal_id}`}
 								className='anime__card-container'
-								key={index}
+								key={anime.mal_id}
 							>
 								<img
 									src={`${anime.images.jpg.image_url}`}

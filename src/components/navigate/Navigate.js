@@ -46,11 +46,11 @@ function Navigate() {
 										: 'navigate__dropdown'
 								}
 							>
-								{movieItems.map((item, index) => (
+								{movieItems.map(item => (
 									<Link
 										to={item.path}
 										className='navigate__dropdown-link'
-										key={index}
+										key={item.id}
 									>
 										{item.name}
 									</Link>
@@ -77,11 +77,11 @@ function Navigate() {
 										: 'navigate__dropdown'
 								}
 							>
-								{showItems.map((item, index) => (
+								{showItems.map(item => (
 									<Link
 										to={item.path}
 										className='navigate__dropdown-link'
-										key={index}
+										key={item.id}
 									>
 										{item.name}
 									</Link>
@@ -108,11 +108,11 @@ function Navigate() {
 										: 'navigate__dropdown'
 								}
 							>
-								{animeItems.map((item, index) => (
+								{animeItems.map(item => (
 									<Link
 										to={item.path}
 										className='navigate__dropdown-link'
-										key={index}
+										key={item.id}
 									>
 										{item.name}
 									</Link>

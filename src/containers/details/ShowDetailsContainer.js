@@ -1,16 +1,16 @@
-import React from 'react'
-import Navigation from '../../components/navigation/Navigation'
-import Navigate from '../../components/navigate/Navigate'
-import Search from '../../components/search/Search'
-import ShowDetails from '../../components/details/ShowDetails'
+import React, { Suspense } from 'react'
+import Loading from '../../components/loading/Loading'
+
+const ShowDetails = React.lazy(() =>
+	import('../../components/details/ShowDetails'),
+)
 
 function ShowDetailsContainer() {
 	return (
 		<>
-			<Navigation />
-			<Navigate />
-			<Search />
-			<ShowDetails />
+			<Suspense fallback={<Loading />}>
+				<ShowDetails />
+			</Suspense>
 		</>
 	)
 }

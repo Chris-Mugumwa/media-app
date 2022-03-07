@@ -42,12 +42,10 @@ function ShowDetails() {
 							</div>
 							<div className='details__information'>
 								<h1 className='details__title'>
-									{showDetails
-										? showDetails.original_name
-										: 'unavailable'}
+									{showDetails.original_name}
 								</h1>
-								{showDetails.genres.map((genre, index) => (
-									<span className='details__genres' key={index}>
+								{showDetails?.genres.map(genre => (
+									<span className='details__genres' key={genre.id}>
 										{genre.name}
 									</span>
 								))}
@@ -57,43 +55,18 @@ function ShowDetails() {
 								<p className='details__release-date'>
 									Release Date: {showDetails.first_air_date}
 								</p>
-								<p className='details__companies'>
-									Production Companies:
-									{showDetails ? (
-										showDetails.production_companies.map(
-											(company, index) => (
-												<span
-													className='details__company'
-													key={index}
-												>
-													<span className='details__company' />
-
-													{company.name}
-												</span>
-											),
-										)
-									) : (
-										<Loading />
-									)}
-								</p>
 
 								<p className='details__countries'>
 									Production Countries:
-									{showDetails ? (
-										showDetails.production_countries.map(
-											(country, index) => (
-												<span
-													className='details__country'
-													key={index}
-												>
-													<span className='details__country' />
-													{country.name}
-												</span>
-											),
-										)
-									) : (
-										<Loading />
-									)}
+									{showDetails?.production_countries.map(country => (
+										<span
+											className='details__country'
+											key={country.id}
+										>
+											<span className='details__country' />
+											{country.name}
+										</span>
+									))}
 								</p>
 
 								<p className='details__seasons'>

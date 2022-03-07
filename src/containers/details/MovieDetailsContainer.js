@@ -1,16 +1,16 @@
-import React from 'react'
-import Navigation from '../../components/navigation/Navigation'
-import Navigate from '../../components/navigate/Navigate'
-import Search from '../../components/search/Search'
-import MovieDetails from '../../components/details/MovieDetails'
+import React, { Suspense } from 'react'
+import Loading from '../../components/loading/Loading'
+
+const MovieDetails = React.lazy(() =>
+	import('../../components/details/MovieDetails'),
+)
 
 function MovieDetailsContainer() {
 	return (
 		<>
-			<Navigation />
-			<Navigate />
-			<Search />
-			<MovieDetails />
+			<Suspense fallback={<Loading />}>
+				<MovieDetails />
+			</Suspense>
 		</>
 	)
 }

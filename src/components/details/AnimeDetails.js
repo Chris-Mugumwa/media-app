@@ -45,8 +45,8 @@ function AnimeDetails() {
 										? animeDetails.title_english
 										: animeDetails.title}
 								</h1>
-								{animeDetails.genres.map((genre, index) => (
-									<span className='details__genres' key={index}>
+								{animeDetails.genres.map(genre => (
+									<span className='details__genres' key={genre.id}>
 										{genre.name}
 									</span>
 								))}
@@ -59,8 +59,11 @@ function AnimeDetails() {
 								<p className='details__companies'>
 									Producers:
 									{animeDetails ? (
-										animeDetails.producers.map((company, index) => (
-											<span className='details__company' key={index}>
+										animeDetails.producers.map(company => (
+											<span
+												className='details__company'
+												key={company.id}
+											>
 												<span className='details__company' />
 
 												{company.name}
@@ -74,8 +77,11 @@ function AnimeDetails() {
 								<p className='details__countries'>
 									Studios:
 									{animeDetails ? (
-										animeDetails.studios.map((studio, index) => (
-											<span className='details__country' key={index}>
+										animeDetails.studios.map(studio => (
+											<span
+												className='details__country'
+												key={studio.id}
+											>
 												<span className='details__country' />
 												{studio.name}
 											</span>

@@ -29,11 +29,11 @@ function TopRatedMovies() {
 			) : (
 				<div className='movies__container'>
 					{topRatedMovies.results ? (
-						topRatedMovies.results.map((movie, index) => (
+						topRatedMovies.results.map(movie => (
 							<Link
 								to={`/details/movies/${movie.id}`}
 								className='movies__card-container'
-								key={index}
+								key={movie.id}
 							>
 								<img
 									src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
