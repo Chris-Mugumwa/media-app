@@ -32,10 +32,15 @@
 
 	&__container {
 		margin-top: 4rem;
-		color: yellow;
-		font-size: 4rem;
+		color: $grayish;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-direction: column;
+		background-color: $blue-dark;
+	}
+
+	&__header {
+		font-size: 3.5rem;
 	}
 }
