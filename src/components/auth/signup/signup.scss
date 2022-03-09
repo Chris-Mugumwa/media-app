@@ -2,15 +2,18 @@
 @import '../../../styles/variables';
 
 .signup {
-	position: absolute;
+	position: fixed;
 	inset: 0;
 	z-index: 1000;
 	width: 100%;
 	height: 100%;
 	grid-row: 1 / 6;
 	grid-column: 1 / 5;
-	padding: 5rem 2.5rem;
+	padding: 2.5rem;
 	background-color: rgba(0, 0, 0, 0.9);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
 	@include respond(desktop) {
 		grid-row: 1 / 6;
@@ -26,16 +29,161 @@
 			color: $grayish;
 			height: 3rem;
 			width: 3rem;
-         cursor: pointer;
+			cursor: pointer;
 		}
 	}
 
 	&__container {
 		margin-top: 4rem;
-		color: yellow;
-		font-size: 4rem;
+		color: $grayish;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-direction: column;
+		background-color: $blue-dark;
+		border-radius: 1.2rem;
+		width: 100%;
+
+		@include respond(tab-port) {
+			width: 60%;
+			max-width: 60%;
+		}
+
+		@include respond(desktop) {
+			width: 40%;
+		}
+	}
+
+	&__header {
+		padding-top: 2.5rem 0;
+		margin-top: 2.5rem;
+		font-size: 3.5rem;
+		font-family: 'Poppins' sans-serif;
+	}
+
+	&__formik {
+		width: 100%;
+	}
+
+	&__wrapper {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		padding: 2.5rem 0;
+	}
+
+	&__form-container {
+		width: 80%;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+	}
+
+	&__form {
+		width: 100%;
+		display: flex;
+		flex-direction: inherit;
+		align-items: center;
+	}
+
+	&__label {
+		font-size: 1.2rem;
+		margin-left: 1.2rem;
+		color: $blue-light;
+	}
+
+	&__field {
+		margin: 1.5rem 0;
+		padding: 1.5rem 2rem;
+		font-size: 1.8rem;
+		outline: none;
+		border: none;
+		border-radius: 1.2rem;
+		background-color: $blue;
+		color: $grayish;
+
+		&::placeholder {
+			font-size: 1.2rem;
+
+			@include respond(desktop) {
+				font-size: 1.8rem;
+			}
+		}
+
+		&:focus {
+			border: none;
+			outline: solid $blue-light;
+		}
+	}
+
+	&__icon {
+		position: absolute;
+		top: 50%;
+		right: 5%;
+		font-size: 1.8rem;
+		color: $grayish;
+	}
+
+	&__error {
+		position: absolute;
+		bottom: -5%;
+		right: 1%;
+		color: rgb(253, 0, 0);
+		margin-left: 1.2rem;
+		font-size: 1.2rem;
+		font-weight: bold;
+		transition: all 0.4s ease-in-out;
+	}
+
+	&__submit {
+		width: 80%;
+		border-radius: 1.2rem;
+		border: none;
+		outline: none;
+		margin: 1.5rem 0;
+		padding: 1.5rem 2rem;
+		cursor: pointer;
+		background-color: $blue-light;
+		font-size: 1.8rem;
+		color: $grayish;
+		transition: all 0.8s ease;
+
+		&:focus,
+		&:hover {
+			background-color: $blue;
+		}
+
+		&:active {
+			background-color: $blue-light;
+		}
+	}
+
+	&__google {
+		width: 80%;
+		background-color: $grayish;
+		border-radius: 1.2rem;
+		border: none;
+		outline: none;
+		margin: 1.5rem 0;
+		padding: 1.5rem 2rem;
+		cursor: pointer;
+		transition: all 0.8s ease;
+
+		&--icon {
+			margin-right: 0.8rem;
+			font-size: 1.8rem;
+		}
+
+		&:focus,
+		&:hover {
+			background-color: #fff;
+			outline: solid $blue-light;
+		}
+
+		&__active {
+			background-color: $grayish;
+		}
 	}
 }

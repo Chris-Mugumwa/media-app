@@ -3,7 +3,6 @@ import './details.scss'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getShowDetails } from '../../features/shows/showSlice'
-import Loading from '../loading/Loading'
 import FavouritesButton from '../favourites/FavouritesButton'
 import { BiPlay } from 'react-icons/bi'
 
@@ -11,9 +10,6 @@ function ShowDetails() {
 	const { id } = useParams()
 	const dispatch = useDispatch()
 	const showDetails = useSelector(state => state.show.showDetails)
-	const imageUrl = 'https://image.tmdb.org/t/p/original/'
-
-	console.log('Shows', showDetails)
 
 	useEffect(() => {
 		dispatch(getShowDetails(id))
@@ -21,82 +17,70 @@ function ShowDetails() {
 
 	return (
 		<section className='details'>
-			{showDetails ? (
-				<div
-					className='details__container'
-					style={{
-						backgroundImage: `url(${imageUrl}${showDetails.backdrop_path})`,
-						backgroundPosition: 'center',
-						backgroundSize: 'cover',
-						backgroundRepeat: 'no-repeat',
-					}}
-				>
-					<div className='details__content'>
-						<div className='details__details'>
-							<div className='details__card-container'>
-								<img
-									src={`https://image.tmdb.org/t/p/w500/${showDetails.poster_path}`}
-									alt={showDetails.original_name}
-									className='details__card'
-								/>
-							</div>
-							<div className='details__information'>
-								<h1 className='details__title'>
-									{showDetails.original_name}
-								</h1>
-								{showDetails?.genres.map(genre => (
-									<span className='details__genres' key={genre.id}>
-										{genre.name}
+			<div className='details__container'>
+				<div className='details__content'>
+					<div className='details__details'>
+						<div className='details__card-container'>
+							<img
+								src={`https://image.tmdb.org/t/p/w500/${showDetails.poster_path}`}
+								alt={showDetails.original_name}
+								className='details__card'
+							/>
+						</div>
+						<div className='details__information'>
+							<h1 className='details__title'>
+								{showDetails.original_name}
+							</h1>
+							{showDetails.genres?.map(genre => (
+								<span className='details__genres' key={genre.id}>
+									{genre.name}
+								</span>
+							))}
+							<p className='details__tagline'>
+								Tagline: {showDetails.tagline}
+							</p>
+							<p className='details__release-date'>
+								Release Date: {showDetails.first_air_date}
+							</p>
+
+							<p className='details__countries'>
+								Production Countries:
+								{showDetails.production_countries?.map(country => (
+									<span
+										className='details__country'
+										key={country.name}
+									>
+										<span className='details__country' />
+										{country.name}
 									</span>
 								))}
-								<p className='details__tagline'>
-									Tagline: {showDetails.tagline}
-								</p>
-								<p className='details__release-date'>
-									Release Date: {showDetails.first_air_date}
-								</p>
+							</p>
 
-								<p className='details__countries'>
-									Production Countries:
-									{showDetails?.production_countries.map(country => (
-										<span
-											className='details__country'
-											key={country.id}
-										>
-											<span className='details__country' />
-											{country.name}
-										</span>
-									))}
-								</p>
+							<p className='details__seasons'>
+								Seasons: {showDetails.number_of_seasons}
+							</p>
 
-								<p className='details__seasons'>
-									Seasons: {showDetails.number_of_seasons}
-								</p>
+							<p className='details__description'>
+								<span className='details__overview'>Overview</span>
+								{showDetails.overview}
+							</p>
 
-								<p className='details__description'>
-									<span className='details__overview'>Overview</span>
-									{showDetails.overview}
-								</p>
+							<div className='details__buttons'>
+								<a
+									href={`https://www.youtube.com/results?search_query=${showDetails.original_name}+official+trailer`}
+									target='_blank'
+									className='details__link'
+								>
+									<BiPlay className='details__button-icon' />
+									<span>Watch Trailer</span>
+								</a>
 
-								<div className='details__buttons'>
-									<a
-										href={`https://www.youtube.com/results?search_query=${showDetails.original_name}+official+trailer`}
-										target='_blank'
-										className='details__link'
-									>
-										<BiPlay className='details__button-icon' />
-										<span>Watch Trailer</span>
-									</a>
-
-									<FavouritesButton />
-								</div>
+								<FavouritesButton />
 							</div>
 						</div>
 					</div>
 				</div>
-			) : (
-				<Loading />
-			)}
+			</div>
 		</section>
 	)
 }

@@ -4,17 +4,14 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPopularMovies } from '../../features/movies/movieSlice'
 import { timeFormat } from '../main/mainData'
-import Loading from '../loading/Loading'
-import Rejected from '../rejected/Rejected'
 import Pagination from '../pagination/Pagination'
-import { AiOutlineStar } from 'react-icons/ai'
 import { FcRating } from 'react-icons/fc'
 
 function PopularMovies() {
 	const [page, setPage] = useState(1)
 	const dispatch = useDispatch()
 	const popularMovies = useSelector(state => state.movie.popularMovies)
-	const movieLoading = useSelector(state => state.movie.loading)
+	const movies = popularMovies.results
 
 	useEffect(() => {
 		dispatch(getPopularMovies(page))
@@ -25,47 +22,37 @@ function PopularMovies() {
 			<h2 className='movies__description'>Trending Movies</h2>
 			<Pagination setPage={setPage} page={page} />
 
-			{movieLoading ? (
-				<Loading />
-			) : (
-				<div className='movies__container'>
-					{popularMovies.results ? (
-						popularMovies.results.map(movie => (
-							<>
-								<Link
-									to={`/details/movie/${movie.id}`}
-									className='movies__card-container'
-									key={movie.id}
-								>
-									<img
-										src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-										alt={movie.original_title}
-										className='movies__card'
-									/>
-									<div className='movies__card-information'>
-										<span className='movies__card-name'>
-											{movie.title}
+			<div className='movies__container'>
+				{movies?.map(movie => (
+					<>
+						<Link
+							to={`/details/movie/${movie.id}`}
+							className='movies__card-container'
+							key={movie.id}
+						>
+							<img
+								src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+								alt={movie.original_title}
+								className='movies__card'
+							/>
+							<div className='movies__card-information'>
+								<span className='movies__card-name'>{movie.title}</span>
+								<div className='movies__card-details'>
+									<span className='movies__card-time'>
+										{timeFormat(movie.release_date)}
+									</span>
+									<span className='movies__card-detail'>
+										<FcRating className='movies__card-icon' />
+										<span className='movies__card-rating'>
+											{movie.vote_average}
 										</span>
-										<div className='movies__card-details'>
-											<span className='movies__card-time'>
-												{timeFormat(movie.release_date)}
-											</span>
-											<span className='movies__card-detail'>
-												<FcRating className='movies__card-icon' />
-												<span className='movies__card-rating'>
-													{movie.vote_average}
-												</span>
-											</span>
-										</div>
-									</div>
-								</Link>
-							</>
-						))
-					) : (
-						<Rejected />
-					)}
-				</div>
-			)}
+									</span>
+								</div>
+							</div>
+						</Link>
+					</>
+				))}
+			</div>
 		</section>
 	)
 }

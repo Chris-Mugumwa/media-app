@@ -7,15 +7,19 @@
 	grid-row: 2 / 4;
 	display: flex;
 	flex-flow: column;
-	justify-content: center;
 	align-items: center;
 	right: -110%;
-	top: 8rem;
-	width: 100%;
+	top: 0;
+	width: 60%;
+	max-width: 60%;
 	height: 100vh;
 	background-color: $blue-tinted;
 	z-index: 1000;
 	transition: 0.8s ease-in-out;
+
+	@include respond(desktop) {
+		display: none;
+	}
 
 	&__close {
 		position: fixed;
@@ -23,23 +27,51 @@
 		grid-row: 2 / 4;
 		display: flex;
 		flex-flow: column;
-		justify-content: center;
 		align-items: center;
 		right: 0;
-		top: 8rem;
-		width: 100%;
+		top: 0;
+		padding: 2rem 0;
+		width: 60%;
+		max-width: 60%;
 		height: 100vh;
 		background-color: $blue-dark;
 		transition: 0.8s ease-in-out;
 		z-index: 1000;
+
+		@include respond(tab-port) {
+			width: 40%;
+		}
 
 		@include respond(desktop) {
 			display: none;
 		}
 	}
 
-	@include respond(desktop) {
-		display: none;
+	&__profile {
+		margin-left: 5.5rem;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+	}
+
+	&__profile--picture {
+		height: 3.5rem;
+		width: 3.5rem;
+		border-radius: 100%;
+	}
+
+	&__name {
+		font-size: 1.5rem;
+		font-weight: bold;
+		color: $grayish;
+		font-family: 'Manrope' sans-serif;
+		margin-left: 1.2rem;
+	}
+
+	&__avatar {
+		border-radius: 100%;
+		margin-left: 1.2rem;
 	}
 
 	&__list {
@@ -47,6 +79,7 @@
 		flex-flow: column;
 		list-style: none;
 		width: 90%;
+		margin-top: 3.5rem;
 	}
 
 	&__item-container {
@@ -61,7 +94,7 @@
 		margin: 0.5rem;
 		text-align: center;
 		font-size: 3.5rem;
-		width: 60%;
+		width: 100%;
 		color: $grayish;
 		cursor: pointer;
 		border-radius: 1rem;
@@ -83,7 +116,7 @@
 	}
 
 	&__buttons {
-		width: 50%;
+		width: 80%;
 		display: flex;
 		flex-flow: column;
 		margin-top: 1rem;

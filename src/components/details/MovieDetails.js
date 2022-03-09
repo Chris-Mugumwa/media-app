@@ -10,8 +10,6 @@ function MovieDetails() {
 	const { id } = useParams()
 	const dispatch = useDispatch()
 	const movieDetails = useSelector(state => state.movie.movieDetails)
-	const imageUrl = 'https://image.tmdb.org/t/p/original/'
-	console.log('Movies', movieDetails)
 
 	useEffect(() => {
 		dispatch(getMovieDetails(id))
@@ -19,15 +17,7 @@ function MovieDetails() {
 
 	return (
 		<section className='details'>
-			<div
-				className='details__container'
-				style={{
-					backgroundImage: `url(${imageUrl}${movieDetails.backdrop_path})`,
-					backgroundPosition: 'center',
-					backgroundSize: 'cover',
-					backgroundRepeat: 'no-repeat',
-				}}
-			>
+			<div className='details__container'>
 				<div className='details__content'>
 					<div className='details__details'>
 						<div className='details__card-container'>
@@ -56,7 +46,10 @@ function MovieDetails() {
 							<p className='details__countries'>
 								Production Countries:
 								{movieDetails.production_countries?.map(country => (
-									<span className='details__country' key={country.id}>
+									<span
+										className='details__country'
+										key={country.name}
+									>
 										<span className='details__country' />
 										{country.name}
 									</span>

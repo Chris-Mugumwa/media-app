@@ -21,6 +21,10 @@
 			text-align: left;
 			font-size: 5rem;
 		}
+
+		&:first-child {
+			margin-top: 2.5rem;
+		}
 	}
 
 	&__container {
