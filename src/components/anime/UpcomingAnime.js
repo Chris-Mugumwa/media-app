@@ -16,10 +16,10 @@ function UpcomingAnime() {
 
 	return (
 		<section className='anime'>
-			<h2 className='anime__description'>Upcoming Anime</h2>
+         <h2 className='anime__description'>Upcoming Anime</h2>
+         
 			<div className='anime__container'>
-				{animes.map(anime => (
-					<>
+				{animes?.map(anime => (
 						<Link
 							to={`/details/anime/${anime.mal_id}`}
 							className='anime__card-container'
@@ -49,7 +49,6 @@ function UpcomingAnime() {
 								</div>
 							</div>
 						</Link>
-					</>
 				))}
 			</div>
 		</section>

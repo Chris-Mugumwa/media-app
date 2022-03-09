@@ -62,7 +62,7 @@ export const animeSlice = createSlice({
 		popularAnime: [],
 		randomAnime: [],
 		animeSearch: [],
-		animeDetails: [],
+		animeDetails: {},
 		animeSeasons: [],
 		animeGenres: [],
 		loading: false,

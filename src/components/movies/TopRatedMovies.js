@@ -11,6 +11,7 @@ function TopRatedMovies() {
 	const [page, setPage] = useState(1)
 	const dispatch = useDispatch()
 	const topRatedMovies = useSelector(state => state.movie.topRatedMovies)
+	const movies = topRatedMovies.results
 
 	useEffect(() => {
 		dispatch(getTopRatedMovies(page))
@@ -21,34 +22,32 @@ function TopRatedMovies() {
 			<h2 className='movies__description'>Top Rated Movies</h2>
 			<Pagination setPage={setPage} page={page} />
 			<div className='movies__container'>
-				{topRatedMovies.results?.map(movie => (
-					<>
-						<Link
-							to={`/details/movies/${movie.id}`}
-							className='movies__card-container'
-							key={movie.id}
-						>
-							<img
-								src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-								alt={movie.original_title}
-								className='movies__card'
-							/>
-							<div className='movies__card-information'>
-								<span className='movies__card-name'>{movie.title}</span>
-								<div className='movies__card-details'>
-									<span className='movies__card-time'>
-										{timeFormat(movie.release_date)}
+				{movies?.map(movie => (
+					<Link
+						to={`/details/movies/${movie.id}`}
+						className='movies__card-container'
+						key={movie.id}
+					>
+						<img
+							src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+							alt={movie.original_title}
+							className='movies__card'
+						/>
+						<div className='movies__card-information'>
+							<span className='movies__card-name'>{movie.title}</span>
+							<div className='movies__card-details'>
+								<span className='movies__card-time'>
+									{timeFormat(movie.release_date)}
+								</span>
+								<span className='movies__card-detail'>
+									<FcRating className='movies__card-icon' />
+									<span className='movies__card-rating'>
+										{movie.vote_average}
 									</span>
-									<span className='movies__card-detail'>
-										<FcRating className='movies__card-icon' />
-										<span className='movies__card-rating'>
-											{movie.vote_average}
-										</span>
-									</span>
-								</div>
+								</span>
 							</div>
-						</Link>
-					</>
+						</div>
+					</Link>
 				))}
 			</div>
 		</section>

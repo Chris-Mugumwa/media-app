@@ -1,12 +1,7 @@
 import React, { useState } from 'react'
 import './navigate.scss'
 import { Link } from 'react-router-dom'
-import {
-	navigateData,
-	movieItems,
-	showItems,
-	animeItems,
-} from './navigateData.js'
+import { movieItems, showItems, animeItems } from './navigateData.js'
 import { HiChevronDown } from 'react-icons/hi'
 
 function Navigate() {
@@ -26,13 +21,12 @@ function Navigate() {
 		<section className='navigate'>
 			<nav className='navigate__navigation'>
 				<Link to='/' className='navigate__home navigate__link'>
-					<h4 className='navigate__home-text'>Home</h4>
+					<h5 className='navigate__home-text'>Home</h5>
 				</Link>
 
 				<ul className='navigate__list'>
 					<li className='navigate__item'>
-						<Link
-							to='/movies'
+						<h5
 							className='navigate__link'
 							onMouseEnter={handleMovieHover}
 							onMouseLeave={leaveMovieHover}
@@ -56,14 +50,13 @@ function Navigate() {
 									</Link>
 								))}
 							</ul>
-						</Link>
+						</h5>
 					</li>
 				</ul>
 
 				<ul className='navigate__list'>
 					<li className='navigate__item'>
-						<Link
-							to='/shows'
+						<h5
 							className='navigate__link'
 							onMouseEnter={handleShowHover}
 							onMouseLeave={leaveShowHover}
@@ -87,14 +80,13 @@ function Navigate() {
 									</Link>
 								))}
 							</ul>
-						</Link>
+						</h5>
 					</li>
 				</ul>
 
 				<ul className='navigate__list'>
 					<li className='navigate__item'>
-						<Link
-							to='/anime'
+						<h5
 							className='navigate__link'
 							onMouseEnter={handleAnimeHover}
 							onMouseLeave={leaveAnimeHover}
@@ -118,7 +110,7 @@ function Navigate() {
 									</Link>
 								))}
 							</ul>
-						</Link>
+						</h5>
 					</li>
 				</ul>
 			</nav>

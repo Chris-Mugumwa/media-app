@@ -11,6 +11,7 @@ function UpcomingMovies() {
 	const [page, setPage] = useState(1)
 	const dispatch = useDispatch()
 	const upcomingMovies = useSelector(state => state.movie.upcomingMovies)
+	const movies = upcomingMovies.results
 
 	useEffect(() => {
 		dispatch(getUpcomingMovies(page))
@@ -22,34 +23,32 @@ function UpcomingMovies() {
 			<Pagination setPage={setPage} page={page} />
 
 			<div className='movies__container'>
-				{upcomingMovies.results?.map(movie => (
-					<>
-						<Link
-							to={`/details/movie/${movie.id}`}
-							className='movies__card-container'
-							key={movie.id}
-						>
-							<img
-								src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-								alt={movie.original_title}
-								className='movies__card'
-							/>
-							<div className='movies__card-information'>
-								<span className='movies__card-name'>{movie.title}</span>
-								<div className='movies__card-details'>
-									<span className='movies__card-time'>
-										{timeFormat(movie.release_date)}
+				{movies?.map(movie => (
+					<Link
+						to={`/details/movie/${movie.id}`}
+						className='movies__card-container'
+						key={movie.id}
+					>
+						<img
+							src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+							alt={movie.original_title}
+							className='movies__card'
+						/>
+						<div className='movies__card-information'>
+							<span className='movies__card-name'>{movie.title}</span>
+							<div className='movies__card-details'>
+								<span className='movies__card-time'>
+									{timeFormat(movie.release_date)}
+								</span>
+								<span className='movies__card-detail'>
+									<FcRating className='movies__card-icon' />
+									<span className='movies__card-rating'>
+										{movie.vote_average}
 									</span>
-									<span className='movies__card-detail'>
-										<FcRating className='movies__card-icon' />
-										<span className='movies__card-rating'>
-											{movie.vote_average}
-										</span>
-									</span>
-								</div>
+								</span>
 							</div>
-						</Link>
-					</>
+						</div>
+					</Link>
 				))}
 			</div>
 		</section>

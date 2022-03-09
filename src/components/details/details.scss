@@ -2,34 +2,26 @@
 @import '../../styles/variables';
 
 .details {
-	grid-row: 3 / 6;
+	grid-row: 4 / 6;
 	grid-column: 1 / 5;
 
 	@include respond(desktop) {
-		grid-row: 4 / 6;
-		grid-column: 1 / 5;
+		grid-column: 1 / 4;
 	}
 
 	&__container {
-		position: relative;
-		height: 100%;
 		display: flex;
 		justify-content: center;
-		border-radius: 1.2rem;
 	}
 
 	&__content {
-		position: absolute;
-		inset: 0;
 		border-radius: 1.2rem;
-		z-index: 100;
-		background-color: rgba(0, 0, 0, 0.7);
 		padding: 1.5rem;
 
-		@include respond(desktop) {
-			display: flex;
-			justify-content: flex-end;
-		}
+		// @include respond(desktop) {
+		// 	display: flex;
+		// 	justify-content: flex-end;
+		// }
 	}
 
 	&__details {

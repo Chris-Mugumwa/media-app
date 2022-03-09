@@ -11,6 +11,7 @@ function PopularShows() {
 	const [page, setPage] = useState(1)
 	const dispatch = useDispatch()
 	const popularShows = useSelector(state => state.show.popularShows)
+	const shows = popularShows.results
 
 	useEffect(() => {
 		dispatch(getPopularShows(page))
@@ -22,36 +23,34 @@ function PopularShows() {
 			<Pagination setPage={setPage} page={page} />
 
 			<div className='shows__container'>
-				{popularShows.results?.map(show => (
-					<>
-						<Link
-							to={`/details/show/${show.id}`}
-							className='shows__card-container'
-							key={show.id}
-						>
-							<img
-								src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
-								alt={show.original_name}
-								className='shows__card'
-							/>
-							<div className='shows__card-information'>
-								<span className='shows__card-name'>
-									{show.original_name}
+				{shows?.map(show => (
+					<Link
+						to={`/details/show/${show.id}`}
+						className='shows__card-container'
+						key={show.id}
+					>
+						<img
+							src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
+							alt={show.original_name}
+							className='shows__card'
+						/>
+						<div className='shows__card-information'>
+							<span className='shows__card-name'>
+								{show.original_name}
+							</span>
+							<div className='shows__card-details'>
+								<span className='shows__card-time'>
+									{timeFormat(show.first_air_date)}
 								</span>
-								<div className='shows__card-details'>
-									<span className='shows__card-time'>
-										{timeFormat(show.first_air_date)}
+								<span className='shows__card-detail'>
+									<FcRating className='shows__card-icon' />
+									<span className='shows__card-rating'>
+										{show.vote_average}
 									</span>
-									<span className='shows__card-detail'>
-										<FcRating className='shows__card-icon' />
-										<span className='shows__card-rating'>
-											{show.vote_average}
-										</span>
-									</span>
-								</div>
+								</span>
 							</div>
-						</Link>
-					</>
+						</div>
+					</Link>
 				))}
 			</div>
 		</section>

@@ -11,6 +11,7 @@ function PopularMovies() {
 	const [page, setPage] = useState(1)
 	const dispatch = useDispatch()
 	const popularMovies = useSelector(state => state.movie.popularMovies)
+	const movies = popularMovies.results
 
 	useEffect(() => {
 		dispatch(getPopularMovies(page))
@@ -22,7 +23,7 @@ function PopularMovies() {
 			<Pagination setPage={setPage} page={page} />
 
 			<div className='movies__container'>
-				{popularMovies.results?.map(movie => (
+				{movies?.map(movie => (
 					<>
 						<Link
 							to={`/details/movie/${movie.id}`}
