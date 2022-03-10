@@ -10,7 +10,6 @@ function MainMovies() {
 	const dispatch = useDispatch()
 	const moviesSearch = useSelector(state => state.movie.movieSearch)
 	const movieResult = moviesSearch.results
-
 	const text = 'The'
 
 	useEffect(() => {

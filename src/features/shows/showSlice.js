@@ -4,7 +4,7 @@ export const getPopularShows = createAsyncThunk(
 	'popularShows/getPopularShows',
 	async page => {
 		const response = await fetch(
-			`https://api.themoviedb.org/3/tv/popular?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=${page}`,
+			`https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&page=${page}`,
 		)
 		const formatResponse = await response.json()
 		return formatResponse
@@ -15,7 +15,7 @@ export const getTopRatedShows = createAsyncThunk(
 	'getTopRatedShows',
 	async page => {
 		const response = await fetch(
-			`https://api.themoviedb.org/3/tv/top_rated?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=${page}`,
+			`https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&page=${page}`,
 		)
 		const formatResponse = await response.json()
 		return formatResponse
@@ -26,7 +26,7 @@ export const getShowDetails = createAsyncThunk(
 	'showDetails/getShowDetails',
 	async id => {
 		const response = await fetch(
-			`https://api.themoviedb.org/3/tv/${id}?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US`,
+			`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US`,
 		)
 		const formatResponse = await response.json()
 		return formatResponse
@@ -38,7 +38,7 @@ export const getShowDiscover = createAsyncThunk(
 	async () => {
 		const response = await fetch(
 			`
-         https://api.themoviedb.org/3/discover/tv?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_status=0&with_type=0`,
+         https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate&with_status=0&with_type=0`,
 		)
 		const formatResponse = await response.json()
 		return formatResponse
@@ -49,7 +49,7 @@ export const getShowSearch = createAsyncThunk(
 	'showSearch/getShowSearch',
 	async (term, page) => {
 		const response = await fetch(`              
-         https://api.themoviedb.org/3/search/tv?api_key=69a8a5f5d8ff53eb47ca412ef26ae76f&language=en-US&page=${page}&query=${term}&include_adult=false`)
+         https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&language=en-US&page=${page}&query=${term}&include_adult=false`)
 		const formatResponse = await response.json()
 		return formatResponse
 	},
@@ -61,7 +61,7 @@ export const showSlice = createSlice({
 		popularShows: [],
 		topRatedShows: [],
 		showSearch: [],
-		showDetails: [],
+		showDetails: {},
 		showDiscover: [],
 		isLoading: false,
 	},

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './login.scss'
 import { createPortal } from 'react-dom'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
@@ -27,6 +27,7 @@ const validationSchema = yup.object().shape({
 
 function Login({ openLogin, setOpenLogin }) {
 	const provider = new GoogleAuthProvider()
+	const [googleClick, setGoogleClick] = useState(false)
 
 	const googleLogin = () => {
 		signInWithPopup(auth, provider)
@@ -49,6 +50,7 @@ function Login({ openLogin, setOpenLogin }) {
 				} else {
 					console.log('User already exists')
 				}
+				setGoogleClick(true)
 				setOpenLogin(false)
 			})
 			.catch(error => console.log('Error has occurred', error))
@@ -59,11 +61,13 @@ function Login({ openLogin, setOpenLogin }) {
 	return createPortal(
 		<>
 			<section className='login'>
-				<div className='login__close'>
-					<AiOutlineClose
-						className='login__close--icon'
-						onClick={() => setOpenLogin(false)}
-					/>
+				<div className='login__close-container'>
+					<div className='login__close'>
+						<AiOutlineClose
+							className='login__close--icon'
+							onClick={() => setOpenLogin(false)}
+						/>
+					</div>
 				</div>
 				<div className='login__container'>
 					<h2 className='login__header'>Login</h2>
@@ -104,11 +108,13 @@ function Login({ openLogin, setOpenLogin }) {
 										placeholder='e.g. johncarter@gmail.com'
 									/>
 									<AiOutlineMail className='login__icon' />
-									<ErrorMessage
-										name='email'
-										component='div'
-										className='login__error'
-									/>
+									{googleClick === true ? null : (
+										<ErrorMessage
+											name='email'
+											component='div'
+											className='login__error'
+										/>
+									)}
 								</div>
 								<div className='login__form-container'>
 									<label className='login__label'>password</label>
@@ -121,11 +127,13 @@ function Login({ openLogin, setOpenLogin }) {
 										placeholder='Must be 6 characters or longer'
 									/>
 									<AiOutlineLock className='login__icon' />
-									<ErrorMessage
-										name='password'
-										component='div'
-										className='login__error'
-									/>
+									{googleClick === true ? null : (
+										<ErrorMessage
+											name='password'
+											component='div'
+											className='login__error'
+										/>
+									)}
 								</div>
 								<button type='submit' className='login__submit'>
 									Submit

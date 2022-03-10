@@ -36,18 +36,6 @@
 
 	&__button-inactive {
 		background-color: $blue-inactive;
-		padding: 1.4rem 1.8rem;
-		border: none;
-		outline: none;
-		color: $grayish-dark;
-		border-radius: 1.2rem;
-		width: 100%;
-		margin-top: 1.8rem;
-		font-size: 1.4rem;
-
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		cursor: not-allowed;
 		transition: all 0.4s ease-in-out;
 	}

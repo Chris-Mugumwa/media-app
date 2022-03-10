@@ -10,6 +10,7 @@ function MovieDetails() {
 	const { id } = useParams()
 	const dispatch = useDispatch()
 	const movieDetails = useSelector(state => state.movie.movieDetails)
+   console.log(movieDetails)
 
 	useEffect(() => {
 		dispatch(getMovieDetails(id))

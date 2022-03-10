@@ -40,7 +40,7 @@ export const getAnimeGenres = createAsyncThunk(
 	'animeGenres/getAnimeGenres',
 	async () => {
 		const response = await fetch(`https://api.jikan.moe/v4/genres/anime`)
-		const formatResponse = response.json()
+		const formatResponse = await response.json()
 		return formatResponse
 	},
 )
