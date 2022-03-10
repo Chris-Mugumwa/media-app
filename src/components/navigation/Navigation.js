@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './navigation.scss'
 import './menu.scss'
 import Login from '../auth/login/Login'
@@ -13,12 +13,13 @@ import { HiOutlineMenuAlt2, HiOutlineX } from 'react-icons/hi'
 import { navigationData } from './navigationData'
 
 function Navigation() {
-	const user = auth.currentUser
-	let uid = user?.uid
-	const docRef = doc(db, 'users', uid)
-	const [name, setName] = useState('Anonymous User')
+	const navigate = useNavigate()
+	const user = auth?.currentUser?.uid
+	const docRef = doc(db, 'users', `${user}`)
+	const [name, setName] = useState('User')
 	const [photo, setPhoto] = useState('')
 	const [menu, setMenu] = useState(false)
+	const [buttonChange, setButtonChange] = useState(false)
 	const [links, setLinks] = useState(navigationData)
 	const [openLogin, setOpenLogin] = useState(false)
 	const [openSignup, setOpenSignup] = useState(false)
@@ -28,16 +29,20 @@ function Navigation() {
 		if (user) {
 			onSnapshot(docRef, doc => {
 				let data = doc.data()
-				setName(data.name)
+				setName(data.displayName)
 				setPhoto(data.photo)
 			})
 		} else {
-			console.log('This is some bullshit')
+			setOpenSignout(false)
 		}
-	}, [docRef, user, uid])
+	}, [docRef, user])
 
 	const showMenu = () => {
 		setMenu(prevState => !prevState)
+	}
+
+	const showSignout = () => {
+		setOpenSignout(prevState => !prevState)
 	}
 
 	const toLogin = () => {
@@ -52,7 +57,7 @@ function Navigation() {
 
 	const toSignout = () => {
 		setMenu(false)
-		auth.signOut()
+		auth.signOut().then(() => setButtonChange(true))
 	}
 
 	return (
@@ -65,17 +70,17 @@ function Navigation() {
 				toSignout={toSignout}
 			/>
 
-			<Icon alt='application icon' className='navigation__icon' />
+			<Icon
+				alt='application icon'
+				className='navigation__icon'
+				onClick={() => navigate('/')}
+			/>
 
 			<div
 				className='navigation__hamburger-container'
 				onClick={() => showMenu()}
 			>
-				{menu ? (
-					<HiOutlineX className='navigation__hamburger navigation__hamburger-close' />
-				) : (
-					<HiOutlineMenuAlt2 className='navigation__hamburger navigation__hamburger-open' />
-				)}
+				<HiOutlineMenuAlt2 className='navigation__hamburger navigation__hamburger-close' />
 			</div>
 
 			{user ? (
@@ -87,7 +92,7 @@ function Navigation() {
 								src={photo}
 								alt='profile'
 								className='navigation__profile--picture'
-								onClick={() => setOpenSignout(true)}
+								onClick={() => showSignout()}
 							/>
 						) : (
 							<Avatar
@@ -99,10 +104,29 @@ function Navigation() {
 								name={name}
 								round='100%'
 								size='40px'
+								className='navigation__avatar'
+								onClick={() => showSignout()}
 							/>
 						)}
 					</div>
 				</div>
+			) : buttonChange === true ? (
+				<>
+					<div className='navigation__buttons'>
+						<button
+							className='navigation__button navigation__login'
+							onClick={() => toLogin()}
+						>
+							Login
+						</button>
+						<button
+							className='navigation__button navigation__sign-in'
+							onClick={() => toSignup()}
+						>
+							Sign Up
+						</button>
+					</div>
+				</>
 			) : (
 				<>
 					<div className='navigation__buttons'>
@@ -123,32 +147,40 @@ function Navigation() {
 			)}
 
 			<div className={menu ? 'menu__close' : 'menu'}>
-				{user ? (
-					<div className='menu__profile'>
-						{photo.length > 1 ? (
-							<img
-								src={photo}
-								alt='profile'
-								className='menu__profile--picture'
-								onClick={() => setOpenSignout(true)}
-							/>
-						) : (
-							<Avatar
-								color={Avatar.getRandomColor('sitebase', [
-									'red',
-									'green',
-									'blue',
-								])}
-								name={name}
-								round='100%'
-								size='40px'
-								className='menu__profile--picture'
-							/>
-						)}
-						<h5 className='menu__name'>{user ? name : null}</h5>
+				<div className='menu__profile-container'>
+					{user ? (
+						<>
+							<div className='menu__profile'>
+								{photo.length > 1 ? (
+									<img
+										src={photo}
+										alt='profile'
+										className='menu__profile--picture'
+									/>
+								) : (
+									<Avatar
+										color={Avatar.getRandomColor('sitebase', [
+											'red',
+											'green',
+											'blue',
+										])}
+										name={name}
+										round='100%'
+										size='40px'
+										className='menu__profile--picture'
+									/>
+								)}
+								<h5 className='menu__name'>{user ? name : null}</h5>
+							</div>
+						</>
+					) : null}
+					<div
+						className='menu__hamburger-container'
+						onClick={() => showMenu()}
+					>
+						<HiOutlineX className='menu__hamburger navigation__hamburger-close' />
 					</div>
-				) : null}
-
+				</div>
 				<ul className='menu__list'>
 					{links.map(link => (
 						<div className='menu__item-container' key={link.id}>

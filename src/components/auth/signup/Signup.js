@@ -47,7 +47,7 @@ function Signup({ openSignup, setOpenSignup }) {
 					const usersRef = doc(db, 'users', `${user.uid}`)
 					setDoc(usersRef, {
 						id: user.uid,
-						name: user.displayName,
+						displayName: user.displayName,
 						email: user.email,
 						photo: user.photoURL,
 					})
@@ -67,11 +67,13 @@ function Signup({ openSignup, setOpenSignup }) {
 	return createPortal(
 		<>
 			<section className='signup'>
-				<div className='signup__close'>
-					<AiOutlineClose
-						className='signup__close--icon'
-						onClick={() => setOpenSignup(false)}
-					/>
+				<div className='signup__close-container'>
+					<div className='signup__close'>
+						<AiOutlineClose
+							className='signup__close--icon'
+							onClick={() => setOpenSignup(false)}
+						/>
+					</div>
 				</div>
 				<div className='signup__container'>
 					<h2 className='signup__header'>Sign up</h2>

@@ -1,11 +1,13 @@
-import React from 'react'
-import Results from '../../components/main/Results'
+import React, { Suspense } from 'react'
+import Loading from '../../components/loading/Loading'
+
+const Searched = React.lazy(() => import('../../components/main/Searched'))
 
 function SearchedContainer() {
 	return (
-		<>
-			<Results />
-		</>
+		<Suspense fallback={<Loading />}>
+			<Searched />
+		</Suspense>
 	)
 }
 

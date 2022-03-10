@@ -8,8 +8,10 @@
 	display: flex;
 	flex-flow: column;
 	align-items: center;
+	justify-content: space-between;
 	right: -110%;
 	top: 0;
+	padding: 2rem 0;
 	width: 60%;
 	max-width: 60%;
 	height: 100vh;
@@ -28,6 +30,7 @@
 		display: flex;
 		flex-flow: column;
 		align-items: center;
+		justify-content: space-between;
 		right: 0;
 		top: 0;
 		padding: 2rem 0;
@@ -42,13 +45,65 @@
 			width: 40%;
 		}
 
+		@include respond(tab-land) {
+			width: 30%;
+		}
+
 		@include respond(desktop) {
 			display: none;
 		}
 	}
 
+	&__profile-container {
+		width: 100%;
+		padding: 0 1.5rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__hamburger-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		width: 4rem;
+		height: 4rem;
+		border-radius: 1rem;
+
+		cursor: pointer;
+
+		&:hover {
+			background-color: $blue;
+			transition: all 0.5s ease-in;
+		}
+
+		&:active {
+			transition: all 0.8s ease-in;
+		}
+
+		@include respond(desktop) {
+			display: none;
+		}
+	}
+
+	&__hamburger {
+		color: $grayish;
+		width: 3rem;
+		height: 3rem;
+
+		@keyframes animation-initial {
+			0% {
+				opacity: 1;
+			}
+
+			100% {
+				opacity: 0;
+			}
+		}
+	}
+
 	&__profile {
-		margin-left: 5.5rem;
 		width: 100%;
 		display: flex;
 		align-items: center;
@@ -66,12 +121,11 @@
 		font-weight: bold;
 		color: $grayish;
 		font-family: 'Manrope' sans-serif;
-		margin-left: 1.2rem;
+		margin-left: 0.8rem;
 	}
 
 	&__avatar {
 		border-radius: 100%;
-		margin-left: 1.2rem;
 	}
 
 	&__list {
