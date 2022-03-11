@@ -3,7 +3,8 @@ import './details.scss'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getShowDetails } from '../../features/shows/showSlice'
-import FavouritesButton from '../favourites/FavouritesButton'
+import Youtube from 'react-youtube'
+import FavouritesShowButton from '../favourites/FavouritesShowButton'
 import { BiPlay } from 'react-icons/bi'
 
 function ShowDetails() {
@@ -15,8 +16,32 @@ function ShowDetails() {
 		dispatch(getShowDetails(id))
 	}, [dispatch, id])
 
+	const renderTrailer = () => {
+		const trailer = showDetails?.videos?.results.find(
+			video => video?.name === 'Official Trailer',
+		)
+		console.log(trailer?.key)
+
+		return (
+			<Youtube
+				videoId={trailer?.key}
+				className={'details__youtube--player'}
+				opts={{
+					width: '100%',
+
+					playerVars: {
+						autoplay: 1,
+					},
+				}}
+			/>
+		)
+	}
+
 	return (
 		<section className='details'>
+			<div className='details__youtube'>
+				{showDetails?.videos ? renderTrailer() : null}
+			</div>
 			<div className='details__container'>
 				<div className='details__content'>
 					<div className='details__details'>
@@ -67,15 +92,14 @@ function ShowDetails() {
 
 							<div className='details__buttons'>
 								<a
-									href={`https://www.youtube.com/results?search_query=${showDetails.original_name}+official+trailer`}
+									href={showDetails.homepage}
 									target='_blank'
-									className='details__link'
+									className='details__button-homepage'
 								>
-									<BiPlay className='details__button-icon' />
-									<span>Watch Trailer</span>
+									Show Homepage
 								</a>
 
-								<FavouritesButton />
+								<FavouritesShowButton />
 							</div>
 						</div>
 					</div>

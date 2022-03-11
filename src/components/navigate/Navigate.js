@@ -21,7 +21,14 @@ function Navigate() {
 		<section className='navigate'>
 			<nav className='navigate__navigation'>
 				<Link to='/' className='navigate__home navigate__link'>
-					<h5 className='navigate__home-text'>Home</h5>
+					<h5 className='navigate__home--text'>Home</h5>
+				</Link>
+
+				<Link
+					to='/favourites'
+					className='navigate__favourites navigate__link'
+				>
+					<h5 className='navigate__favourites--text'>Favourites</h5>
 				</Link>
 
 				<ul className='navigate__list'>

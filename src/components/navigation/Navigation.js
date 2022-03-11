@@ -24,6 +24,16 @@ function Navigation() {
 	const [openLogin, setOpenLogin] = useState(false)
 	const [openSignup, setOpenSignup] = useState(false)
 	const [openSignout, setOpenSignout] = useState(false)
+	const [avatar, setAvatar] = useState(
+		<Avatar
+			color={Avatar.getRandomColor('sitebase', ['red', 'green', 'blue'])}
+			name='User'
+			round='100%'
+			size='40px'
+			className='navigation__avatar'
+			onClick={() => showSignout()}
+		/>,
+	)
 
 	useEffect(() => {
 		if (user) {
@@ -31,6 +41,20 @@ function Navigation() {
 				let data = doc.data()
 				setName(data.displayName)
 				setPhoto(data.photo)
+				setAvatar(
+					<Avatar
+						color={Avatar.getRandomColor('sitebase', [
+							'red',
+							'green',
+							'blue',
+						])}
+						name={data.displayName}
+						round='100%'
+						size='40px'
+						className='navigation__avatar'
+						onClick={() => showSignout()}
+					/>,
+				)
 			})
 		} else {
 			setOpenSignout(false)
@@ -95,18 +119,7 @@ function Navigation() {
 								onClick={() => showSignout()}
 							/>
 						) : (
-							<Avatar
-								color={Avatar.getRandomColor('sitebase', [
-									'red',
-									'green',
-									'blue',
-								])}
-								name={name}
-								round='100%'
-								size='40px'
-								className='navigation__avatar'
-								onClick={() => showSignout()}
-							/>
+							avatar
 						)}
 					</div>
 				</div>
@@ -158,17 +171,7 @@ function Navigation() {
 										className='menu__profile--picture'
 									/>
 								) : (
-									<Avatar
-										color={Avatar.getRandomColor('sitebase', [
-											'red',
-											'green',
-											'blue',
-										])}
-										name={name}
-										round='100%'
-										size='40px'
-										className='menu__profile--picture'
-									/>
+									avatar
 								)}
 								<h5 className='menu__name'>{user ? name : null}</h5>
 							</div>

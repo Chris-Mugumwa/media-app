@@ -3,21 +3,48 @@ import './details.scss'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovieDetails } from '../../features/movies/movieSlice'
-import FavouritesButton from '../favourites/FavouritesButton'
+import Youtube from 'react-youtube'
+import FavouritesMovieButton from '../favourites/FavouritesMovieButton'
 import { BiPlay } from 'react-icons/bi'
 
 function MovieDetails() {
 	const { id } = useParams()
 	const dispatch = useDispatch()
 	const movieDetails = useSelector(state => state.movie.movieDetails)
-   console.log(movieDetails)
+	console.log(movieDetails)
 
 	useEffect(() => {
 		dispatch(getMovieDetails(id))
 	}, [dispatch, id])
 
+	const renderTrailer = () => {
+		const trailer = movieDetails?.videos?.results.find(
+			video => video?.name === 'Official Trailer',
+		)
+		console.log(trailer?.key)
+
+		return (
+			<Youtube
+				videoId={trailer?.key}
+				className={'details__youtube--player'}
+				opts={{
+					width: '100%',
+					borderRadius: '12px',
+					overflow: 'hidden',
+
+					playerVars: {
+						autoplay: 1,
+					},
+				}}
+			/>
+		)
+	}
+
 	return (
 		<section className='details'>
+			<div className='details__youtube'>
+				{movieDetails?.videos ? renderTrailer() : null}
+			</div>
 			<div className='details__container'>
 				<div className='details__content'>
 					<div className='details__details'>
@@ -64,15 +91,14 @@ function MovieDetails() {
 
 							<div className='details__buttons'>
 								<a
-									href={`https://www.youtube.com/results?search_query=${movieDetails.original_title}+official+trailer`}
+									href={movieDetails.homepage}
 									target='_blank'
-									className='details__link'
+									className='details__button-homepage'
 								>
-									<BiPlay className='details__button-icon' />
-									<span>Watch Trailer</span>
+									Movie Homepage
 								</a>
 
-								<FavouritesButton />
+								<FavouritesMovieButton />
 							</div>
 						</div>
 					</div>
