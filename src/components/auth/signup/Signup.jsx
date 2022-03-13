@@ -37,6 +37,10 @@ const validationSchema = yup.object().shape({
 function Signup({ openSignup, setOpenSignup }) {
 	const provider = new GoogleAuthProvider()
 
+	const testPrettier = () => {
+		console.log('cheeese')
+	}
+
 	const googleSignup = () => {
 		signInWithPopup(auth, provider)
 			.then(result => {
@@ -50,6 +54,7 @@ function Signup({ openSignup, setOpenSignup }) {
 						displayName: user.displayName,
 						email: user.email,
 						photo: user.photoURL,
+						active: true,
 					})
 
 					console.log('Document written with ID: ', usersRef.id)
@@ -98,6 +103,7 @@ function Signup({ openSignup, setOpenSignup }) {
 											displayName: values.name,
 											email: values.email,
 											photo: '',
+											active: true,
 										})
 										console.log(
 											'Document written with ID: ',
@@ -114,8 +120,7 @@ function Signup({ openSignup, setOpenSignup }) {
 									console.log(errorCode)
 									console.log(errorMessage)
 								})
-						}}
-					>
+						}}>
 						<div className='signup__wrapper'>
 							<Form className='signup__form' autocomplete='off'>
 								<div className='signup__form-container'>
@@ -176,8 +181,7 @@ function Signup({ openSignup, setOpenSignup }) {
 								<button
 									type='submit'
 									className='signup__google'
-									onClick={() => googleSignup()}
-								>
+									onClick={() => googleSignup()}>
 									<FcGoogle className='signup__google--icon' />
 								</button>
 							</Form>

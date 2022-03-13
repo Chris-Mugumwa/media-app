@@ -14,12 +14,13 @@ import { navigationData } from './navigationData'
 
 function Navigation() {
 	const navigate = useNavigate()
-	const user = auth?.currentUser?.uid
-	const docRef = doc(db, 'users', `${user}`)
+   const user = auth?.currentUser
+   const uid = auth?.currentUser?.uid
+   const docRef = doc(db, 'users', `${uid}`)
 	const [name, setName] = useState('User')
 	const [photo, setPhoto] = useState('')
 	const [menu, setMenu] = useState(false)
-	const [buttonChange, setButtonChange] = useState(false)
+	const [buttonChange, setButtonChange] = useState(true)
 	const [links, setLinks] = useState(navigationData)
 	const [openLogin, setOpenLogin] = useState(false)
 	const [openSignup, setOpenSignup] = useState(false)
@@ -36,30 +37,31 @@ function Navigation() {
 	)
 
 	useEffect(() => {
-		if (user) {
-			onSnapshot(docRef, doc => {
-				let data = doc.data()
+      if (user) {
+         onSnapshot(docRef, doc => {
+            let data = doc.data()
+            console.log(data)
 				setName(data.displayName)
 				setPhoto(data.photo)
+            setButtonChange(false)
 				setAvatar(
 					<Avatar
 						color={Avatar.getRandomColor('sitebase', [
 							'red',
 							'green',
-							'blue',
+							'blue',     
 						])}
-						name={data.displayName}
+						name={name}
 						round='100%'
 						size='40px'
 						className='navigation__avatar'
 						onClick={() => showSignout()}
 					/>,
-				)
+            )
+            console.log('I like Cheese')
 			})
-		} else {
-			setOpenSignout(false)
-		}
-	}, [docRef, user])
+      } 
+	}, [])
 
 	const showMenu = () => {
 		setMenu(prevState => !prevState)
@@ -81,8 +83,13 @@ function Navigation() {
 
 	const toSignout = () => {
 		setMenu(false)
-		auth.signOut().then(() => setButtonChange(true))
+      setButtonChange(true)
+		auth.signOut().then(() => console.log('Signed Out'))
 	}
+
+   useEffect(() => {
+      toSignout()
+   }, [])
 
 	return (
 		<div className='navigation'>
@@ -107,7 +114,8 @@ function Navigation() {
 				<HiOutlineMenuAlt2 className='navigation__hamburger navigation__hamburger-close' />
 			</div>
 
-			{user ? (
+         {
+            user || buttonChange === false ? (
 				<div className='navigation__wrapper'>
 					<h5 className='navigation__name'>{name}</h5>
 					<div className='navigation__profile'>
@@ -123,41 +131,25 @@ function Navigation() {
 						)}
 					</div>
 				</div>
-			) : buttonChange === true ? (
-				<>
-					<div className='navigation__buttons'>
-						<button
-							className='navigation__button navigation__login'
-							onClick={() => toLogin()}
-						>
-							Login
-						</button>
-						<button
-							className='navigation__button navigation__sign-in'
-							onClick={() => toSignup()}
-						>
-							Sign Up
-						</button>
-					</div>
-				</>
 			) : (
-				<>
-					<div className='navigation__buttons'>
-						<button
-							className='navigation__button navigation__login'
-							onClick={() => toLogin()}
-						>
-							Login
-						</button>
-						<button
-							className='navigation__button navigation__sign-in'
-							onClick={() => toSignup()}
-						>
-							Sign Up
-						</button>
-					</div>
-				</>
-			)}
+               <>
+                  <div className='navigation__buttons'>
+                     <button
+                        className='navigation__button navigation__login'
+                        onClick={() => toLogin()}
+                     >
+                        Login
+                     </button>
+                     <button
+                        className='navigation__button navigation__sign-in'
+                        onClick={() => toSignup()}
+                     >
+                        Sign Up
+                     </button>
+                  </div>
+               </>
+            )
+         }
 
 			<div className={menu ? 'menu__close' : 'menu'}>
 				<div className='menu__profile-container'>

@@ -5,26 +5,36 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getShowDetails } from '../../features/shows/showSlice'
 import Youtube from 'react-youtube'
 import FavouritesShowButton from '../favourites/FavouritesShowButton'
-import { BiPlay } from 'react-icons/bi'
 
 function ShowDetails() {
 	const { id } = useParams()
 	const dispatch = useDispatch()
 	const showDetails = useSelector(state => state.show.showDetails)
+   console.log(showDetails)
 
 	useEffect(() => {
 		dispatch(getShowDetails(id))
 	}, [dispatch, id])
 
-	const renderTrailer = () => {
-		const trailer = showDetails?.videos?.results.find(
-			video => video?.name === 'Official Trailer',
+   const renderTrailer = () => {
+      const videoResults = showDetails?.videos?.results
+      console.log('Video Results:', videoResults)
+		const trailer = videoResults?.find(
+			video => video?.name === 'Trailer',
 		)
-		console.log(trailer?.key)
+
+      const randomVideo = Math.floor(Math.random() * videoResults.length)
+      console.log('Random Video: ', randomVideo)
+
+      if(videoResults.constructor === Array) {
+         console.log('It is 3D: ',videoResults[0])
+      } else if (videoResults.constructor === Object) {
+         console.log('It is normal:', videoResults)
+      }
 
 		return (
 			<Youtube
-				videoId={trailer?.key}
+				videoId={trailer?.key ? trailer?.key : randomVideo.key}
 				className={'details__youtube--player'}
 				opts={{
 					width: '100%',

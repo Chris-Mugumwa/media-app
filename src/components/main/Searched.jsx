@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import './results.scss'
+import './main.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { getMovieSearch } from '../../features/movies/movieSlice'
