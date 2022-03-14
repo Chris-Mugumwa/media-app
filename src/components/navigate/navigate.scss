@@ -41,13 +41,29 @@
 	&__home {
 		border-right: 2px solid $grayish;
 		padding-right: 1.8rem;
+
+		&--text {
+			font-size: inherit;
+			transition: all 0.4s ease-in-out;
+
+			&:hover,
+			&:focus {
+				transform: scale(1.1);
+			}
+		}
 	}
 
-	&__home-text {
-		transition: all 0.4s ease-in-out;
+	&__favourites {
+		padding-left: 2rem;
 
-		&:hover {
-			transform: scale(1.1);
+		&--text {
+			font-size: inherit;
+			transition: all 0.4s ease-in-out;
+
+			&:hover,
+			&:focus {
+				transform: scale(1.1);
+			}
 		}
 	}
 

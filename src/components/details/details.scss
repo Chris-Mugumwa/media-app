@@ -9,19 +9,22 @@
 		grid-column: 1 / 4;
 	}
 
-	&__container {
-		display: flex;
-		justify-content: center;
+	&__youtube {
+		width: 100%;
+
+		&--player {
+			height: 30rem;
+			border-radius: 1.2rem;
+			overflow: hidden;
+
+			@include respond(desktop) {
+				height: 45rem;
+			}
+		}
 	}
 
-	&__content {
-		border-radius: 1.2rem;
-		padding: 1.5rem;
-
-		// @include respond(desktop) {
-		// 	display: flex;
-		// 	justify-content: flex-end;
-		// }
+	&__container {
+		margin-top: 4.5rem;
 	}
 
 	&__details {
@@ -29,8 +32,6 @@
 
 		@include respond(tab-port) {
 			display: flex;
-			justify-content: center;
-			align-self: center;
 		}
 	}
 
@@ -63,6 +64,11 @@
 
 		@include respond(tab-land) {
 			margin-left: 0;
+			width: 50%;
+		}
+
+		@include respond(desktop) {
+			width: 55%;
 		}
 	}
 
@@ -200,9 +206,9 @@
 		}
 	}
 
-	&__link {
+	&__button-homepage {
 		text-decoration: none;
-		background-color: #ff0000;
+		background-color: #000;
 		padding: 1.2rem 1.8rem;
 		border: none;
 		outline: none;

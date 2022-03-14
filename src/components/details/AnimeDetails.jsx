@@ -3,7 +3,7 @@ import './details.scss'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAnimeDetails } from '../../features/anime/animeSlice'
-import FavouritesButton from '../favourites/FavouritesButton'
+import FavouritesAnimeButton from '../favourites/FavouritesAnimeButton'
 import { BiPlay } from 'react-icons/bi'
 
 function AnimeDetails() {
@@ -90,7 +90,7 @@ function AnimeDetails() {
 									<span>Watch Trailer</span>
 								</a>
 
-								<FavouritesButton />
+								<FavouritesAnimeButton />
 							</div>
 						</div>
 					</div>

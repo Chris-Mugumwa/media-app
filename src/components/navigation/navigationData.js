@@ -15,9 +15,9 @@ export const navigationData = [
 	},
 	{
 		id: 2,
-		name: 'Favorites',
+		name: 'Favourites',
 		icon: <BiBookmarkHeart />,
-		path: '/favorites',
+		path: '/favourites',
 	},
 	{
 		id: 3,
