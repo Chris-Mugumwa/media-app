@@ -37,10 +37,6 @@ const validationSchema = yup.object().shape({
 function Signup({ openSignup, setOpenSignup }) {
 	const provider = new GoogleAuthProvider()
 
-	const testPrettier = () => {
-		console.log('cheeese')
-	}
-
 	const googleSignup = () => {
 		signInWithPopup(auth, provider)
 			.then(result => {
