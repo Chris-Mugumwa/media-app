@@ -8,6 +8,7 @@ import {
 	signInWithPopup,
 	GoogleAuthProvider,
 	createUserWithEmailAndPassword,
+	updateProfile,
 } from 'firebase/auth'
 import { createPortal } from 'react-dom'
 import {
@@ -92,15 +93,21 @@ function Signup({ openSignup, setOpenSignup }) {
 									const user = userCredential.user
 									console.log(user)
 
+									updateProfile(user, {
+										displayName: values.name,
+									})
+
 									try {
 										const usersRef = doc(db, 'users', `${user.uid}`)
 										setDoc(usersRef, {
 											id: user.uid,
 											displayName: values.name,
 											email: values.email,
-											photo: '',
+											photo: null,
 											active: true,
-										})
+										}).catch(error =>
+											console.log('Did not save to db,', error),
+										)
 										console.log(
 											'Document written with ID: ',
 											usersRef.id,

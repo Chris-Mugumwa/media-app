@@ -10,31 +10,33 @@ function ShowDetails() {
 	const { id } = useParams()
 	const dispatch = useDispatch()
 	const showDetails = useSelector(state => state.show.showDetails)
-   console.log(showDetails)
+	console.log(showDetails)
 
 	useEffect(() => {
 		dispatch(getShowDetails(id))
 	}, [dispatch, id])
 
-   const renderTrailer = () => {
-      const videoResults = showDetails?.videos?.results
-      console.log('Video Results:', videoResults)
+	const renderTrailer = () => {
+		const videoResults = showDetails?.videos?.results
+		console.log('Video Results:', videoResults)
 		const trailer = videoResults?.find(
-			video => video?.name === 'Trailer',
+			video =>
+				video?.name === 'Trailer' ||
+				'Official Trailer' ||
+				'Final Trailer' ||
+				'Season 1 Trailer',
 		)
 
-      const randomVideo = Math.floor(Math.random() * videoResults.length)
-      console.log('Random Video: ', randomVideo)
-
-      if(videoResults.constructor === Array) {
-         console.log('It is 3D: ',videoResults[0])
-      } else if (videoResults.constructor === Object) {
-         console.log('It is normal:', videoResults)
-      }
+		// if (videoResults.constructor === Array) {
+		// 	console.log('It is 3D: ', videoResults[0])
+		// 	const randomVideo = videoResults[0].key
+		// } else if (videoResults.constructor === Object) {
+		// 	const randomVideo = videoResults[0].key
+		// }
 
 		return (
 			<Youtube
-				videoId={trailer?.key ? trailer?.key : randomVideo.key}
+				videoId={trailer?.key}
 				className={'details__youtube--player'}
 				opts={{
 					width: '100%',
@@ -83,8 +85,7 @@ function ShowDetails() {
 								{showDetails.production_countries?.map(country => (
 									<span
 										className='details__country'
-										key={country.name}
-									>
+										key={country.name}>
 										<span className='details__country' />
 										{country.name}
 									</span>
@@ -104,8 +105,7 @@ function ShowDetails() {
 								<a
 									href={showDetails.homepage}
 									target='_blank'
-									className='details__button-homepage'
-								>
+									className='details__button-homepage'>
 									Show Homepage
 								</a>
 

@@ -13,7 +13,7 @@
 		width: 100%;
 
 		&--player {
-			height: 30rem;
+			height: 35rem;
 			border-radius: 1.2rem;
 			overflow: hidden;
 
@@ -197,7 +197,7 @@
 	}
 
 	&__buttons {
-		margin-top: 1.8rem;
+		margin-top: 2rem;
 		display: flex;
 		flex-direction: column;
 
@@ -209,7 +209,7 @@
 	&__button-homepage {
 		text-decoration: none;
 		background-color: #000;
-		padding: 1.2rem 1.8rem;
+		padding: 1.6rem 1.8rem;
 		border: none;
 		outline: none;
 		color: $grayish;

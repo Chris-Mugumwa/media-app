@@ -8,8 +8,6 @@ import { setDoc, doc, deleteDoc, onSnapshot } from 'firebase/firestore'
 import { IoAddOutline, IoWarningOutline } from 'react-icons/io5'
 
 function FavouritesMovieButton() {
-	const [buttonActive, setButtonActive] = useState(false)
-	const [buttonClicked, setButtonClicked] = useState(false)
 	const dispatch = useDispatch()
 	const { id } = useParams()
 	const movieDetails = useSelector(state => state.movie.movieDetails)
@@ -27,54 +25,27 @@ function FavouritesMovieButton() {
 		dispatch(getMovieDetails(id))
 	}, [dispatch, id])
 
-	useEffect(() => {
-		if (user) {
-			setButtonActive(true)
-		} else {
-			setButtonActive(false)
-		}
-	}, [user, buttonActive])
-
 	const addMovie = async () => {
 		await setDoc(movieRef, {
 			id: movieDetails.id,
 			name: movieDetails.original_title,
 			active: true,
 		}).then(response => console.log('Data Added: Movie', response))
-		console.log('Data Added: Movie')
-	}
-
-	const addMedia = async () => {
-		if (movieDetails) {
-			await addMovie()
-			setButtonClicked(prevState => !prevState)
-			return addMovie()
-		}
-	}
-
-	const deleteMedia = async () => {
-		if (movieDetails) {
-			deleteDoc(movieRef).then(() =>
-				setButtonClicked(prevState => !prevState),
-			)
-		}
 	}
 
 	return (
 		<>
-			{buttonActive === true ? (
+			{user ? (
 				<button
 					className='favourites__button-active'
-					onClick={() => addMedia()}
-				>
+					onClick={() => addMovie()}>
 					<IoAddOutline className='favourites__button-icon' />
 					<span>Favourites</span>
 				</button>
 			) : (
 				<button
 					disabled
-					className='favourites__button-active favourites__button-inactive'
-				>
+					className='favourites__button-active favourites__button-inactive'>
 					<IoWarningOutline className='favourites__button-icon' />
 					<span>Account Required</span>
 				</button>
