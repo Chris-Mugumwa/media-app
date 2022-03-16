@@ -10,7 +10,7 @@ function MainAnime() {
 	const animesSearch = useSelector(state => state.anime.animeSearch)
 	const animeResult = animesSearch.data
 
-	const animeText = 'sekai'
+	const animeText = 'The Movie'
 
 	useEffect(() => {
 		dispatch(getAnimeSearch(animeText))
@@ -23,8 +23,7 @@ function MainAnime() {
 					<Link
 						to={`/details/anime/${anime.mal_id}`}
 						className='main__card-container'
-						key={anime.mal_id}
-					>
+						key={anime.mal_id}>
 						<img
 							src={`${anime.images.jpg.image_url}`}
 							alt={anime.title_english}

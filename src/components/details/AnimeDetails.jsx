@@ -3,7 +3,6 @@ import './details.scss'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAnimeDetails } from '../../features/anime/animeSlice'
-import FavouritesAnimeButton from '../favourites/FavouritesAnimeButton'
 import Youtube from 'react-youtube'
 import { BiPlay } from 'react-icons/bi'
 
@@ -108,7 +107,6 @@ function AnimeDetails() {
 									className='details__button-homepage'>
 									My Anime List
 								</a>
-								<FavouritesAnimeButton />
 							</div>
 						</div>
 					</div>

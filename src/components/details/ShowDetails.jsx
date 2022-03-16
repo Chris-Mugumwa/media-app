@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getShowDetails } from '../../features/shows/showSlice'
 import Youtube from 'react-youtube'
-import FavouritesShowButton from '../favourites/FavouritesShowButton'
 
 function ShowDetails() {
 	const { id } = useParams()
@@ -108,8 +107,6 @@ function ShowDetails() {
 									className='details__button-homepage'>
 									Show Homepage
 								</a>
-
-								<FavouritesShowButton />
 							</div>
 						</div>
 					</div>

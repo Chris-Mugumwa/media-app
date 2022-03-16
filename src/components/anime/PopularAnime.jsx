@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getPopularAnime } from '../../features/anime/animeSlice'
 import { FcRating } from 'react-icons/fc'
+import { motion } from 'framer-motion'
 
 function PopularAnime() {
 	const dispatch = useDispatch()
@@ -15,7 +16,11 @@ function PopularAnime() {
 	}, [dispatch])
 
 	return (
-		<section className='anime'>
+		<motion.section
+			animate={{ opacity: 1 }}
+			initial={{ opacity: 0 }}
+			exit={{ opacity: 0 }}
+			className='anime'>
 			<h2 className='anime__description'>Trending Anime</h2>
 
 			<div className='anime__container'>
@@ -23,8 +28,7 @@ function PopularAnime() {
 					<Link
 						to={`/details/anime/${anime.mal_id}`}
 						className='anime__card-container'
-						key={anime.mal_id}
-					>
+						key={anime.mal_id}>
 						<img
 							src={`${anime.images.jpg.image_url}`}
 							alt={anime.title_english}
@@ -49,7 +53,7 @@ function PopularAnime() {
 					</Link>
 				))}
 			</div>
-		</section>
+		</motion.section>
 	)
 }
 

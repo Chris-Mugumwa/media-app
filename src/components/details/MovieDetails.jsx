@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovieDetails } from '../../features/movies/movieSlice'
 import Youtube from 'react-youtube'
-import FavouritesMovieButton from '../favourites/FavouritesMovieButton'
 import { BiPlay } from 'react-icons/bi'
 
 function MovieDetails() {
@@ -98,8 +97,6 @@ function MovieDetails() {
 									className='details__button-homepage'>
 									Movie Homepage
 								</a>
-
-								<FavouritesMovieButton />
 							</div>
 						</div>
 					</div>

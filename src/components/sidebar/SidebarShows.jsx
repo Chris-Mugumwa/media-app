@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { getShowDiscover } from '../../features/shows/showSlice'
 import { timeFormat } from './sidebarData'
 import { FcRating } from 'react-icons/fc'
+import { motion } from 'framer-motion'
 
 function SidebarShows({ currentTab }) {
 	const dispatch = useDispatch()
@@ -17,7 +18,11 @@ function SidebarShows({ currentTab }) {
 
 	return (
 		<>
-			<section className='sidebar__section sidebar__section-show'>
+			<motion.section
+				animate={{ opacity: 1 }}
+				initial={{ opacity: 0 }}
+				exit={{ opacity: 0 }}
+				className='sidebar__section sidebar__section-show'>
 				{shows?.map(show => (
 					<Link
 						to={`/details/show/${show.id}`}
@@ -26,8 +31,7 @@ function SidebarShows({ currentTab }) {
 								? 'sidebar__container'
 								: 'sidebar__not-active'
 						}
-						key={show.id}
-					>
+						key={show.id}>
 						<img
 							src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
 							alt={show.name}
@@ -50,7 +54,7 @@ function SidebarShows({ currentTab }) {
 						</div>
 					</Link>
 				))}
-			</section>
+			</motion.section>
 		</>
 	)
 }

@@ -18,6 +18,7 @@ import {
 	AiOutlineLock,
 } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
+import { motion } from 'framer-motion'
 
 const initialValues = { name: '', email: '', password: '' }
 
@@ -68,7 +69,11 @@ function Signup({ openSignup, setOpenSignup }) {
 
 	return createPortal(
 		<>
-			<section className='signup'>
+			<motion.section
+				animate={{ opacity: 1 }}
+				initial={{ opacity: 0 }}
+				exit={{ opacity: 0 }}
+				className='signup'>
 				<div className='signup__close-container'>
 					<div className='signup__close'>
 						<AiOutlineClose
@@ -191,7 +196,7 @@ function Signup({ openSignup, setOpenSignup }) {
 						</div>
 					</Formik>
 				</div>
-			</section>
+			</motion.section>
 		</>,
 		document.getElementById('portal'),
 	)

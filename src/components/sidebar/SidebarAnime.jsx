@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getAnimeSeasons } from '../../features/anime/animeSlice'
 import { FcRating } from 'react-icons/fc'
+import { motion } from 'framer-motion'
 
 function SidebarAnime({ currentTab }) {
 	const dispatch = useDispatch()
@@ -16,7 +17,11 @@ function SidebarAnime({ currentTab }) {
 
 	return (
 		<>
-			<section className='sidebar__section sidebar__section-anime'>
+			<motion.section
+				animate={{ opacity: 1 }}
+				initial={{ opacity: 0 }}
+				exit={{ opacity: 0 }}
+				className='sidebar__section sidebar__section-anime'>
 				{animes?.map(anime => (
 					<Link
 						to={`/details/anime/${anime.mal_id}`}
@@ -25,8 +30,7 @@ function SidebarAnime({ currentTab }) {
 								? 'sidebar__container'
 								: 'sidebar__not-active'
 						}
-						key={anime.mal_id}
-					>
+						key={anime.mal_id}>
 						<img
 							src={anime.images.jpg.image_url}
 							alt={
@@ -55,7 +59,7 @@ function SidebarAnime({ currentTab }) {
 						</div>
 					</Link>
 				))}
-			</section>
+			</motion.section>
 		</>
 	)
 }

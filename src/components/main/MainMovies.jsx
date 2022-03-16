@@ -24,8 +24,7 @@ function MainMovies() {
 					<Link
 						to={`/details/movie/${movie.id}`}
 						className='main__card-container'
-						key={movie.id}
-					>
+						key={movie.id}>
 						<img
 							src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
 							alt={movie.original_title}

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { getMovieDiscover } from '../../features/movies/movieSlice'
 import { timeFormat } from './sidebarData'
 import { FcRating } from 'react-icons/fc'
+import { motion } from 'framer-motion'
 
 function SidebarMovies({ currentTab }) {
 	const dispatch = useDispatch()
@@ -17,7 +18,11 @@ function SidebarMovies({ currentTab }) {
 
 	return (
 		<>
-			<section className='sidebar__section sidebar__section-movies'>
+			<motion.section
+				animate={{ opacity: 1 }}
+				initial={{ opacity: 0 }}
+				exit={{ opacity: 0 }}
+				className='sidebar__section sidebar__section-movies'>
 				{movies?.map(movie => (
 					<Link
 						to={`/details/movie/${movie.id}`}
@@ -26,8 +31,7 @@ function SidebarMovies({ currentTab }) {
 								? 'sidebar__container'
 								: 'sidebar__not-active'
 						}
-						key={movie.id}
-					>
+						key={movie.id}>
 						<img
 							src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
 							alt={movie.title}
@@ -50,7 +54,7 @@ function SidebarMovies({ currentTab }) {
 						</div>
 					</Link>
 				))}
-			</section>
+			</motion.section>
 		</>
 	)
 }
