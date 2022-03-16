@@ -3,6 +3,7 @@ import './navigate.scss'
 import { Link } from 'react-router-dom'
 import { movieItems, showItems, animeItems } from './navigateData.js'
 import { HiChevronDown } from 'react-icons/hi'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function Navigate() {
 	const [movieHover, setMovieHover] = useState(false)
@@ -24,39 +25,32 @@ function Navigate() {
 					<h5 className='navigate__home--text'>Home</h5>
 				</Link>
 
-				<Link
-					to='/favourites'
-					className='navigate__favourites navigate__link'
-				>
-					<h5 className='navigate__favourites--text'>Favourites</h5>
-				</Link>
-
 				<ul className='navigate__list'>
 					<li className='navigate__item'>
 						<h5
 							className='navigate__link'
 							onMouseEnter={handleMovieHover}
-							onMouseLeave={leaveMovieHover}
-						>
+							onMouseLeave={leaveMovieHover}>
 							Movies
 							<HiChevronDown className='navigate__icon' />
-							<ul
+							<motion.ul
+								animate={{ opacity: 1 }}
+								initial={{ opacity: 0 }}
+								exit={{ opacity: 0 }}
 								className={
 									movieHover
 										? 'navigate__dropdown-show-movies'
 										: 'navigate__dropdown'
-								}
-							>
+								}>
 								{movieItems.map(item => (
 									<Link
 										to={item.path}
 										className='navigate__dropdown-link'
-										key={item.id}
-									>
+										key={item.id}>
 										{item.name}
 									</Link>
 								))}
-							</ul>
+							</motion.ul>
 						</h5>
 					</li>
 				</ul>
@@ -66,38 +60,40 @@ function Navigate() {
 						<h5
 							className='navigate__link'
 							onMouseEnter={handleShowHover}
-							onMouseLeave={leaveShowHover}
-						>
+							onMouseLeave={leaveShowHover}>
 							Shows
 							<HiChevronDown className='navigate__icon' />
-							<ul
+							<motion.ul
+								animate={{ opacity: 1 }}
+								initial={{ opacity: 0 }}
+								exit={{ opacity: 0 }}
 								className={
 									showHover
 										? 'navigate__dropdown-show-shows'
 										: 'navigate__dropdown'
-								}
-							>
+								}>
 								{showItems.map(item => (
 									<Link
 										to={item.path}
 										className='navigate__dropdown-link'
-										key={item.id}
-									>
+										key={item.id}>
 										{item.name}
 									</Link>
 								))}
-							</ul>
+							</motion.ul>
 						</h5>
 					</li>
 				</ul>
 
 				<ul className='navigate__list'>
 					<li className='navigate__item'>
-						<h5
+						<motion.ul
+							animate={{ opacity: 1 }}
+							initial={{ opacity: 0 }}
+							exit={{ opacity: 0 }}
 							className='navigate__link'
 							onMouseEnter={handleAnimeHover}
-							onMouseLeave={leaveAnimeHover}
-						>
+							onMouseLeave={leaveAnimeHover}>
 							Anime
 							<HiChevronDown className='navigate__icon' />
 							<ul
@@ -105,19 +101,17 @@ function Navigate() {
 									animeHover
 										? 'navigate__dropdown-show-anime'
 										: 'navigate__dropdown'
-								}
-							>
+								}>
 								{animeItems.map(item => (
 									<Link
 										to={item.path}
 										className='navigate__dropdown-link'
-										key={item.id}
-									>
+										key={item.id}>
 										{item.name}
 									</Link>
 								))}
 							</ul>
-						</h5>
+						</motion.ul>
 					</li>
 				</ul>
 			</nav>

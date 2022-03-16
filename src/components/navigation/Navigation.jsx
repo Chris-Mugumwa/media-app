@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './navigation.scss'
 import './menu.scss'
@@ -6,62 +6,20 @@ import Login from '../auth/login/Login'
 import Signup from '../auth/signup/Signup'
 import { ReactComponent as Icon } from '../../assets/icon.svg'
 import NavigationSignout from './NavigationSignout'
-import { auth, db } from '../../firebase'
-import { onSnapshot, doc } from 'firebase/firestore'
+import { auth } from '../../firebase'
 import Avatar from 'react-avatar'
 import { HiOutlineMenuAlt2, HiOutlineX } from 'react-icons/hi'
 import { navigationData } from './navigationData'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function Navigation() {
 	const navigate = useNavigate()
-   const user = auth?.currentUser
-   const uid = auth?.currentUser?.uid
-   const docRef = doc(db, 'users', `${uid}`)
-	const [name, setName] = useState('User')
-	const [photo, setPhoto] = useState('')
+	const user = auth?.currentUser
 	const [menu, setMenu] = useState(false)
-	const [buttonChange, setButtonChange] = useState(true)
 	const [links, setLinks] = useState(navigationData)
 	const [openLogin, setOpenLogin] = useState(false)
 	const [openSignup, setOpenSignup] = useState(false)
 	const [openSignout, setOpenSignout] = useState(false)
-	const [avatar, setAvatar] = useState(
-		<Avatar
-			color={Avatar.getRandomColor('sitebase', ['red', 'green', 'blue'])}
-			name='User'
-			round='100%'
-			size='40px'
-			className='navigation__avatar'
-			onClick={() => showSignout()}
-		/>,
-	)
-
-	useEffect(() => {
-      if (user) {
-         onSnapshot(docRef, doc => {
-            let data = doc.data()
-            console.log(data)
-				setName(data.displayName)
-				setPhoto(data.photo)
-            setButtonChange(false)
-				setAvatar(
-					<Avatar
-						color={Avatar.getRandomColor('sitebase', [
-							'red',
-							'green',
-							'blue',     
-						])}
-						name={name}
-						round='100%'
-						size='40px'
-						className='navigation__avatar'
-						onClick={() => showSignout()}
-					/>,
-            )
-            console.log('I like Cheese')
-			})
-      } 
-	}, [])
 
 	const showMenu = () => {
 		setMenu(prevState => !prevState)
@@ -83,141 +41,163 @@ function Navigation() {
 
 	const toSignout = () => {
 		setMenu(false)
-      setButtonChange(true)
-		auth.signOut().then(() => console.log('Signed Out'))
+		auth.signOut()
 	}
 
-   useEffect(() => {
-      toSignout()
-   }, [])
-
 	return (
-		<div className='navigation'>
-			<Login openLogin={openLogin} setOpenLogin={setOpenLogin} />
-			<Signup openSignup={openSignup} setOpenSignup={setOpenSignup} />
-			<NavigationSignout
-				openSignout={openSignout}
-				setOpenSignout={setOpenSignout}
-				toSignout={toSignout}
-			/>
+		<AnimatePresence exitBeforeEnter>
+			<div className='navigation'>
+				<Login openLogin={openLogin} setOpenLogin={setOpenLogin} />
+				<Signup openSignup={openSignup} setOpenSignup={setOpenSignup} />
+				<NavigationSignout
+					openSignout={openSignout}
+					setOpenSignout={setOpenSignout}
+					toSignout={toSignout}
+				/>
 
-			<Icon
-				alt='application icon'
-				className='navigation__icon'
-				onClick={() => navigate('/')}
-			/>
+				<Icon
+					alt='application icon'
+					className='navigation__icon'
+					onClick={() => navigate('/')}
+				/>
 
-			<div
-				className='navigation__hamburger-container'
-				onClick={() => showMenu()}
-			>
-				<HiOutlineMenuAlt2 className='navigation__hamburger navigation__hamburger-close' />
-			</div>
-
-         {
-            user || buttonChange === false ? (
-				<div className='navigation__wrapper'>
-					<h5 className='navigation__name'>{name}</h5>
-					<div className='navigation__profile'>
-						{photo?.length > 1 ? (
-							<img
-								src={photo}
-								alt='profile'
-								className='navigation__profile--picture'
-								onClick={() => showSignout()}
-							/>
-						) : (
-							avatar
-						)}
-					</div>
+				<div
+					className='navigation__hamburger-container'
+					onClick={() => showMenu()}>
+					<HiOutlineMenuAlt2 className='navigation__hamburger navigation__hamburger-close' />
 				</div>
-			) : (
-               <>
-                  <div className='navigation__buttons'>
-                     <button
-                        className='navigation__button navigation__login'
-                        onClick={() => toLogin()}
-                     >
-                        Login
-                     </button>
-                     <button
-                        className='navigation__button navigation__sign-in'
-                        onClick={() => toSignup()}
-                     >
-                        Sign Up
-                     </button>
-                  </div>
-               </>
-            )
-         }
-
-			<div className={menu ? 'menu__close' : 'menu'}>
-				<div className='menu__profile-container'>
-					{user ? (
-						<>
-							<div className='menu__profile'>
-								{photo.length > 1 ? (
-									<img
-										src={photo}
-										alt='profile'
-										className='menu__profile--picture'
-									/>
-								) : (
-									avatar
-								)}
-								<h5 className='menu__name'>{user ? name : null}</h5>
-							</div>
-						</>
-					) : null}
-					<div
-						className='menu__hamburger-container'
-						onClick={() => showMenu()}
-					>
-						<HiOutlineX className='menu__hamburger navigation__hamburger-close' />
-					</div>
-				</div>
-				<ul className='menu__list'>
-					{links.map(link => (
-						<div className='menu__item-container' key={link.id}>
-							<Link
-								className='menu__item'
-								to={link.path}
-								onClick={() => setMenu(false)}
-							>
-								<span className='menu__icon'>{link.icon}</span>
-								<span className='menu__name'>{link.name}</span>
-							</Link>
-						</div>
-					))}
-				</ul>
 
 				{user ? (
-					<div className='menu__buttons'>
-						<button
-							className='menu__button menu__login'
-							onClick={() => toSignout()}
-						>
-							Logout
-						</button>
+					<div className='navigation__wrapper'>
+						<h5 className='navigation__name'>{user?.displayName}</h5>
+						<div className='navigation__profile'>
+							{user?.photoURL !== null ? (
+								<img
+									src={user?.photoURL}
+									alt='profile'
+									className='navigation__profile--picture'
+									onClick={() => showSignout()}
+								/>
+							) : (
+								<Avatar
+									color={Avatar.getRandomColor('sitebase', [
+										'red',
+										'green',
+										'blue',
+									])}
+									name={user?.displayName}
+									round='100%'
+									size='40px'
+									className='navigation__avatar'
+									onClick={() => showSignout()}
+								/>
+							)}
+						</div>
 					</div>
 				) : (
-					<div className='menu__buttons'>
-						<button
-							className='menu__button menu__login'
-							onClick={() => toLogin()}
-						>
-							Login
-						</button>
-						<button
-							className='menu__button menu__sign-up'
-							onClick={() => toSignup()}
-						>
-							Sign Up
-						</button>
-					</div>
+					<>
+						<div className='navigation__buttons'>
+							<button
+								className='navigation__button navigation__login'
+								onClick={() => toLogin()}>
+								Login
+							</button>
+							<button
+								className='navigation__button navigation__sign-in'
+								onClick={() => toSignup()}>
+								Sign Up
+							</button>
+						</div>
+					</>
 				)}
+
+				<div className={menu ? 'menu__close' : 'menu'}>
+					<div className='menu__profile-container'>
+						{user ? (
+							<>
+								<div className='menu__profile'>
+									{user?.photoURL !== null ? (
+										<img
+											src={user?.photoURL}
+											alt='profile'
+											className='menu__profile--picture'
+										/>
+									) : (
+										<Avatar
+											color={Avatar.getRandomColor('sitebase', [
+												'red',
+												'green',
+												'blue',
+											])}
+											name={user?.displayName}
+											round='100%'
+											size='40px'
+											className='menu__avatar'
+										/>
+									)}
+									<h5 className='menu__name'>
+										{user ? user?.displayName : null}
+									</h5>
+								</div>
+							</>
+						) : (
+							<Avatar
+								color={Avatar.getRandomColor('sitebase', [
+									'red',
+									'green',
+									'blue',
+								])}
+								name='User'
+								round='100%'
+								size='40px'
+								className='menu__avatar'
+							/>
+						)}
+						<div
+							className='menu__hamburger-container'
+							onClick={() => showMenu()}>
+							<HiOutlineX className='menu__hamburger navigation__hamburger-close' />
+						</div>
+					</div>
+					<ul className='menu__list'>
+						{links.map(link => (
+							<div className='menu__item-container' key={link.id}>
+								<Link
+									className='menu__item'
+									to={link.path}
+									onClick={() => setMenu(false)}>
+									<span className='menu__icon'>{link.icon}</span>
+									<span className='menu__name'>{link.name}</span>
+								</Link>
+							</div>
+						))}
+					</ul>
+
+					{user ? (
+						<div className='menu__buttons'>
+							<button
+								className='menu__button menu__login'
+								onClick={() => toSignout()}>
+								Logout
+							</button>
+						</div>
+					) : (
+						<div className='menu__buttons'>
+							<button
+								className='menu__button menu__login'
+								onClick={() => toLogin()}>
+								Login
+							</button>
+							<button
+								className='menu__button menu__sign-up'
+								onClick={() => toSignup()}>
+								Sign Up
+							</button>
+						</div>
+					)}
+				</div>
 			</div>
-		</div>
+		</AnimatePresence>
 	)
 }
 

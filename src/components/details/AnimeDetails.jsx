@@ -3,7 +3,7 @@ import './details.scss'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAnimeDetails } from '../../features/anime/animeSlice'
-import FavouritesAnimeButton from '../favourites/FavouritesAnimeButton'
+import Youtube from 'react-youtube'
 import { BiPlay } from 'react-icons/bi'
 
 function AnimeDetails() {
@@ -11,13 +11,35 @@ function AnimeDetails() {
 	const dispatch = useDispatch()
 	const anime = useSelector(state => state.anime.animeDetails)
 	const animeDetails = anime.data
+	console.log(animeDetails)
 
 	useEffect(() => {
 		dispatch(getAnimeDetails(mal_id))
 	}, [dispatch, mal_id])
 
+	const renderTrailer = () => {
+		return (
+			<Youtube
+				videoId={animeDetails?.trailer?.youtube_id}
+				className={'details__youtube--player'}
+				opts={{
+					width: '100%',
+					borderRadius: '12px',
+					overflow: 'hidden',
+
+					playerVars: {
+						autoplay: 1,
+					},
+				}}
+			/>
+		)
+	}
+
 	return (
 		<section className='details'>
+			<div className='details__youtube'>
+				{animeDetails?.trailer ? renderTrailer() : null}
+			</div>
 			<div className='details__content'>
 				<div className='details__container'>
 					<div className='details__details'>
@@ -50,8 +72,7 @@ function AnimeDetails() {
 								{animeDetails?.producers?.map(company => (
 									<span
 										className='details__company'
-										key={company.mal_id}
-									>
+										key={company.mal_id}>
 										<span className='details__company' />
 
 										{company.name}
@@ -64,8 +85,7 @@ function AnimeDetails() {
 								{animeDetails?.studios?.map(studio => (
 									<span
 										className='details__country'
-										key={studio.mal_id}
-									>
+										key={studio.mal_id}>
 										<span className='details__country' />
 										{studio.name}
 									</span>
@@ -82,15 +102,11 @@ function AnimeDetails() {
 
 							<div className='details__buttons'>
 								<a
-									href={animeDetails?.trailer?.url}
+									href={animeDetails?.url}
 									target='_blank'
-									className='details__link'
-								>
-									<BiPlay className='details__button-icon' />
-									<span>Watch Trailer</span>
+									className='details__button-homepage'>
+									My Anime List
 								</a>
-
-								<FavouritesAnimeButton />
 							</div>
 						</div>
 					</div>

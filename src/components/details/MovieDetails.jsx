@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovieDetails } from '../../features/movies/movieSlice'
 import Youtube from 'react-youtube'
-import FavouritesMovieButton from '../favourites/FavouritesMovieButton'
 import { BiPlay } from 'react-icons/bi'
 
 function MovieDetails() {
@@ -19,7 +18,10 @@ function MovieDetails() {
 
 	const renderTrailer = () => {
 		const trailer = movieDetails?.videos?.results.find(
-			video => video?.name === 'Official Trailer',
+			video =>
+				video?.name === 'Main Trailer' ||
+				'Official Trailer' ||
+				'Official Trailer 1',
 		)
 		console.log(trailer?.key)
 
@@ -76,8 +78,7 @@ function MovieDetails() {
 								{movieDetails.production_countries?.map(country => (
 									<span
 										className='details__country'
-										key={country.name}
-									>
+										key={country.name}>
 										<span className='details__country' />
 										{country.name}
 									</span>
@@ -93,12 +94,9 @@ function MovieDetails() {
 								<a
 									href={movieDetails.homepage}
 									target='_blank'
-									className='details__button-homepage'
-								>
+									className='details__button-homepage'>
 									Movie Homepage
 								</a>
-
-								<FavouritesMovieButton />
 							</div>
 						</div>
 					</div>

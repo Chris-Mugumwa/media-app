@@ -1,6 +1,5 @@
 import {
 	BiHome,
-	BiBookmarkHeart,
 	BiMovie,
 	BiMoviePlay,
 	BiCameraMovie,
@@ -12,12 +11,6 @@ export const navigationData = [
 		name: 'Home',
 		icon: <BiHome />,
 		path: '/',
-	},
-	{
-		id: 2,
-		name: 'Favourites',
-		icon: <BiBookmarkHeart />,
-		path: '/favourites',
 	},
 	{
 		id: 3,

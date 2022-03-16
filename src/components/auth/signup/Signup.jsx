@@ -8,6 +8,7 @@ import {
 	signInWithPopup,
 	GoogleAuthProvider,
 	createUserWithEmailAndPassword,
+	updateProfile,
 } from 'firebase/auth'
 import { createPortal } from 'react-dom'
 import {
@@ -17,6 +18,7 @@ import {
 	AiOutlineLock,
 } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
+import { motion } from 'framer-motion'
 
 const initialValues = { name: '', email: '', password: '' }
 
@@ -67,7 +69,11 @@ function Signup({ openSignup, setOpenSignup }) {
 
 	return createPortal(
 		<>
-			<section className='signup'>
+			<motion.section
+				animate={{ opacity: 1 }}
+				initial={{ opacity: 0 }}
+				exit={{ opacity: 0 }}
+				className='signup'>
 				<div className='signup__close-container'>
 					<div className='signup__close'>
 						<AiOutlineClose
@@ -92,15 +98,21 @@ function Signup({ openSignup, setOpenSignup }) {
 									const user = userCredential.user
 									console.log(user)
 
+									updateProfile(user, {
+										displayName: values.name,
+									})
+
 									try {
 										const usersRef = doc(db, 'users', `${user.uid}`)
 										setDoc(usersRef, {
 											id: user.uid,
 											displayName: values.name,
 											email: values.email,
-											photo: '',
+											photo: null,
 											active: true,
-										})
+										}).catch(error =>
+											console.log('Did not save to db,', error),
+										)
 										console.log(
 											'Document written with ID: ',
 											usersRef.id,
@@ -184,7 +196,7 @@ function Signup({ openSignup, setOpenSignup }) {
 						</div>
 					</Formik>
 				</div>
-			</section>
+			</motion.section>
 		</>,
 		document.getElementById('portal'),
 	)

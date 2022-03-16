@@ -13,17 +13,13 @@
 	&__description {
 		color: $grayish;
 		font-size: 3rem;
-		margin-top: 1.8rem;
+		margin-top: 4rem;
 		text-align: center;
 
 		@include respond(desktop) {
-			margin-top: 3rem;
+			margin-top: 5rem;
 			text-align: left;
 			font-size: 5rem;
-		}
-
-		&:first-child {
-			margin-top: 2.5rem;
 		}
 	}
 

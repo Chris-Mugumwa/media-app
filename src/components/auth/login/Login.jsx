@@ -13,6 +13,7 @@ import {
 import { collection, addDoc } from 'firebase/firestore'
 import { AiOutlineClose, AiOutlineMail, AiOutlineLock } from 'react-icons/ai'
 import { FcGoogle } from 'react-icons/fc'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const initialValues = { email: '', password: '' }
 
@@ -59,8 +60,12 @@ function Login({ openLogin, setOpenLogin }) {
 	if (!openLogin) return null
 
 	return createPortal(
-		<>
-			<section className='login'>
+		<AnimatePresence exitBeforeEnter>
+			<motion.section
+				animate={{ opacity: 1 }}
+				initial={{ opacity: 0 }}
+				exit={{ opacity: 0 }}
+				className='login'>
 				<div className='login__close-container'>
 					<div className='login__close'>
 						<AiOutlineClose
@@ -93,8 +98,7 @@ function Login({ openLogin, setOpenLogin }) {
 										? console.log(errorCode)
 										: console.log(errorMessage)
 								})
-						}}
-					>
+						}}>
 						<div className='login__wrapper'>
 							<Form className='login__form' autocomplete='off'>
 								<div className='login__form-container'>
@@ -141,16 +145,15 @@ function Login({ openLogin, setOpenLogin }) {
 								<button
 									type='submit'
 									className='login__google'
-									onClick={() => googleLogin()}
-								>
+									onClick={() => googleLogin()}>
 									<FcGoogle className='login__google--icon' />
 								</button>
 							</Form>
 						</div>
 					</Formik>
 				</div>
-			</section>
-		</>,
+			</motion.section>
+		</AnimatePresence>,
 		document.getElementById('modal'),
 	)
 }

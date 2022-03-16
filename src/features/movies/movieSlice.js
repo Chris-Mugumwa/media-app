@@ -57,6 +57,18 @@ export const getMovieDetails = createAsyncThunk(
 	},
 )
 
+export const getFavouriteMovies = createAsyncThunk(
+	'favouriteMovies/getFavouriteMovies',
+	async id => {
+		const response = await fetch(
+			`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&append_to_response=videos`,
+		)
+		const formatResponse = await response.json()
+		// console.log(formatResponse)
+		return formatResponse
+	},
+)
+
 export const getMovieSearch = createAsyncThunk(
 	'movieSearch/getMovieSearch',
 	async (term, page) => {
@@ -76,6 +88,7 @@ export const movieSlice = createSlice({
 		movieSearch: [],
 		movieDetails: [],
 		movieDiscover: [],
+		favouriteMovies: [],
 		isLoading: false,
 	},
 	extraReducers: {
@@ -110,34 +123,44 @@ export const movieSlice = createSlice({
 			state.isLoading = false
 		},
 		[getMovieSearch.pending]: state => {
-			state.loading = true
+			state.isLoading = true
 		},
 		[getMovieSearch.fulfilled]: (state, action) => {
 			state.movieSearch = action.payload
-			state.loading = false
+			state.isLoading = false
 		},
 		[getMovieSearch.rejected]: state => {
-			state.loading = false
+			state.isLoading = false
 		},
 		[getMovieDiscover.pending]: state => {
-			state.loading = true
+			state.isLoading = true
 		},
 		[getMovieDiscover.fulfilled]: (state, action) => {
 			state.movieDiscover = action.payload
-			state.loading = false
+			state.isLoading = false
 		},
 		[getMovieDiscover.rejected]: state => {
-			state.loading = false
+			state.isLoading = false
 		},
 		[getMovieDetails.pending]: state => {
-			state.loading = true
+			state.isLoading = true
 		},
 		[getMovieDetails.fulfilled]: (state, action) => {
 			state.movieDetails = action.payload
-			state.loading = false
+			state.isLoading = false
 		},
 		[getMovieDetails.rejected]: state => {
-			state.loading = false
+			state.isLoading = false
+		},
+		[getFavouriteMovies.pending]: state => {
+			state.isLoading = true
+		},
+		[getFavouriteMovies.fulfilled]: (state, action) => {
+			state.favouriteMovies = action.payload
+			state.isLoading = false
+		},
+		[getFavouriteMovies.rejected]: state => {
+			state.isLoading = false
 		},
 	},
 })

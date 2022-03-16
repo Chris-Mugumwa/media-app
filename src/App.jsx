@@ -24,7 +24,6 @@ import UpcomingAnimeContainer from './containers/media/UpcomingAnimeContainer'
 import MovieDetailsContainer from './containers/details/MovieDetailsContainer'
 import ShowDetailsContainer from './containers/details/ShowDetailsContainer'
 import AnimeDetailsContainer from './containers/details/AnimeDetailsContainer'
-import Favourites from './components/favourites/Favourites'
 
 function App() {
 	const location = useLocation()
@@ -36,7 +35,7 @@ function App() {
 			<Navigate />
 			<Buttons />
 			<Sidebar />
-			<AnimatePresence>
+			<AnimatePresence exitBeforeEnter>
 				<Routes location={location} key={location.pathname}>
 					<Route path='/' exact element={<Home />} />
 					<Route path='/sign-up' exact element={<SignupContainer />} />
@@ -99,7 +98,6 @@ function App() {
 						exact
 						element={<AnimeDetailsContainer />}
 					/>
-					<Route path='/favourites' exact element={<Favourites />} />
 				</Routes>
 			</AnimatePresence>
 		</div>
