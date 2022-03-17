@@ -1,3 +1,37 @@
+import {
+	IoHomeOutline,
+	IoTvOutline,
+	IoPlayOutline,
+	IoVideocamOutline,
+} from 'react-icons/io5'
+
+export const navigationData = [
+	{
+		id: 1,
+		name: 'Home',
+		icon: <IoHomeOutline />,
+		path: '/',
+	},
+	{
+		id: 3,
+		name: 'Movies',
+		path: '/movies',
+		icon: <IoTvOutline />,
+	},
+	{
+		id: 4,
+		name: 'Shows',
+		path: '/shows',
+		icon: <IoVideocamOutline />,
+	},
+	{
+		id: 5,
+		name: 'Anime',
+		path: '/anime',
+		icon: <IoPlayOutline />,
+	},
+]
+
 export const navigateData = [
 	{
 		name: 'Movies',
@@ -66,3 +100,31 @@ export const animeItems = [
 		className: 'navigate__item',
 	},
 ]
+
+export const buttonData = [
+	{
+		name: 'Movies',
+		icon: <IoTvOutline />,
+		path: '/movies',
+	},
+	{
+		name: 'Shows',
+		icon: <IoVideocamOutline />,
+		path: '/shows',
+	},
+	{
+		name: 'Anime',
+		icon: <IoPlayOutline />,
+		path: '/anime',
+	},
+]
+export const timeFormat = value => {
+	if (value) {
+		let valueSplit = value.split('')
+		let valueSlice = valueSplit.slice(0, 4)
+		let valueJoin = valueSlice.join('')
+		return valueJoin
+	} else {
+		return null
+	}
+}

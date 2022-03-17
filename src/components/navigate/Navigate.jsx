@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import './navigate.scss'
 import { Link } from 'react-router-dom'
-import { movieItems, showItems, animeItems } from './navigateData.js'
-import { HiChevronDown } from 'react-icons/hi'
-import { motion, AnimatePresence } from 'framer-motion'
+import { movieItems, showItems, animeItems } from '../../data/reusableData'
+import { IoChevronDownOutline } from 'react-icons/io5'
 
 function Navigate() {
 	const [movieHover, setMovieHover] = useState(false)
@@ -32,8 +31,8 @@ function Navigate() {
 							onMouseEnter={handleMovieHover}
 							onMouseLeave={leaveMovieHover}>
 							Movies
-							<HiChevronDown className='navigate__icon' />
-							<motion.ul
+							<IoChevronDownOutline className='navigate__icon' />
+							<ul
 								animate={{ opacity: 1 }}
 								initial={{ opacity: 0 }}
 								exit={{ opacity: 0 }}
@@ -50,7 +49,7 @@ function Navigate() {
 										{item.name}
 									</Link>
 								))}
-							</motion.ul>
+							</ul>
 						</h5>
 					</li>
 				</ul>
@@ -62,8 +61,8 @@ function Navigate() {
 							onMouseEnter={handleShowHover}
 							onMouseLeave={leaveShowHover}>
 							Shows
-							<HiChevronDown className='navigate__icon' />
-							<motion.ul
+							<IoChevronDownOutline className='navigate__icon' />
+							<ul
 								animate={{ opacity: 1 }}
 								initial={{ opacity: 0 }}
 								exit={{ opacity: 0 }}
@@ -80,14 +79,14 @@ function Navigate() {
 										{item.name}
 									</Link>
 								))}
-							</motion.ul>
+							</ul>
 						</h5>
 					</li>
 				</ul>
 
 				<ul className='navigate__list'>
 					<li className='navigate__item'>
-						<motion.ul
+						<ul
 							animate={{ opacity: 1 }}
 							initial={{ opacity: 0 }}
 							exit={{ opacity: 0 }}
@@ -95,7 +94,7 @@ function Navigate() {
 							onMouseEnter={handleAnimeHover}
 							onMouseLeave={leaveAnimeHover}>
 							Anime
-							<HiChevronDown className='navigate__icon' />
+							<IoChevronDownOutline className='navigate__icon' />
 							<ul
 								className={
 									animeHover
@@ -111,7 +110,7 @@ function Navigate() {
 									</Link>
 								))}
 							</ul>
-						</motion.ul>
+						</ul>
 					</li>
 				</ul>
 			</nav>

@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './buttons.scss'
 import { Link } from 'react-router-dom'
-import { buttonData } from './buttonData'
+import { buttonData } from '../../data/reusableData'
 
 function Buttons() {
 	return (

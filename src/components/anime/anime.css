@@ -1,1 +1,166 @@
-/* No CSS *//*# sourceMappingURL=anime.css.map */
+.anime {
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 2;
+  grid-row: 4 / 6;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-column: 1 / 5;
+}
+
+@media screen and (min-width: 75em) {
+  .anime {
+    -ms-grid-row: 4;
+    -ms-grid-row-span: 1;
+    grid-row: 4 / 5;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    grid-column: 1 / 4;
+  }
+}
+
+.anime__description {
+  color: #f0ebd8;
+  font-size: 3rem;
+  margin-top: 1.8rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 75em) {
+  .anime__description {
+    margin-top: 3rem;
+    text-align: left;
+    font-size: 5rem;
+  }
+}
+
+.anime__description:first-child {
+  margin-top: 2.5rem;
+}
+
+.anime__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  gap: 0 2rem;
+}
+
+@media screen and (min-width: 75em) {
+  .anime__container {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+  }
+}
+
+.anime__card-container {
+  position: relative;
+  height: 24rem;
+  margin: 3.5rem 0 3.5rem 0;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 14rem;
+          flex: 0 1 14rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+@media screen and (min-width: 75em) {
+  .anime__card-container {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 20rem;
+            flex: 0 1 20rem;
+    height: 28rem;
+  }
+}
+
+.anime__card-container:hover, .anime__card-container:focus {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.anime__card {
+  height: 100%;
+  border-radius: 1.2rem;
+  position: relative;
+}
+
+.anime__card-information {
+  height: 2.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  padding-top: 1rem;
+  text-overflow: ellipsis;
+  max-height: 2.5em;
+  line-height: 1.8em;
+  -webkit-box-orient: vertical;
+}
+
+.anime__card-descriptions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.anime__card-name {
+  color: #f0ebd8;
+  font-family: 'Poppins' serif;
+  font-size: 1.2rem;
+  text-overflow: ellipsis;
+  display: block;
+  -webkit-box-orient: vertical;
+}
+
+.anime__card-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.anime__card-time {
+  color: #748cab;
+  font-size: 1.2rem;
+}
+
+.anime__card-detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.anime__card-rating {
+  color: #748cab;
+  font-size: 1.2rem;
+}
+
+.anime__card-icon {
+  margin-right: 0.3em;
+}
+/*# sourceMappingURL=anime.css.map */

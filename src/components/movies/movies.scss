@@ -13,7 +13,7 @@
 	&__description {
 		color: $grayish;
 		font-size: 3rem;
-		margin-top: 4rem;
+		margin-top: 5rem;
 		text-align: center;
 
 		@include respond(desktop) {
@@ -21,12 +21,17 @@
 			text-align: left;
 			font-size: 5rem;
 		}
+
+		&:first-child {
+			margin-top: 2.5rem;
+		}
 	}
 
 	&__container {
 		display: flex;
 		justify-content: center;
 		flex-flow: row wrap;
+		gap: 0 2rem;
 
 		@include respond(desktop) {
 			justify-content: start;
@@ -37,7 +42,7 @@
 		// width: 14rem;
 		position: relative;
 		height: 24rem;
-		margin: 3.5rem 3.5rem 3.5rem 0;
+		margin: 3.5rem 0 3.5rem 0;
 		flex: 0 1 14rem;
 		display: flex;
 		flex-direction: column;

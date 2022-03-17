@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './signup.scss'
 import { Formik, Field, ErrorMessage, Form } from 'formik'
 import * as yup from 'yup'
@@ -12,11 +12,11 @@ import {
 } from 'firebase/auth'
 import { createPortal } from 'react-dom'
 import {
-	AiOutlineClose,
-	AiOutlineUserAdd,
-	AiOutlineMail,
-	AiOutlineLock,
-} from 'react-icons/ai'
+	IoPersonAddOutline,
+	IoCloseOutline,
+	IoMailOutline,
+	IoLockClosedOutline,
+} from 'react-icons/io5'
 import { FcGoogle } from 'react-icons/fc'
 import { motion } from 'framer-motion'
 
@@ -37,9 +37,11 @@ const validationSchema = yup.object().shape({
 })
 
 function Signup({ openSignup, setOpenSignup }) {
+	const [googleClick, setGoogleClick] = useState(false)
 	const provider = new GoogleAuthProvider()
 
 	const googleSignup = () => {
+		setGoogleClick(true)
 		signInWithPopup(auth, provider)
 			.then(result => {
 				const user = result.user
@@ -76,7 +78,7 @@ function Signup({ openSignup, setOpenSignup }) {
 				className='signup'>
 				<div className='signup__close-container'>
 					<div className='signup__close'>
-						<AiOutlineClose
+						<IoCloseOutline
 							className='signup__close--icon'
 							onClick={() => setOpenSignup(false)}
 						/>
@@ -141,12 +143,14 @@ function Signup({ openSignup, setOpenSignup }) {
 										type='text'
 										placeholder='e.g. John Carter'
 									/>
-									<AiOutlineUserAdd className='signup__icon' />
-									<ErrorMessage
-										name='name'
-										component='div'
-										className='signup__error'
-									/>
+									<IoPersonAddOutline className='signup__icon' />
+									{googleClick === true ? null : (
+										<ErrorMessage
+											name='name'
+											component='div'
+											className='signup__error'
+										/>
+									)}
 								</div>
 
 								<div className='signup__form-container'>
@@ -159,12 +163,14 @@ function Signup({ openSignup, setOpenSignup }) {
 										type='email'
 										placeholder='e.g. johncarter@gmail.com'
 									/>
-									<AiOutlineMail className='signup__icon' />
-									<ErrorMessage
-										name='email'
-										component='div'
-										className='signup__error'
-									/>
+									<IoMailOutline className='signup__icon' />
+									{googleClick === true ? null : (
+										<ErrorMessage
+											name='email'
+											component='div'
+											className='signup__error'
+										/>
+									)}
 								</div>
 								<div className='signup__form-container'>
 									<label className='signup__label'>password</label>
@@ -176,12 +182,14 @@ function Signup({ openSignup, setOpenSignup }) {
 										type='password'
 										placeholder='Must be 6 characters or longer'
 									/>
-									<AiOutlineLock className='signup__icon' />
-									<ErrorMessage
-										name='password'
-										component='div'
-										className='signup__error'
-									/>
+									<IoLockClosedOutline className='signup__icon' />
+									{googleClick === true ? null : (
+										<ErrorMessage
+											name='password'
+											component='div'
+											className='signup__error'
+										/>
+									)}
 								</div>
 								<button type='submit' className='signup__submit'>
 									Submit

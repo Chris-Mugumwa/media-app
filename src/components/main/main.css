@@ -9,9 +9,9 @@
 
 @media screen and (min-width: 75em) {
   .main {
-    -ms-grid-row: 5;
+    -ms-grid-row: 4;
     -ms-grid-row-span: 1;
-    grid-row: 5 / 6;
+    grid-row: 4 / 5;
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
     grid-column: 1 / 4;
@@ -19,18 +19,22 @@
 }
 
 .main__description {
-  color: #F0EBD8;
+  color: #f0ebd8;
   font-size: 3rem;
-  margin-top: 1.8rem;
+  margin-top: 5rem;
   text-align: center;
 }
 
 @media screen and (min-width: 75em) {
   .main__description {
-    margin-top: 5rem;
+    margin-top: 5.5rem;
     text-align: left;
     font-size: 5rem;
   }
+}
+
+.main__description:first-child {
+  margin-top: 2.5rem;
 }
 
 .main__container {
@@ -44,6 +48,7 @@
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
+  gap: 0 2rem;
 }
 
 @media screen and (min-width: 75em) {
@@ -54,10 +59,15 @@
   }
 }
 
+.main__inactive {
+  display: none;
+}
+
 .main__card-container {
+  text-decoration: none;
   position: relative;
   height: 24rem;
-  margin: 3.5rem 3.5rem 3.5rem 0;
+  margin: 3.5rem 0 3.5rem 0;
   -webkit-box-flex: 0;
       -ms-flex: 0 1 14rem;
           flex: 0 1 14rem;
@@ -83,8 +93,8 @@
 }
 
 .main__card-container:hover, .main__card-container:focus {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  -webkit-transform: scale(1.04);
+          transform: scale(1.04);
 }
 
 .main__card {
@@ -115,7 +125,7 @@
 }
 
 .main__card-name {
-  color: #F0EBD8;
+  color: #f0ebd8;
   font-family: 'Poppins' serif;
   font-size: 1.2rem;
   text-overflow: ellipsis;
@@ -133,7 +143,7 @@
 }
 
 .main__card-time {
-  color: #748CAB;
+  color: #748cab;
   font-size: 1.2rem;
 }
 
@@ -150,7 +160,7 @@
 }
 
 .main__card-rating {
-  color: #748CAB;
+  color: #748cab;
   font-size: 1.2rem;
 }
 

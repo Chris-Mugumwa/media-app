@@ -35,11 +35,11 @@
       -ms-flex-align: center;
           align-items: center;
   list-style: none;
-  border-bottom: 2px solid #1D2D44;
+  border-bottom: 2px solid #1d2d44;
 }
 
 .sidebar__item {
-  color: #3E5c76;
+  color: #3e5c76;
   font-size: 1.5rem;
   height: 100%;
   width: 100%;
@@ -58,12 +58,12 @@
 }
 
 .sidebar__item:hover, .sidebar__item:focus {
-  color: #F0EBD8;
+  color: #f0ebd8;
 }
 
 .sidebar__current {
-  color: #748CAB;
-  background-color: #1D2D44;
+  color: #748cab;
+  background-color: #1d2d44;
   font-weight: bold;
   border-top-right-radius: 0.8rem;
   border-top-left-radius: 0.8rem;
@@ -79,6 +79,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding-top: 0;
 }
 
 .sidebar__container {
@@ -87,17 +88,31 @@
   display: flex;
   margin-bottom: 1.5em;
   cursor: pointer;
+  text-decoration: none;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
 
 .sidebar__container:hover, .sidebar__container:focus {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 .sidebar__container:last-child {
   margin-bottom: 0;
+}
+
+.sidebar__section-movies {
+  padding-top: 1rem;
+}
+
+.sidebar__section-shows {
+  margin-top: 0;
+}
+
+.sidebar__section-anime {
+  padding-top: 0;
+  margin-top: 0;
 }
 
 .sidebar__not-active {
@@ -105,6 +120,7 @@
 }
 
 .sidebar__information-container {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -118,8 +134,14 @@
 }
 
 .sidebar__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  max-height: 3.6em;
+  line-height: 1.8em;
+  -webkit-box-orient: vertical;
   font-weight: semi-bold;
-  color: #F0EBD8;
+  color: #f0ebd8;
   font-size: 1.2rem;
   font-family: 'Manrope' sans-serif;
   letter-spacing: 0.1em;
@@ -132,7 +154,7 @@
   max-height: 3.6em;
   line-height: 1.8em;
   -webkit-box-orient: vertical;
-  color: #748CAB;
+  color: #748cab;
   font-family: 'Poppins' serif;
   font-size: 1rem;
 }
@@ -152,7 +174,7 @@
 }
 
 .sidebar__time {
-  color: #3E5c76;
+  color: #3e5c76;
   font-size: 1.2rem;
 }
 
@@ -169,7 +191,7 @@
 }
 
 .sidebar__rating {
-  color: #3E5c76;
+  color: #3e5c76;
   font-size: 1.2rem;
 }
 
@@ -185,6 +207,6 @@
 
 .sidebar__text {
   margin-top: 0.5rem;
-  color: #F0EBD8;
+  color: #f0ebd8;
 }
 /*# sourceMappingURL=sidebar.css.map */

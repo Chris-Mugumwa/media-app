@@ -1,0 +1,66 @@
+.paginate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0 2rem;
+  margin-top: 3rem;
+  width: 100%;
+}
+
+@media screen and (min-width: 75em) {
+  .paginate {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+
+.paginate__button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0 1rem;
+  width: 15rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-family: 'Poppins' sans-serif;
+  outline: none;
+  border: none;
+  padding: 1.2rem 0;
+  color: #f0ebd8;
+  background-color: #1d2d44;
+  border-radius: 1rem;
+  cursor: pointer;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.paginate__button:focus, .paginate__button:hover {
+  background-color: #3e5c76;
+}
+
+.paginate__button:active {
+  background-color: #1d2d44;
+}
+
+.paginate__icon {
+  font-size: 1.4rem;
+}
+
+.paginate__page {
+  color: #f0ebd8;
+  font-size: 1.2rem;
+}
+/*# sourceMappingURL=pagination.css.map */

@@ -49,7 +49,7 @@ function App() {
 						element={<SearchedContainer />}
 					/>
 					<Route
-						path='/popular-movies'
+						path='/popular-movies/'
 						exact
 						element={<PopularMoviesContainer />}
 					/>

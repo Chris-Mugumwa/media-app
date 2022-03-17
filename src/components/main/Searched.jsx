@@ -5,7 +5,9 @@ import { Link, useParams } from 'react-router-dom'
 import { getMovieSearch } from '../../features/movies/movieSlice'
 import { getShowSearch } from '../../features/shows/showSlice'
 import { getAnimeSearch } from '../../features/anime/animeSlice'
+import { timeFormat } from '../../data/reusableData'
 import { FcRating } from 'react-icons/fc'
+import { motion } from 'framer-motion'
 
 function Searched() {
 	const { name } = useParams()
@@ -23,28 +25,20 @@ function Searched() {
 		dispatch(getAnimeSearch(name))
 	}, [dispatch, name])
 
-	const timeFormat = value => {
-		if (value) {
-			let valueSplit = value.split('')
-			let valueSlice = valueSplit.slice(0, 4)
-			let valueJoin = valueSlice.join('')
-			return valueJoin
-		} else {
-			return null
-		}
-	}
-
 	return (
-		<main className='main'>
+		<motion.main
+			animate={{ opacity: 1 }}
+			initial={{ opacity: 0 }}
+			exit={{ opacity: 0 }}
+			className='main'>
 			<h2 className='main__description'>Movies</h2>
 
-			<div className='main__container'>
+			<motion.div Layout className='main__container'>
 				{movieResult?.map(movie => (
 					<Link
 						to={`/details/movie/${movie?.id}`}
 						className='main__card-container'
-						key={movie?.id}
-					>
+						key={movie?.id}>
 						<img
 							src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
 							alt={movie?.original_title}
@@ -66,17 +60,16 @@ function Searched() {
 						</div>
 					</Link>
 				))}
-			</div>
+			</motion.div>
 
 			<h2 className='main__description'>Shows</h2>
 
-			<div className='main__container'>
+			<motion.div Layout className='main__container'>
 				{showResult?.map(show => (
 					<Link
 						to={`/details/show/${show?.id}`}
 						className='main__card-container'
-						key={show?.id}
-					>
+						key={show?.id}>
 						<img
 							src={`https://image.tmdb.org/t/p/w500/${show?.poster_path}`}
 							alt={show?.original_name}
@@ -100,17 +93,16 @@ function Searched() {
 						</div>
 					</Link>
 				))}
-			</div>
+			</motion.div>
 
 			<h2 className='main__description'>Anime</h2>
 
-			<div className='main__container'>
+			<motion.div Layout className='main__container'>
 				{animeResult?.map(anime => (
 					<Link
 						to={`/details/anime/${anime?.mal_id}`}
 						className='main__card-container'
-						key={anime.mal_id}
-					>
+						key={anime.mal_id}>
 						<img
 							src={`${anime?.images?.jpg?.image_url}`}
 							alt={anime?.title_english}
@@ -134,8 +126,8 @@ function Searched() {
 						</div>
 					</Link>
 				))}
-			</div>
-		</main>
+			</motion.div>
+		</motion.main>
 	)
 }
 

@@ -11,7 +11,11 @@ import {
 	getAdditionalUserInfo,
 } from 'firebase/auth'
 import { collection, addDoc } from 'firebase/firestore'
-import { AiOutlineClose, AiOutlineMail, AiOutlineLock } from 'react-icons/ai'
+import {
+	IoCloseOutline,
+	IoMailOutline,
+	IoLockClosedOutline,
+} from 'react-icons/io5'
 import { FcGoogle } from 'react-icons/fc'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -31,6 +35,7 @@ function Login({ openLogin, setOpenLogin }) {
 	const [googleClick, setGoogleClick] = useState(false)
 
 	const googleLogin = () => {
+		setGoogleClick(true)
 		signInWithPopup(auth, provider)
 			.then(async result => {
 				const user = result.user
@@ -51,7 +56,7 @@ function Login({ openLogin, setOpenLogin }) {
 				} else {
 					console.log('User already exists')
 				}
-				setGoogleClick(true)
+
 				setOpenLogin(false)
 			})
 			.catch(error => console.log('Error has occurred', error))
@@ -60,7 +65,7 @@ function Login({ openLogin, setOpenLogin }) {
 	if (!openLogin) return null
 
 	return createPortal(
-		<AnimatePresence exitBeforeEnter>
+		<AnimatePresence>
 			<motion.section
 				animate={{ opacity: 1 }}
 				initial={{ opacity: 0 }}
@@ -68,7 +73,7 @@ function Login({ openLogin, setOpenLogin }) {
 				className='login'>
 				<div className='login__close-container'>
 					<div className='login__close'>
-						<AiOutlineClose
+						<IoCloseOutline
 							className='login__close--icon'
 							onClick={() => setOpenLogin(false)}
 						/>
@@ -111,7 +116,7 @@ function Login({ openLogin, setOpenLogin }) {
 										type='email'
 										placeholder='e.g. johncarter@gmail.com'
 									/>
-									<AiOutlineMail className='login__icon' />
+									<IoMailOutline className='login__icon' />
 									{googleClick === true ? null : (
 										<ErrorMessage
 											name='email'
@@ -130,7 +135,7 @@ function Login({ openLogin, setOpenLogin }) {
 										type='password'
 										placeholder='Must be 6 characters or longer'
 									/>
-									<AiOutlineLock className='login__icon' />
+									<IoLockClosedOutline className='login__icon' />
 									{googleClick === true ? null : (
 										<ErrorMessage
 											name='password'
