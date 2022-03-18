@@ -11,7 +11,6 @@ function AnimeDetails() {
 	const dispatch = useDispatch()
 	const anime = useSelector(state => state.anime.animeDetails)
 	const animeDetails = anime.data
-	console.log(animeDetails)
 
 	useEffect(() => {
 		dispatch(getAnimeDetails(mal_id))

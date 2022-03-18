@@ -23,8 +23,7 @@ function Sidebar() {
 								? 'sidebar__item sidebar__current'
 								: 'sidebar__item'
 						}
-						onClick={() => activeTab(1)}
-					>
+						onClick={() => activeTab(1)}>
 						Movies
 					</li>
 					<li
@@ -33,8 +32,7 @@ function Sidebar() {
 								? 'sidebar__item sidebar__current'
 								: 'sidebar__item'
 						}
-						onClick={() => activeTab(2)}
-					>
+						onClick={() => activeTab(2)}>
 						Shows
 					</li>
 					<li
@@ -43,8 +41,7 @@ function Sidebar() {
 								? 'sidebar__item sidebar__current'
 								: 'sidebar__item'
 						}
-						onClick={() => activeTab(3)}
-					>
+						onClick={() => activeTab(3)}>
 						Anime
 					</li>
 				</ul>

@@ -50,8 +50,10 @@
 }
 
 .navigate__link {
-  text-decoration: none;
-  color: #F0EBD8;
+  cursor: pointer;
+  color: #f0ebd8;
+  font-family: 'Manrope' serif;
+  font-weight: 400;
   font-size: 1.8rem;
   position: relative;
   -webkit-transition: all 0.3s ease-in-out;
@@ -59,16 +61,32 @@
 }
 
 .navigate__home {
-  border-right: 2px solid #F0EBD8;
+  border-right: 2px solid #f0ebd8;
   padding-right: 1.8rem;
 }
 
-.navigate__home-text {
+.navigate__home--text {
+  font-size: inherit;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
 
-.navigate__home-text:hover {
+.navigate__home--text:hover, .navigate__home--text:focus {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.navigate__favourites {
+  padding-left: 2rem;
+}
+
+.navigate__favourites--text {
+  font-size: inherit;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.navigate__favourites--text:hover, .navigate__favourites--text:focus {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
@@ -87,7 +105,7 @@
           flex-direction: column;
   position: absolute;
   left: -50%;
-  background-color: #3E5c76;
+  background-color: #3e5c76;
   padding: 0.2rem;
   width: 16rem;
   border-radius: 10px;
@@ -106,7 +124,7 @@
           flex-direction: column;
   position: absolute;
   left: -50%;
-  background-color: #3E5c76;
+  background-color: #3e5c76;
   padding: 0.2rem;
   width: 16rem;
   border-radius: 10px;
@@ -125,7 +143,7 @@
           flex-direction: column;
   position: absolute;
   left: -50%;
-  background-color: #3E5c76;
+  background-color: #3e5c76;
   padding: 0.2rem;
   width: 16rem;
   border-radius: 10px;
@@ -144,7 +162,7 @@
           flex-direction: column;
   position: absolute;
   left: -50%;
-  background-color: #3E5c76;
+  background-color: #3e5c76;
   padding: 0.2rem;
   width: 16rem;
   border-radius: 10px;
@@ -155,7 +173,7 @@
 
 .navigate__dropdown-link {
   text-decoration: none;
-  color: #F0EBD8;
+  color: #f0ebd8;
   font-size: 1.8rem;
   padding: 1.2rem;
   text-align: center;
@@ -166,6 +184,6 @@
 }
 
 .navigate__dropdown-link:hover {
-  background-color: #1D2D44;
+  background-color: #1d2d44;
 }
 /*# sourceMappingURL=navigate.css.map */

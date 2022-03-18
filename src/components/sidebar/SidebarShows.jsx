@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import './sidebar.scss'
-import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { getShowDiscover } from '../../features/shows/showSlice'
-import { timeFormat } from './sidebarData'
+import { timeFormat } from '../../data/reusableData'
 import { FcRating } from 'react-icons/fc'
 import { motion } from 'framer-motion'
 

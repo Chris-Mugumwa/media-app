@@ -31,8 +31,11 @@
 	}
 
 	&__link {
+		text-decoration: none;
 		cursor: pointer;
 		color: $grayish;
+		font-family: 'Manrope' serif;
+		font-weight: 400;
 		font-size: 1.8rem;
 		position: relative;
 		transition: all 0.3s ease-in-out;

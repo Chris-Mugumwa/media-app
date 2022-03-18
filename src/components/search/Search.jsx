@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
+import './search.scss'
 import { useDispatch } from 'react-redux'
 import { getMovieSearch } from '../../features/movies/movieSlice'
 import { getShowSearch } from '../../features/shows/showSlice'
 import { getAnimeSearch } from '../../features/anime/animeSlice'
-import './search.scss'
 import { useNavigate } from 'react-router-dom'
 import { IoSearchOutline } from 'react-icons/io5'
 
@@ -18,6 +18,7 @@ function Search() {
 		dispatch(getShowSearch(term))
 		dispatch(getAnimeSearch(term))
 		navigate(`/searched/${term}`)
+		setTerm('')
 	}
 
 	return (
@@ -25,8 +26,7 @@ function Search() {
 			<form
 				className='search__form'
 				autoComplete='off'
-				onSubmit={searchMedia}
-			>
+				onSubmit={searchMedia}>
 				<input
 					type='text'
 					name='search'

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getUpcomingMovies } from '../../features/movies/movieSlice'
 import Pagination from '../pagination/Pagination'
-import { timeFormat } from '../main/mainData'
+import { timeFormat } from '../../data/reusableData'
 import { FcRating } from 'react-icons/fc'
 import { motion } from 'framer-motion'
 

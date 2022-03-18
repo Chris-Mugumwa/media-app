@@ -3,7 +3,7 @@ import './main.scss'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getShowSearch } from '../../features/shows/showSlice'
-import { timeFormat } from './mainData'
+import { timeFormat } from '../../data/reusableData'
 import { FcRating } from 'react-icons/fc'
 
 function MainShows() {
@@ -25,8 +25,7 @@ function MainShows() {
 					<Link
 						to={`/details/show/${show.id}`}
 						className='main__card-container'
-						key={show.id}
-					>
+						key={show.id}>
 						<img
 							src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
 							alt={show.original_name}

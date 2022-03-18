@@ -1,24 +1,36 @@
 import React from 'react'
 import './pagination.scss'
-import { paginationData } from './paginationData'
+import { IoArrowRedoOutline, IoArrowUndoOutline } from 'react-icons/io5'
+import { motion } from 'framer-motion'
 
-function Pagination({ setPage }) {
-	const selectPageClick = page => {
-		setPage(page)
+function Pagination({ page, setPage }) {
+	const nextPage = () => {
+		setPage(prevState => prevState + 1)
+	}
+
+	const prevPage = () => {
+		if (page === 1) {
+			setPage(1)
+		}
+		setPage(prevState => prevState - 1)
 	}
 
 	return (
-		<ul className='pagination'>
-			{paginationData.map(pagination => (
-				<li
-					className='pagination__page'
-					key={pagination.number}
-					onClick={event => selectPageClick(event.target.textContent)}
-				>
-					{pagination.number}
-				</li>
-			))}
-		</ul>
+		<motion.div
+			animate={{ opacity: 1 }}
+			initial={{ opacity: 0 }}
+			exit={{ opacity: 0 }}
+			Layout
+			className='paginate'>
+			<button className='paginate__button' onClick={() => prevPage()}>
+				<IoArrowUndoOutline className='paginate__icon' />
+				<h4 className='paginate__direction'>Previous Page</h4>
+			</button>
+			<button className='paginate__button' onClick={() => nextPage()}>
+				<h4 className='paginate__direction'>Next Page</h4>
+				<IoArrowRedoOutline className='paginate__icon' />
+			</button>
+		</motion.div>
 	)
 }
 

@@ -3,7 +3,7 @@ import './sidebar.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getMovieDiscover } from '../../features/movies/movieSlice'
-import { timeFormat } from './sidebarData'
+import { timeFormat } from '../../data/reusableData'
 import { FcRating } from 'react-icons/fc'
 import { motion } from 'framer-motion'
 

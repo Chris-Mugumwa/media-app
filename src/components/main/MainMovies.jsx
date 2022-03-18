@@ -3,7 +3,7 @@ import './main.scss'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovieSearch } from '../../features/movies/movieSlice'
-import { timeFormat } from './mainData'
+import { timeFormat } from '../../data/reusableData'
 import { FcRating } from 'react-icons/fc'
 
 function MainMovies() {

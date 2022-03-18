@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import './navigation.scss'
 import './menu.scss'
+import { Link, useNavigate } from 'react-router-dom'
 import Login from '../auth/login/Login'
 import Signup from '../auth/signup/Signup'
 import { ReactComponent as Icon } from '../../assets/icon.svg'
 import NavigationSignout from './NavigationSignout'
 import { auth } from '../../firebase'
 import Avatar from 'react-avatar'
-import { HiOutlineMenuAlt2, HiOutlineX } from 'react-icons/hi'
-import { navigationData } from './navigationData'
-import { motion, AnimatePresence } from 'framer-motion'
+import { IoCloseOutline, IoMenuOutline } from 'react-icons/io5'
+import { navigationData } from '../../data/reusableData'
+
+import { motion } from 'framer-motion'
 
 function Navigation() {
 	const navigate = useNavigate()
@@ -45,101 +46,38 @@ function Navigation() {
 	}
 
 	return (
-		<AnimatePresence exitBeforeEnter>
-			<div className='navigation'>
-				<Login openLogin={openLogin} setOpenLogin={setOpenLogin} />
-				<Signup openSignup={openSignup} setOpenSignup={setOpenSignup} />
-				<NavigationSignout
-					openSignout={openSignout}
-					setOpenSignout={setOpenSignout}
-					toSignout={toSignout}
-				/>
+		<div className='navigation'>
+			<Login openLogin={openLogin} setOpenLogin={setOpenLogin} />
+			<Signup openSignup={openSignup} setOpenSignup={setOpenSignup} />
+			<NavigationSignout
+				openSignout={openSignout}
+				setOpenSignout={setOpenSignout}
+				toSignout={toSignout}
+			/>
 
-				<Icon
-					alt='application icon'
-					className='navigation__icon'
-					onClick={() => navigate('/')}
-				/>
+			<Icon
+				alt='application icon'
+				className='navigation__icon'
+				onClick={() => navigate('/')}
+			/>
 
-				<div
-					className='navigation__hamburger-container'
-					onClick={() => showMenu()}>
-					<HiOutlineMenuAlt2 className='navigation__hamburger navigation__hamburger-close' />
-				</div>
+			<div
+				className='navigation__hamburger-container'
+				onClick={() => showMenu()}>
+				<IoMenuOutline className='navigation__hamburger navigation__hamburger-close' />
+			</div>
 
-				{user ? (
-					<div className='navigation__wrapper'>
-						<h5 className='navigation__name'>{user?.displayName}</h5>
-						<div className='navigation__profile'>
-							{user?.photoURL !== null ? (
-								<img
-									src={user?.photoURL}
-									alt='profile'
-									className='navigation__profile--picture'
-									onClick={() => showSignout()}
-								/>
-							) : (
-								<Avatar
-									color={Avatar.getRandomColor('sitebase', [
-										'red',
-										'green',
-										'blue',
-									])}
-									name={user?.displayName}
-									round='100%'
-									size='40px'
-									className='navigation__avatar'
-									onClick={() => showSignout()}
-								/>
-							)}
-						</div>
-					</div>
-				) : (
-					<>
-						<div className='navigation__buttons'>
-							<button
-								className='navigation__button navigation__login'
-								onClick={() => toLogin()}>
-								Login
-							</button>
-							<button
-								className='navigation__button navigation__sign-in'
-								onClick={() => toSignup()}>
-								Sign Up
-							</button>
-						</div>
-					</>
-				)}
-
-				<div className={menu ? 'menu__close' : 'menu'}>
-					<div className='menu__profile-container'>
-						{user ? (
-							<>
-								<div className='menu__profile'>
-									{user?.photoURL !== null ? (
-										<img
-											src={user?.photoURL}
-											alt='profile'
-											className='menu__profile--picture'
-										/>
-									) : (
-										<Avatar
-											color={Avatar.getRandomColor('sitebase', [
-												'red',
-												'green',
-												'blue',
-											])}
-											name={user?.displayName}
-											round='100%'
-											size='40px'
-											className='menu__avatar'
-										/>
-									)}
-									<h5 className='menu__name'>
-										{user ? user?.displayName : null}
-									</h5>
-								</div>
-							</>
+			{user ? (
+				<div className='navigation__wrapper'>
+					<h5 className='navigation__name'>{user?.displayName}</h5>
+					<div className='navigation__profile'>
+						{user?.photoURL !== null ? (
+							<img
+								src={user?.photoURL}
+								alt='profile'
+								className='navigation__profile--picture'
+								onClick={() => showSignout()}
+							/>
 						) : (
 							<Avatar
 								color={Avatar.getRandomColor('sitebase', [
@@ -147,57 +85,120 @@ function Navigation() {
 									'green',
 									'blue',
 								])}
-								name='User'
+								name={user?.displayName}
 								round='100%'
 								size='40px'
-								className='menu__avatar'
+								className='navigation__avatar'
+								onClick={() => showSignout()}
 							/>
 						)}
-						<div
-							className='menu__hamburger-container'
-							onClick={() => showMenu()}>
-							<HiOutlineX className='menu__hamburger navigation__hamburger-close' />
-						</div>
 					</div>
-					<ul className='menu__list'>
-						{links.map(link => (
-							<div className='menu__item-container' key={link.id}>
-								<Link
-									className='menu__item'
-									to={link.path}
-									onClick={() => setMenu(false)}>
-									<span className='menu__icon'>{link.icon}</span>
-									<span className='menu__name'>{link.name}</span>
-								</Link>
-							</div>
-						))}
-					</ul>
-
-					{user ? (
-						<div className='menu__buttons'>
-							<button
-								className='menu__button menu__login'
-								onClick={() => toSignout()}>
-								Logout
-							</button>
-						</div>
-					) : (
-						<div className='menu__buttons'>
-							<button
-								className='menu__button menu__login'
-								onClick={() => toLogin()}>
-								Login
-							</button>
-							<button
-								className='menu__button menu__sign-up'
-								onClick={() => toSignup()}>
-								Sign Up
-							</button>
-						</div>
-					)}
 				</div>
+			) : (
+				<>
+					<div className='navigation__buttons'>
+						<button
+							className='navigation__button navigation__login'
+							onClick={() => toLogin()}>
+							Login
+						</button>
+						<button
+							className='navigation__button navigation__sign-in'
+							onClick={() => toSignup()}>
+							Sign Up
+						</button>
+					</div>
+				</>
+			)}
+
+			<div className={menu ? 'menu__close' : 'menu'}>
+				<motion.div
+					animate={{ opacity: 1 }}
+					initial={{ opacity: 0 }}
+					exit={{ opacity: 0 }}
+					className='menu__profile-container'>
+					{user ? (
+						<>
+							<div className='menu__profile'>
+								{user?.photoURL !== null ? (
+									<img
+										src={user?.photoURL}
+										alt='profile'
+										className='menu__profile--picture'
+									/>
+								) : (
+									<Avatar
+										color={Avatar.getRandomColor('sitebase', [
+											'red',
+											'green',
+											'blue',
+										])}
+										name={user?.displayName}
+										round='100%'
+										size='40px'
+										className='menu__avatar'
+									/>
+								)}
+								<h5 className='menu__name'>{user?.displayName}</h5>
+							</div>
+						</>
+					) : (
+						<Avatar
+							color={Avatar.getRandomColor('sitebase', [
+								'red',
+								'green',
+								'blue',
+							])}
+							name='User'
+							round='100%'
+							size='40px'
+							className='menu__avatar'
+						/>
+					)}
+					<div
+						className='menu__hamburger-container'
+						onClick={() => showMenu()}>
+						<IoCloseOutline className='menu__hamburger navigation__hamburger-close' />
+					</div>
+				</motion.div>
+				<ul className='menu__list'>
+					{links.map(link => (
+						<div className='menu__item-container' key={link.id}>
+							<Link
+								className='menu__item'
+								to={link.path}
+								onClick={() => setMenu(false)}>
+								<span className='menu__icon'>{link.icon}</span>
+								<span className='menu__name'>{link.name}</span>
+							</Link>
+						</div>
+					))}
+				</ul>
+
+				{user ? (
+					<div className='menu__buttons'>
+						<button
+							className='menu__button menu__login'
+							onClick={() => toSignout()}>
+							Logout
+						</button>
+					</div>
+				) : (
+					<div className='menu__buttons'>
+						<button
+							className='menu__button menu__login'
+							onClick={() => toLogin()}>
+							Login
+						</button>
+						<button
+							className='menu__button menu__sign-up'
+							onClick={() => toSignup()}>
+							Sign Up
+						</button>
+					</div>
+				)}
 			</div>
-		</AnimatePresence>
+		</div>
 	)
 }
 
