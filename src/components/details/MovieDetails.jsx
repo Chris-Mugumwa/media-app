@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovieDetails } from '../../features/movies/movieSlice'
 import Youtube from 'react-youtube'
-import { BiPlay } from 'react-icons/bi'
 
 function MovieDetails() {
 	const { id } = useParams()
@@ -92,6 +91,7 @@ function MovieDetails() {
 								<a
 									href={movieDetails.homepage}
 									target='_blank'
+                           rel="noopener"
 									className='details__button-homepage'>
 									Movie Homepage
 								</a>

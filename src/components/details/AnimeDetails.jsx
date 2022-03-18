@@ -103,6 +103,7 @@ function AnimeDetails() {
 								<a
 									href={animeDetails?.url}
 									target='_blank'
+									rel='noopener'
 									className='details__button-homepage'>
 									My Anime List
 								</a>
