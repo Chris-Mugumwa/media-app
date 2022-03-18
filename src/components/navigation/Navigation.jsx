@@ -17,7 +17,7 @@ function Navigation() {
 	const navigate = useNavigate()
 	const user = auth?.currentUser
 	const [menu, setMenu] = useState(false)
-	const [links, setLinks] = useState(navigationData)
+	const [links] = useState(navigationData)
 	const [openLogin, setOpenLogin] = useState(false)
 	const [openSignup, setOpenSignup] = useState(false)
 	const [openSignout, setOpenSignout] = useState(false)
