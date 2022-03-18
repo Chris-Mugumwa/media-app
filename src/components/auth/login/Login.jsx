@@ -86,8 +86,7 @@ function Login({ openLogin, setOpenLogin }) {
 									values.email,
 									values.password,
 								)
-									.then(userCredential => {
-										const user = userCredential.user
+									.then(() => {
 										setOpenLogin(false)
 									})
 									.catch(error => {
