@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAnimeDetails } from '../../features/anime/animeSlice'
 import Youtube from 'react-youtube'
-import { BiPlay } from 'react-icons/bi'
 
 function AnimeDetails() {
 	const { mal_id } = useParams()
@@ -103,7 +102,7 @@ function AnimeDetails() {
 								<a
 									href={animeDetails?.url}
 									target='_blank'
-									rel='noopener'
+									rel='noreferrer'
 									className='details__button-homepage'>
 									My Anime List
 								</a>

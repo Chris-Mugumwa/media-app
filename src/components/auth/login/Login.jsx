@@ -58,8 +58,6 @@ function Login({ openLogin, setOpenLogin }) {
 			.catch(error => console.log('Error has occurred', error))
 	}
 
-	if (!openLogin) return null
-
 	return createPortal(
 		<AnimatePresence exitBeforeEnter>
 			{openLogin && (
@@ -88,8 +86,7 @@ function Login({ openLogin, setOpenLogin }) {
 									values.email,
 									values.password,
 								)
-									.then(userCredential => {
-										const user = userCredential.user
+									.then(() => {
 										setOpenLogin(false)
 									})
 									.catch(error => {
