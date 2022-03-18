@@ -45,7 +45,6 @@ function Signup({ openSignup, setOpenSignup }) {
 		signInWithPopup(auth, provider)
 			.then(result => {
 				const user = result.user
-				console.log('Here is the user:', user)
 
 				try {
 					const usersRef = doc(db, 'users', `${user.uid}`)
@@ -56,8 +55,6 @@ function Signup({ openSignup, setOpenSignup }) {
 						photo: user.photoURL,
 						active: true,
 					})
-
-					console.log('Document written with ID: ', usersRef.id)
 				} catch (error) {
 					console.error('Error adding document: ', error)
 				}
@@ -98,7 +95,6 @@ function Signup({ openSignup, setOpenSignup }) {
 							)
 								.then(userCredential => {
 									const user = userCredential.user
-									console.log(user)
 
 									updateProfile(user, {
 										displayName: values.name,
@@ -114,10 +110,6 @@ function Signup({ openSignup, setOpenSignup }) {
 											active: true,
 										}).catch(error =>
 											console.log('Did not save to db,', error),
-										)
-										console.log(
-											'Document written with ID: ',
-											usersRef.id,
 										)
 									} catch (error) {
 										console.error('Error adding document: ', error)

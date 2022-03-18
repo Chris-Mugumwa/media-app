@@ -10,6 +10,7 @@ import { auth } from '../../firebase'
 import Avatar from 'react-avatar'
 import { IoCloseOutline, IoMenuOutline } from 'react-icons/io5'
 import { navigationData } from '../../data/reusableData'
+
 import { motion } from 'framer-motion'
 
 function Navigation() {

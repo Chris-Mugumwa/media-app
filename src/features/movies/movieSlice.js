@@ -57,18 +57,6 @@ export const getMovieDetails = createAsyncThunk(
 	},
 )
 
-export const getFavouriteMovies = createAsyncThunk(
-	'favouriteMovies/getFavouriteMovies',
-	async id => {
-		const response = await fetch(
-			`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_MOVIE_API_KEY}&append_to_response=videos`,
-		)
-		const formatResponse = await response.json()
-		// console.log(formatResponse)
-		return formatResponse
-	},
-)
-
 export const getMovieSearch = createAsyncThunk(
 	'movieSearch/getMovieSearch',
 	async (term, page) => {
@@ -88,7 +76,6 @@ export const movieSlice = createSlice({
 		movieSearch: [],
 		movieDetails: [],
 		movieDiscover: [],
-		favouriteMovies: [],
 		isLoading: false,
 	},
 	extraReducers: {
@@ -150,16 +137,6 @@ export const movieSlice = createSlice({
 			state.isLoading = false
 		},
 		[getMovieDetails.rejected]: state => {
-			state.isLoading = false
-		},
-		[getFavouriteMovies.pending]: state => {
-			state.isLoading = true
-		},
-		[getFavouriteMovies.fulfilled]: (state, action) => {
-			state.favouriteMovies = action.payload
-			state.isLoading = false
-		},
-		[getFavouriteMovies.rejected]: state => {
 			state.isLoading = false
 		},
 	},
