@@ -38,6 +38,8 @@ function Login({ openLogin, setOpenLogin }) {
 		setGoogleClick(true)
 		signInWithPopup(auth, provider)
 			.then(async result => {
+				const user = result.user
+
 				const { isNewUser } = getAdditionalUserInfo(result)
 				if (isNewUser) {
 					try {
@@ -86,7 +88,8 @@ function Login({ openLogin, setOpenLogin }) {
 									values.email,
 									values.password,
 								)
-									.then(() => {
+									.then(userCredential => {
+										const user = userCredential.user
 										setOpenLogin(false)
 									})
 									.catch(error => {
