@@ -104,6 +104,7 @@ function ShowDetails() {
 								<a
 									href={showDetails.homepage}
 									target='_blank'
+									rel='noopener'
 									className='details__button-homepage'>
 									Show Homepage
 								</a>

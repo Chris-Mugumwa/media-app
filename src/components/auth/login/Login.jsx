@@ -38,12 +38,10 @@ function Login({ openLogin, setOpenLogin }) {
 		setGoogleClick(true)
 		signInWithPopup(auth, provider)
 			.then(async result => {
-				const user = result.user
-
 				const { isNewUser } = getAdditionalUserInfo(result)
 				if (isNewUser) {
 					try {
-						const docRef = await addDoc(collection(db, 'users'), {
+						await addDoc(collection(db, 'users'), {
 							name: user.displayName,
 							email: user.email,
 							photo: user.photoURL,
