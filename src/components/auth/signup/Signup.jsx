@@ -18,7 +18,7 @@ import {
 	IoLockClosedOutline,
 } from 'react-icons/io5'
 import { FcGoogle } from 'react-icons/fc'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const initialValues = { name: '', email: '', password: '' }
 
@@ -64,140 +64,144 @@ function Signup({ openSignup, setOpenSignup }) {
 			.catch(error => console.log('Error has occurred', error))
 	}
 
-	if (!openSignup) return null
-
 	return createPortal(
-		<>
-			<motion.section
-				animate={{ opacity: 1 }}
-				initial={{ opacity: 0 }}
-				exit={{ opacity: 0 }}
-				className='signup'>
-				<div className='signup__close-container'>
-					<div className='signup__close'>
-						<IoCloseOutline
-							className='signup__close--icon'
-							onClick={() => setOpenSignup(false)}
-						/>
-					</div>
-				</div>
-				<div className='signup__container'>
-					<h2 className='signup__header'>Sign up</h2>
-					<Formik
-						className='signup__formik'
-						initialValues={initialValues}
-						validationSchema={validationSchema}
-						onSubmit={values => {
-							createUserWithEmailAndPassword(
-								auth,
-								values.email,
-								values.password,
-							)
-								.then(userCredential => {
-									const user = userCredential.user
-
-									updateProfile(user, {
-										displayName: values.name,
-									})
-
-									try {
-										const usersRef = doc(db, 'users', `${user.uid}`)
-										setDoc(usersRef, {
-											id: user.uid,
-											displayName: values.name,
-											email: values.email,
-											photo: null,
-											active: true,
-										}).catch(error =>
-											console.log('Did not save to db,', error),
-										)
-									} catch (error) {
-										console.error('Error adding document: ', error)
-									}
-									setOpenSignup(false)
-								})
-								.catch(error => {
-									const errorCode = error.code
-									const errorMessage = error.message
-									console.log(errorCode)
-									console.log(errorMessage)
-								})
-						}}>
-						<div className='signup__wrapper'>
-							<Form className='signup__form' autocomplete='off'>
-								<div className='signup__form-container'>
-									<label className='signup__label'>full name</label>
-									<Field
-										className='signup__field'
-										id='name'
-										name='name'
-										autocomplete='off'
-										type='text'
-										placeholder='e.g. John Carter'
-									/>
-									<IoPersonAddOutline className='signup__icon' />
-									{googleClick === true ? null : (
-										<ErrorMessage
-											name='name'
-											component='div'
-											className='signup__error'
-										/>
-									)}
-								</div>
-
-								<div className='signup__form-container'>
-									<label className='signup__label'>email</label>
-									<Field
-										className='signup__field'
-										id='email'
-										name='email'
-										autocomplete='off'
-										type='email'
-										placeholder='e.g. johncarter@gmail.com'
-									/>
-									<IoMailOutline className='signup__icon' />
-									{googleClick === true ? null : (
-										<ErrorMessage
-											name='email'
-											component='div'
-											className='signup__error'
-										/>
-									)}
-								</div>
-								<div className='signup__form-container'>
-									<label className='signup__label'>password</label>
-									<Field
-										className='signup__field'
-										id='password'
-										name='password'
-										autocomplete='off'
-										type='password'
-										placeholder='Must be 6 characters or longer'
-									/>
-									<IoLockClosedOutline className='signup__icon' />
-									{googleClick === true ? null : (
-										<ErrorMessage
-											name='password'
-											component='div'
-											className='signup__error'
-										/>
-									)}
-								</div>
-								<button type='submit' className='signup__submit'>
-									Submit
-								</button>
-								<button
-									type='submit'
-									className='signup__google'
-									onClick={() => googleSignup()}>
-									<FcGoogle className='signup__google--icon' />
-								</button>
-							</Form>
+		<AnimatePresence exitBeforeEnter>
+			{openSignup && (
+				<motion.section
+					animate={{ opacity: 1 }}
+					initial={{ opacity: 0 }}
+					exit={{ opacity: 0 }}
+					className='signup'>
+					<div className='signup__close-container'>
+						<div className='signup__close'>
+							<IoCloseOutline
+								className='signup__close--icon'
+								onClick={() => setOpenSignup(false)}
+							/>
 						</div>
-					</Formik>
-				</div>
-			</motion.section>
-		</>,
+					</div>
+					<div className='signup__container'>
+						<h2 className='signup__header'>Sign up</h2>
+						<Formik
+							className='signup__formik'
+							initialValues={initialValues}
+							validationSchema={validationSchema}
+							onSubmit={values => {
+								createUserWithEmailAndPassword(
+									auth,
+									values.email,
+									values.password,
+								)
+									.then(userCredential => {
+										const user = userCredential.user
+
+										updateProfile(user, {
+											displayName: values.name,
+										})
+
+										try {
+											const usersRef = doc(
+												db,
+												'users',
+												`${user.uid}`,
+											)
+											setDoc(usersRef, {
+												id: user.uid,
+												displayName: values.name,
+												email: values.email,
+												photo: null,
+												active: true,
+											}).catch(error =>
+												console.log('Did not save to db,', error),
+											)
+										} catch (error) {
+											console.error('Error adding document: ', error)
+										}
+										setOpenSignup(false)
+									})
+									.catch(error => {
+										const errorCode = error.code
+										const errorMessage = error.message
+										console.log(errorCode)
+										console.log(errorMessage)
+									})
+							}}>
+							<div className='signup__wrapper'>
+								<Form className='signup__form' autocomplete='off'>
+									<div className='signup__form-container'>
+										<label className='signup__label'>full name</label>
+										<Field
+											className='signup__field'
+											id='name'
+											name='name'
+											autocomplete='off'
+											type='text'
+											placeholder='e.g. John Carter'
+										/>
+										<IoPersonAddOutline className='signup__icon' />
+										{googleClick === true ? null : (
+											<ErrorMessage
+												name='name'
+												component='div'
+												className='signup__error'
+											/>
+										)}
+									</div>
+
+									<div className='signup__form-container'>
+										<label className='signup__label'>email</label>
+										<Field
+											className='signup__field'
+											id='email'
+											name='email'
+											autocomplete='off'
+											type='email'
+											placeholder='e.g. johncarter@gmail.com'
+										/>
+										<IoMailOutline className='signup__icon' />
+										{googleClick === true ? null : (
+											<ErrorMessage
+												name='email'
+												component='div'
+												className='signup__error'
+											/>
+										)}
+									</div>
+									<div className='signup__form-container'>
+										<label className='signup__label'>password</label>
+										<Field
+											className='signup__field'
+											id='password'
+											name='password'
+											autocomplete='off'
+											type='password'
+											placeholder='Must be 6 characters or longer'
+										/>
+										<IoLockClosedOutline className='signup__icon' />
+										{googleClick === true ? null : (
+											<ErrorMessage
+												name='password'
+												component='div'
+												className='signup__error'
+											/>
+										)}
+									</div>
+									<button type='submit' className='signup__submit'>
+										Submit
+									</button>
+									<button
+										type='submit'
+										className='signup__google'
+										onClick={() => googleSignup()}>
+										<FcGoogle className='signup__google--icon' />
+									</button>
+								</Form>
+							</div>
+						</Formik>
+					</div>
+				</motion.section>
+			)}
+		</AnimatePresence>,
 		document.getElementById('portal'),
 	)
 }

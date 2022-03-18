@@ -39,13 +39,19 @@
 		padding: 0.5rem;
 		color: $grayish;
 		font-size: 1.5rem;
-		text-align: center;
 		transition: 0.3s ease-in;
 		outline: none;
 
-		// &::placeholder {
-		//    text-align: center;
-		// }
+		&::placeholder {
+			font-size: 1rem;
+			padding-left: 1.2rem;
+
+			@include respond(desktop) {
+				font-size: 1.4rem;
+				text-align: center;
+				padding-left: 0;
+			}
+		}
 
 		&:focus {
 			border: none;

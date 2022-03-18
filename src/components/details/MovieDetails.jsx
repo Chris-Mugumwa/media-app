@@ -91,7 +91,7 @@ function MovieDetails() {
 								<a
 									href={movieDetails.homepage}
 									target='_blank'
-                           rel="noopener"
+									rel='noreferrer'
 									className='details__button-homepage'>
 									Movie Homepage
 								</a>
